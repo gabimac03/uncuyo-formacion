@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Test Evaluativo • A.L.E.R.T.A. UNCuyo</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header class="site">
+  <div class="wrap bar">
+    <div class="logo"><div class="mark">AU</div><div class="brand">A.L.E.R.T.A. UNCuyo</div></div>
+    <nav><a href="index.html#">← Volver</a></nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Test evaluativo</h1>
+  <p class="tiny">15 preguntas aleatorias sobre los módulos. Aprobás con <strong>9 o más</strong> correctas.</p>
+  <p class="tiny">Si volves para atrás el cuestionario se reinicia.</p>
+  <div id="quiz" class="quiz-wrap">
+    <!-- barra de progreso -->
+    <div id="progress" class="progress">
+      <div class="progress-bar" id="progressBar" style="width:0%"></div>
+      <div class="progress-text" id="progressText">0 / 15</div>
+    </div>
+
+    <div class="actions">
+      <button id="btnStart" class="btn primary">Comenzar</button>
+    </div>
+
+    <form id="form"></form>
+
+    <div class="actions" id="nav" style="display:none;">
+      <button id="btnPrev" class="btn" disabled>Anterior</button>
+      <button id="btnNext" class="btn" disabled>Siguiente</button>
+      <button id="btnFinish" class="btn primary" disabled>Enviar test</button>
+    </div>
+
+    <div id="res" class="results"></div>
+  </div>
+</main>
+
+<!-- Modal: faltan preguntas -->
+<div id="modalIncomplete" class="modal-backdrop" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="incompleteTitle">
+    <h3 id="incompleteTitle">Hay preguntas sin responder</h3>
+    <p id="incompleteText" class="tiny">Debes responder todas las preguntas.</p>
+    <div class="actions">
+      <button id="incompleteGoto" class="btn">Ir a la primera pendiente</button>
+      <button id="incompleteClose" class="btn primary">Entendido</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal de APROBADO (datos) -->
+<div id="modal" class="modal-backdrop" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <h3 id="modalTitle">Datos para constancia</h3>
+    <p class="tiny">Completá tus datos para registrar el resultado.</p>
+    <div class="row">
+      <input id="mNombre" type="text" placeholder="Nombre completo" required>
+      <input id="mDni" type="text" placeholder="DNI" required>
+      <input id="mEmail" type="email" placeholder="Correo electrónico" required>
+    </div>
+    <div class="actions">
+      <button id="mCancel" class="btn">Cancelar</button>
+      <button id="mSend" class="btn primary">Enviar</button>
+    </div>
+    <div id="mMsg" class="tiny" style="margin-top:8px;"></div>
+  </div>
+</div>
+
+<!-- Modal de NO APROBADO -->
+<div id="modalFail" class="modal-backdrop" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalFailTitle">
+    <h3 id="modalFailTitle">Resultado del test</h3>
+    <p id="failText" class="tiny"></p>
+    <div class="actions">
+      <button id="fClose" class="btn">Cerrar</button>
+      <button id="fRetry" class="btn primary">Volver a intentar</button>
+    </div>
+  </div>
+</div>
+
+
+<script src="../javascript/main.js" defer></script>
+<script src="../javascript/test-data.js" defer></script>
+<script src="../javascript/test.js" defer></script>
+
+</body>
+</html>

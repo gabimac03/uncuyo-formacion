@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Ingresar — A.L.E.R.T.A. UNCuyo</title>
+  <link rel="stylesheet" href="../css/style.css"/>
+</head>
+<body class="login-body">
+  <div class="card">
+    <h1>Ingresar</h1>
+    <form id="loginForm" autocomplete="off">
+      <label>Usuario
+        <input type="text" id="username" name="username" required minlength="3" autocomplete="off" />
+      </label>
+      <label>Contraseña
+        <input type="password" id="password" name="password" required minlength="6" autocomplete="off" />
+      </label>
+
+      <div class="captcha">
+        <span id="captchaQuestion">Cargando...</span>
+        <button id="refreshCaptcha" class="link" type="button">Actualizar</button>
+      </div>
+      <label>Respuesta CAPTCHA
+        <input type="text" id="captchaAnswer" name="captchaAnswer" inputmode="numeric" required />
+      </label>
+      <input type="hidden" id="captchaId" />
+
+      <button type="submit" class="btn">Entrar</button>
+      <p class="tiny" style="margin-top:10px;color:#94a3b8">
+        <a href="/password-forgot.html">¿Olvidaste tu contraseña?</a>
+      </p>
+      <p id="msg" class="msg"></p>
+      <p class="tiny" style="margin-top:10px;color:#94a3b8">
+      ¿No tenés cuenta? <a href="/registrer.html">Registrate con tu DNI</a>
+    </p>
+
+    </form>
+  </div>
+
+  <script src="../javascript/login.js"></script>
+</body>
+</html>

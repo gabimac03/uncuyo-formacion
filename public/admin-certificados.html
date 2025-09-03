@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Admin – Certificados</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <style>
+    table{width:100%;border-collapse:collapse;margin-top:12px}
+    th,td{border:1px solid #1f2a50;padding:8px;font-size:14px}
+    th{background:#0b1224;text-align:left}
+    .row-actions{display:flex;gap:6px;flex-wrap:wrap}
+    .pill{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px}
+    .pending{background:#f59e0b33;color:#f59e0b}
+    .approved{background:#22c55e33;color:#22c55e}
+    .rejected{background:#ef444433;color:#ef4444}
+    .filters{display:flex;gap:8px;align-items:center;margin-top:8px}
+    input,select,button{padding:6px 8px;border-radius:8px;border:1px solid #1f2a50;background:#0a1226;color:#e5e7eb}
+    button.btn{background:#3354ff;border:0}
+    .note{min-width:220px}
+  </style>
+</head>
+<body class="login-body" style="align-items:flex-start">
+  <div class="card" style="width:min(1100px,95vw);margin-top:24px">
+    <h1>Solicitudes de certificado</h1>
+
+    <div class="filters">
+      <label>Estado:
+        <select id="fStatus">
+          <option value="">Todos</option>
+          <option value="pending">Pendientes</option>
+          <option value="approved">Aprobados</option>
+          <option value="rejected">Rechazados</option>
+        </select>
+      </label>
+      <button id="btnReload" class="btn">Actualizar</button>
+    </div>
+
+    <table id="tbl">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Usuario (DNI)</th>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Año</th>
+          <th>Estado</th>
+          <th>Creada</th>
+          <th>Revisada por</th>
+          <th>Nota</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <p id="msg" class="tiny"></p>
+  </div>
+
+  <script>
+    const $ = s => document.querySelector(s);
+    const tbody = $('#tbl tbody');
+
+    function pill(s){ return `<span class="pill ${s}">${s}</span>`; }
+
+    async function load() {
+      $('#msg').textContent = 'Cargando...';
+      const st = $('#fStatus').value;
+      const url = '/api/admin/cert-requests' + (st ? ('?status=' + encodeURIComponent(st)) : '');
+      const r = await fetch(url);
+      const data = await r.json().catch(()=>({}));
+      if (!r.ok || !data.ok) {
+        $('#msg').textContent = data.error || 'Error cargando';
+        tbody.innerHTML = '';
+        return;
+      }
+      $('#msg').textContent = '';
+      tbody.innerHTML = data.requests.map(row => {
+        const noteVal = row.note ? row.note.replace(/"/g,'&quot;') : '';
+        return `<tr data-id="${row.id}">
+          <td>${row.id}</td>
+          <td>${row.username}</td>
+          <td>${row.fullName || ''}</td>
+          <td>${row.email || ''}</td>
+          <td>${row.year}</td>
+          <td>${pill(row.status)}</td>
+          <td>${new Date(row.createdAt).toLocaleString()}</td>
+          <td>${row.reviewedByUsername || ''}</td>
+          <td><input class="note" type="text" value="${noteVal}" /></td>
+          <td class="row-actions">
+            <button class="approve btn">Aprobar</button>
+            <button class="reject">Rechazar</button>
+          </td>
+        </tr>`
+      }).join('');
+      bindRowActions();
+    }
+
+    function bindRowActions() {
+      tbody.querySelectorAll('tr').forEach(tr => {
+        tr.querySelector('.approve')?.addEventListener('click', () => update(tr, 'approved'));
+        tr.querySelector('.reject')?.addEventListener('click', () => update(tr, 'rejected'));
+      });
+    }
+
+    async function update(tr, status) {
+      const id = tr.getAttribute('data-id');
+      const note = tr.querySelector('.note')?.value || '';
+      const r = await fetch(`/api/admin/cert-requests/${id}/status`, {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ status, note })
+      });
+      const data = await r.json().catch(()=>({}));
+      if (!r.ok || !data.ok) {
+        alert(data.error || 'No se pudo actualizar');
+        return;
+      }
+      await load();
+    }
+
+    $('#btnReload').addEventListener('click', load);
+    $('#fStatus').addEventListener('change', load);
+    load();
+  </script>
+</body>
+</html>

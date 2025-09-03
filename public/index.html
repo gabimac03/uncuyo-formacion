@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>A.L.E.R.T.A. UNCuyo – Concientización en Ciberseguridad</title>
+  <meta name="description" content="Portal institucional de concientización en ciberseguridad para personal docente y no docente de la UNCuyo. 9 módulos formativos con materiales, consejos y evaluaciones." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- CSS externo -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header class="site">
+    <div class="wrap bar">
+      <div class="logo">
+        <div class="mark">AU</div>
+        <div class="brand">A.L.E.R.T.A. UNCuyo</div>
+      </div>
+      <nav>
+        <a href="#modulos">Módulos</a>
+        <a href="#faq">Preguntas frecuentes</a>
+        <a href="#contacto">Contacto</a>
+        <form id="logoutForm" style="display:inline">
+          <button type="submit" class="btn" style="margin-left:8px">Cerrar sesión</button>
+        </form>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap" id="contenido" tabindex="-1">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="card">
+        <div class="badge">Programa institucional • 2025–2026</div>
+        <h1>Concientización en Ciberseguridad</h1>
+        <p>Portal para el personal docente y no docente de la UNCuyo. Accedé a los 9 módulos, descargá materiales y completá las evaluaciones.</p>
+        <div class="actions">
+          <a class="btn" href="#modulos">Ver módulos</a>
+          <a class="btn" href="#faq">Cómo funciona</a>
+        </div>
+        <div class="search">
+          <input id="q" type="search" placeholder="Buscar por tema (ej.: contraseñas, phishing, backups)…">
+          <button class="btn" id="btnBuscar">Buscar</button>
+        </div>
+      </div>
+
+         <!-- CERTIFICADO -->
+      <section class="card test-card" aria-label="Certificado">
+        <div class="test-card__inner">
+          <div class="test-card__right">
+            <h3 class="test-card__title">Certificado de finalización</h3>
+            <p class="test-card__desc" id="certDesc">
+              Completá y aprobá todos los módulos requeridos para poder solicitar tu certificado.
+            </p>
+
+            <div id="certFormWrap" style="display:none; margin-top:12px">
+              <label>Nombre completo
+                <input type="text" id="cfFullName" placeholder="Nombre y apellido" />
+              </label>
+              <label>Correo electrónico
+                <input type="email" id="cfEmail" placeholder="tucorreo@dominio.com" />
+              </label>
+            </div>
+
+            <div class="test-card__actions" style="margin-top:10px">
+              <button id="btnCert" class="btn" disabled>Verificando requisitos…</button>
+              <small id="certInfo" class="tiny" style="display:block;margin-top:8px;color:#94a3b8"></small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+    </section>
+
+    <!-- GRID DE MÓDULOS -->
+    <section id="modulos">
+      <h2>Módulos formativos (7)</h2>
+      <p class="tiny">Cada módulo incluye resumen, contenido, consejos y ejemplos prácticos.</p>
+      <div class="grid" id="grid"></div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <h2>Preguntas frecuentes</h2>
+      <details>
+        <summary>¿Cómo se registran mis avances?</summary>
+        <p>Este portal enlaza a materiales estáticos. Si se desea registro nominal, se puede integrar con cuentas institucionales.</p>
+      </details>
+      <details>
+        <summary>¿Puedo acceder desde fuera de la UNCuyo?</summary>
+        <p>Sí, siempre que el sitio esté publicado en el dominio institucional.</p>
+      </details>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto">
+      <h2>Contacto</h2>
+      <p class="tiny">Consultas: Secretaría TxD / Dir. de Infraestructura y Servicios. Correo: <a href="#">seguridad@uncuyo.edu.ar</a></p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-row">
+      <span class="tiny">© 2025 UNCuyo – Programa A.L.E.R.T.A. UNCuyo</span>
+      <div class="footer-logos">
+        <img id="logo-incibe" src="./recursos/logoincibe.png" alt="INCIBE" loading="lazy">
+        <img id="logo-metared" src="./recursos/logometared.png" alt="MetaRed" loading="lazy">
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- JS externo -->
+   <script>
+    document.querySelector('#logoutForm')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      try { await fetch('/api/logout', { method: 'POST' }); } catch {}
+      location.href = '/login.html';
+    });
+  </script>
+  <script src="../javascript/main.js"></script>
+</body>
+</html>

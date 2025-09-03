@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Registro — A.L.E.R.T.A. UNCuyo</title>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body class="register-body">
+  <div class="register-card">
+    <h1>Crear cuenta</h1>
+    <form id="fReg">
+      <label>DNI
+        <input type="text" id="dni" inputmode="numeric" pattern="\d{7,9}" required />
+      </label>
+      <label>Correo electrónico
+        <input type="email" id="email" placeholder="tucorreo@dominio.com" required />
+      </label>
+      <label>Contraseña (mínimo 6)
+        <input type="password" id="pw" minlength="6" required />
+      </label>
+
+      <div class="captcha" style="display:flex;align-items:center;gap:8px;margin:8px 0;">
+        <span id="capQ">Cargando CAPTCHA…</span>
+        <button id="capR" class="btn" type="button" style="padding:4px 8px">Actualizar</button>
+      </div>
+      <input type="hidden" id="capId" />
+      <label>Respuesta CAPTCHA
+        <input type="text" id="capA" inputmode="numeric" required />
+      </label>
+
+      <button class="btn" type="submit">Registrarme</button>
+      <p class="tiny" style="margin-top:10px">¿Ya tenés cuenta? <a href="/login.html">Iniciar sesión</a></p>
+      <p class="msg" id="msg"></p>
+    </form>
+  </div>
+
+  <script src="../javascript/registrer.js"></script>
+</body>
+</html>
