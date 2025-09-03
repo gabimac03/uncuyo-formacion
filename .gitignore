@@ -1,20 +1,16 @@
 # Node
-node_modules/
+node_modules
 npm-debug.log*
 yarn.lock
+pnpm-lock.yaml
 
 # Env
 .env
-.env.*
-!.env.example
+.env.*.local
 
 # Logs
-logs/
+logs
 *.log
-pm2.log
 
-# Sistema/IDE
+# Sistema
 .DS_Store
-Thumbs.db
-.idea/
-.vscode/
