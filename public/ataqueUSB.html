@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Simulación — Ataque por USB (UNCUYO)</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Animated background particles -->
+    <div class="bg-particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <div class="uncuyoUsb_container">
+        <h1>🔐 Simulación: Ataque por USB — UNCUYO</h1>
+        <p>Has abierto un archivo sospechoso del pendrive. A continuación verás una simulación con un modal explicativo. <strong>Esto es parte de un ejercicio de concienciación en ciberseguridad.</strong></p>
+    </div>
+
+    <!-- Modal principal mejorado -->
+    <div id="uncuyoUsb_overlay" role="dialog" aria-modal="true" aria-labelledby="uncuyoUsb_title" aria-describedby="uncuyoUsb_desc">
+        <div id="uncuyoUsb_modal" role="document">
+            <h2 id="uncuyoUsb_title">Simulación: Archivo Malicioso (USB)</h2>
+            <p id="uncuyoUsb_desc">Al abrir el archivo del pendrive se activó esta simulación. El riesgo real aparece si ejecutás archivos o completás formularios con datos personales.</p>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <strong>⚠️ Errores Frecuentes</strong>
+                    <ul>
+                        <li>Abrir/ejecutar archivos sin verificar origen</li>
+                        <li>Confiar en nombres engañosos (ej. "INSTRUCTIVO.exe")</li>
+                        <li>No analizar el dispositivo en entorno aislado</li>
+                        <li>Insertar dispositivos USB desconocidos</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <strong>✅ Buenas Prácticas</strong>
+                    <ul>
+                        <li>No ejecutar archivos desconocidos</li>
+                        <li>Analizar con antivirus actualizado</li>
+                        <li>Usar máquina aislada (sandbox) para análisis</li>
+                        <li>Reportar al equipo de ciberseguridad</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="button-container">
+                <button id="uncuyoUsb_btnTips" class="uncuyoUsb_btn primary" aria-controls="uncuyoUsb_tip1">
+                    🎯 ¿Cuál fue mi error?
+                </button>
+                <button id="uncuyoUsb_btnClose" class="uncuyoUsb_btn ghost">
+                    Cerrar Simulación
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tips flotantes mejorados -->
+    <div id="uncuyoUsb_tip1" class="uncuyoUsb_tip uncuyoUsb_tip--top-center" role="status" aria-hidden="true">
+        🎭 <strong>Participaste en una simulación</strong><br>
+        Esta fue una simulación de ataque por USB organizada por la Secretaría de Transformación Digital (UNCUYO) para evaluar y mejorar la conciencia en ciberseguridad.
+    </div>
+
+    <div id="uncuyoUsb_tip2" class="uncuyoUsb_tip uncuyoUsb_tip--right-mid" role="status" aria-hidden="true">
+        ⚠️ <strong>Error Principal</strong><br>
+        No verificar el origen: ejecutar archivos sin confirmar su procedencia legítima es el primer paso de muchos ataques cibernéticos.
+    </div>
+
+    <div id="uncuyoUsb_tip3" class="uncuyoUsb_tip uncuyoUsb_tip--bottom-center" role="status" aria-hidden="true">
+        🚩 <strong>Señales de Alerta</strong><br>
+        Nombres sospechosos, sensación de urgencia, formularios pidiendo datos personales o archivos con extensiones ejecutables (.exe, .bat, .scr).
+    </div>
+
+    <div id="uncuyoUsb_tip4" class="uncuyoUsb_tip uncuyoUsb_tip--left-mid" role="status" aria-hidden="true">
+        ✅ <strong>Actuación Correcta</strong><br>
+        Reportar inmediatamente, no ingresar datos personales, analizar en entorno controlado y mantener software actualizado.
+    </div>
+</body>
+<script src="../javascript/ataqueUSB.js"></script>
+</html>

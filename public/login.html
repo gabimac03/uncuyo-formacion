@@ -3,14 +3,15 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Ingresar — A.L.E.R.T.A. UNCuyo</title>
+  <title>Ingresar</title>
   <link rel="stylesheet" href="../css/style.css"/>
+  <link rel="icon" type="image/x-icon" href="recursos/favicon.ico">
 </head>
 <body class="login-body">
   <div class="card">
-    <h1>Ingresar</h1>
+    <img src="./recursos/ALERTAlogovertical.png" alt="" srcset="">
     <form id="loginForm" autocomplete="off">
-      <label>Usuario
+      <label>Usuario (DNI)
         <input type="text" id="username" name="username" required minlength="3" autocomplete="off" />
       </label>
       <label>Contraseña
@@ -27,17 +28,16 @@
       <input type="hidden" id="captchaId" />
 
       <button type="submit" class="btn">Entrar</button>
-      <p class="tiny" style="margin-top:10px;color:#94a3b8">
+      <p class="tiny" style="color:#94a3b8">
         <a href="/password-forgot.html">¿Olvidaste tu contraseña?</a>
       </p>
       <p id="msg" class="msg"></p>
-      <p class="tiny" style="margin-top:10px;color:#94a3b8">
+      <p class="tiny" style="color:#94a3b8">
       ¿No tenés cuenta? <a href="/registrer.html">Registrate con tu DNI</a>
     </p>
 
     </form>
   </div>
-
   <script src="../javascript/login.js"></script>
 </body>
 </html>

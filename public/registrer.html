@@ -3,12 +3,13 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Registro — A.L.E.R.T.A. UNCuyo</title>
+  <title>Registro</title>
   <link rel="stylesheet" href="css/style.css"/>
+  <link rel="icon" type="image/x-icon" href="./recursos/favicon.ico">
 </head>
 <body class="register-body">
   <div class="register-card">
-    <h1>Crear cuenta</h1>
+    <img src="./recursos/ALERTAlogovertical.png" alt="" srcset="">
     <form id="fReg">
       <label>DNI
         <input type="text" id="dni" inputmode="numeric" pattern="\d{7,9}" required />
@@ -22,7 +23,7 @@
 
       <div class="captcha" style="display:flex;align-items:center;gap:8px;margin:8px 0;">
         <span id="capQ">Cargando CAPTCHA…</span>
-        <button id="capR" class="btn" type="button" style="padding:4px 8px">Actualizar</button>
+        <button id="capR" class="link" type="button">Actualizar</button>
       </div>
       <input type="hidden" id="capId" />
       <label>Respuesta CAPTCHA

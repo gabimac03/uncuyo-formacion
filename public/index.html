@@ -3,31 +3,43 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>A.L.E.R.T.A. UNCuyo – Concientización en Ciberseguridad</title>
+  <title>A.L.E.R.T.A</title>
   <meta name="description" content="Portal institucional de concientización en ciberseguridad para personal docente y no docente de la UNCuyo. 9 módulos formativos con materiales, consejos y evaluaciones." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="recursos/favicon.ico">
   <!-- CSS externo -->
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-  <header class="site">
-    <div class="wrap bar">
-      <div class="logo">
-        <div class="mark">AU</div>
-        <div class="brand">A.L.E.R.T.A. UNCuyo</div>
+    <header class="site">
+      <div class="wrap bar">
+        <div class="logo">
+          <img src="./recursos/ALERTAlogohorizontal.png" alt="" srcset="">
+        </div>
+
+        <!-- Links -->
+        <nav class="nav-links">
+          <a href="#modulos">Módulos</a>
+          <a href="#faq">Preguntas frecuentes</a>
+          <a href="#contacto">Contacto</a>
+          <form id="logoutForm" style="display:inline">
+            <button type="submit" class="btn" style="margin-left:8px">Cerrar sesión</button>
+          </form>
+        </nav>
+
+        <!-- Icono hamburguesa -->
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
-      <nav>
-        <a href="#modulos">Módulos</a>
-        <a href="#faq">Preguntas frecuentes</a>
-        <a href="#contacto">Contacto</a>
-        <form id="logoutForm" style="display:inline">
-          <button type="submit" class="btn" style="margin-left:8px">Cerrar sesión</button>
-        </form>
-      </nav>
-    </div>
-  </header>
+    </header>
+
+
+
 
   <main class="wrap" id="contenido" tabindex="-1">
     <!-- HERO -->
@@ -46,7 +58,7 @@
         </div>
       </div>
 
-         <!-- CERTIFICADO -->
+    <!-- CERTIFICADO -->
       <section class="card test-card" aria-label="Certificado">
         <div class="test-card__inner">
           <div class="test-card__right">
@@ -71,41 +83,47 @@
           </div>
         </div>
       </section>
-
-
-
     </section>
 
     <!-- GRID DE MÓDULOS -->
-    <section id="modulos">
-      <h2>Módulos formativos (7)</h2>
+    <section class="modulos" id="modulos">
+      <h2 class="tituloModulos">Módulos formativos (7)</h2>
       <p class="tiny">Cada módulo incluye resumen, contenido, consejos y ejemplos prácticos.</p>
       <div class="grid" id="grid"></div>
     </section>
 
     <!-- FAQ -->
-    <section id="faq">
-      <h2>Preguntas frecuentes</h2>
+    <section class="faq" id="faq">
+      <h2 class="tituloFaq">Preguntas frecuentes</h2>
       <details>
-        <summary>¿Cómo se registran mis avances?</summary>
-        <p>Este portal enlaza a materiales estáticos. Si se desea registro nominal, se puede integrar con cuentas institucionales.</p>
+        <summary>¿Quiénes pueden usar la plataforma?</summary>
+        <p>Miembros de la comunidad de la UNCuyo (docentes, nodocentes y estudiantes) y personas invitadas por las áreas responsables del programa.</p>
       </details>
       <details>
-        <summary>¿Puedo acceder desde fuera de la UNCuyo?</summary>
-        <p>Sí, siempre que el sitio esté publicado en el dominio institucional.</p>
+        <summary>¿Mi sesión caduca?</summary>
+        <p>Sí; por seguridad, las sesiones expiran. Si ves que “te saca”, volvé a iniciar sesión.</p>
+      </details>
+      <details>
+        <summary>¿Cómo empiezo un módulo?</summary>
+        <p>Entrá a “Módulos”, elegí el que quieras y presioná Comenzar. Leé las indicaciones de cada módulo antes de iniciar.</p>
+      </details>
+      <details>
+        <summary>¿Cómo se aprueba un módulo?</summary>
+        <p>Cada módulo indica su nota mínima y si permite reintentos. Leé la consigna antes de empezar.</p>
       </details>
     </section>
 
     <!-- CONTACTO -->
-    <section id="contacto">
-      <h2>Contacto</h2>
-      <p class="tiny">Consultas: Secretaría TxD / Dir. de Infraestructura y Servicios. Correo: <a href="#">seguridad@uncuyo.edu.ar</a></p>
+    <section class="Contactoseccion" id="contacto">
+      <h2 class="tituloContacto">Contacto</h2>
+      <p class="tinyContacto">Consultas: Secretaría TxD / Dir. de Infraestructura y Servicios. Correo: <a href="#">ciberseguridad-txd@uncuyo.edu.ar</a></p>
     </section>
   </main>
 
-  <footer>
+   <!-- FOOTER -->
+  <footer id="footer">
     <div class="wrap footer-row">
-      <span class="tiny">© 2025 UNCuyo – Programa A.L.E.R.T.A. UNCuyo</span>
+      <span class="tiny">© 2025 UNCuyo – Programa A.L.E.R.T.A. Curso de Formación en Ciberseguridad</span>
       <div class="footer-logos">
         <img id="logo-incibe" src="./recursos/logoincibe.png" alt="INCIBE" loading="lazy">
         <img id="logo-metared" src="./recursos/logometared.png" alt="MetaRed" loading="lazy">
@@ -123,5 +141,6 @@
     });
   </script>
   <script src="../javascript/main.js"></script>
+  <script src="../javascript/tour.js"></script>
 </body>
 </html>
