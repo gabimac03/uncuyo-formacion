@@ -3005,3 +3005,35 @@ html.no-scroll, body.no-scroll { overflow: hidden; }
 ::-webkit-scrollbar-thumb:hover {
   background: #4285f4;
 }
+
+/* --- Centrado del botón de regreso --- */
+.btn-wrapper {
+  display: flex;
+  justify-content: center; /* centra horizontalmente */
+  margin-top: 2rem;
+}
+
+.uncuyoUsb_btnClose_PageLogin {
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: transparent;
+  color: #00aeff85; /* Naranja institucional */
+  border: 2px solid #5e53fa7e;
+}
+
+.uncuyoUsb_btnClose_PageLogin:hover {
+  background-color: #00e1ff;
+  color: #fff;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(255, 140, 0, 0.3);
+}
+
+.uncuyoUsb_btnClose_PageLogin:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 8px rgba(255, 140, 0, 0.2);
+}
+
