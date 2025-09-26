@@ -19,6 +19,7 @@
   --border:#e9ecef;
 }
 
+
 /* =========================================================
    RESETS / BASE
    =======================================================*/
@@ -2567,232 +2568,167 @@ html.no-scroll, body.no-scroll { overflow: hidden; }
 }
 
 
-/* ATAQUE USB */
+/* ===================== */
+/* ===== VARIABLES ===== */
+/* ===================== */
+:root {
+  --uncuyo-blue: #2563eb;          /* azul institucional */
+  --uncuyo-light-blue: #3b82f6;    /* azul claro */
+  --uncuyo-dark: #1e293b;          /* gris azulado oscuro */
+  --uncuyo-gray: #475569;          /* gris medio */
+  --uncuyo-light-gray: #f1f5f9;    /* gris claro */
+  --uncuyo-white: #ffffff;
+  --success-green: #16a34a;
+  --warning-orange: #f59e0b;
+}
 
-/* Animated background particles */
-.bg-particles {
+/* ===================== */
+/* ===== FONDO ========= */
+/* ===================== */
+.uncuyo-simulation-bg-particles {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   overflow: hidden;
+  z-index: -1;
+  opacity: 0.3;
 }
 
-.particle {
+.uncuyo-simulation-particle {
   position: absolute;
-  background: rgba(26, 115, 232, 0.1);
+  background: var(--uncuyo-blue);
   border-radius: 50%;
-  animation: float 20s infinite linear;
+  animation: uncuyo-simulation-float 25s infinite linear;
 }
 
-.particle:nth-child(1) { width: 4px; height: 4px; left: 10%; animation-delay: -2s; }
-.particle:nth-child(2) { width: 6px; height: 6px; left: 20%; animation-delay: -4s; }
-.particle:nth-child(3) { width: 3px; height: 3px; left: 30%; animation-delay: -6s; }
-.particle:nth-child(4) { width: 5px; height: 5px; left: 40%; animation-delay: -8s; }
-.particle:nth-child(5) { width: 4px; height: 4px; left: 60%; animation-delay: -10s; }
-.particle:nth-child(6) { width: 6px; height: 6px; left: 70%; animation-delay: -12s; }
-.particle:nth-child(7) { width: 3px; height: 3px; left: 80%; animation-delay: -14s; }
-.particle:nth-child(8) { width: 5px; height: 5px; left: 90%; animation-delay: -16s; }
-
-@keyframes float {
-  0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+@keyframes uncuyo-simulation-float {
+  0% { transform: translateY(100vh) scale(0) rotate(0deg); opacity: 0; }
+  5% { opacity: 1; }
+  95% { opacity: 1; }
+  100% { transform: translateY(-20vh) scale(1.2) rotate(360deg); opacity: 0; }
 }
 
-.uncuyoUsb_container {
-  position: relative;
-  z-index: 2;
-  padding: 2rem;
-  text-align: center;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.uncuyoUsb_container h1 {
-  font-size: clamp(1.8rem, 4vw, 3rem);
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-  background: linear-gradient(135deg, #1a73e8, #34a853, #fbbc04);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 30px rgba(26, 115, 232, 0.3);
-}
-
-.uncuyoUsb_container p {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: var(--unc-muted);
-  margin-bottom: 2rem;
-}
-
-/* Modal overlay with blur effect */
-#uncuyoUsb_overlay {
-  position: fixed;
-  inset: 0;
+/* ===================== */
+/* ===== MODAL ========= */
+/* ===================== */
+.uncuyoUsb_overlay {
+  position: relative; /* importante para que los tips se ubiquen respecto al modal */
+  width: 100%; height: 100%;
+  background: rgba(30, 41, 59, 0.85);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 14000;
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  animation: fadeIn 0.3s ease-out;
+  z-index: 100;
+  animation: uncuyo-simulation-fadeIn 0.3s ease forwards;
 }
 
-@keyframes fadeIn {
+@keyframes uncuyo-simulation-fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
-/* Glassmorphism modal */
-#uncuyoUsb_modal {
-  width: min(900px, 94vw);
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-radius: 20px;
+.uncuyoUsb_modal {
+  position: relative; /* clave para que los tips usen este contenedor como referencia */
+  background: var(--uncuyo-white);
+  border-radius: 12px;
+  max-width: 800px;
+  width: 90%;
   padding: 2.5rem;
-  box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.15),
-    0 0 0 1px rgba(0, 162, 255, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  color: var(--unc-text);
-  text-align: left;
-  position: relative;
-  overflow: hidden;
-  animation: slideIn 0.4s ease-out;
-  border: 1px solid var(--unc-border);
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(30, 41, 59, 0.15);
+  border: 1px solid #e2e8f0;
 }
 
-@keyframes slideIn {
-  from { 
-    opacity: 0;
-    transform: translateY(30px) scale(0.95);
-  }
-  to { 
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+/* ===================== */
+/* ==== TITULOS ======== */
+/* ===================== */
+.modal-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  color: var(--uncuyo-dark);
+  line-height: 1.3;
+}
+.modal-title .warning-icon {
+  color: var(--warning-orange);
+  margin-right: 0.5rem;
 }
 
-/* Decorative elements */
-#uncuyoUsb_modal::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(234, 67, 53, 0.5), transparent);
-  animation: pulse 2s ease-in-out infinite;
+.modal-lead {
+  font-size: 1.1rem;
+  color: var(--uncuyo-gray);
+  margin-bottom: 1.5rem;
+  font-weight: 400;
 }
 
-@keyframes pulse {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 1; }
-}
-
-#uncuyoUsb_modal h2 {
-  margin: 0 0 1rem;
-  font-size: 1.5rem;
-  font-weight: 600;
+/* Caja de seguridad */
+.modal-safe {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  padding: 1.2rem;
+  margin: 1.5rem 0;
+  color: var(--success-green);
+  font-weight: 500;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
 }
 
-#uncuyoUsb_modal h2::before {
-  content: '🔒';
-  font-size: 1.8rem;
-  filter: drop-shadow(0 0 10px rgba(234, 67, 53, 0.5));
-  animation: warning 1.5s ease-in-out infinite;
+/* ===================== */
+/* ==== CURSO BOX ====== */
+/* ===================== */
+.curso-box {
+  background: #fafbfc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem 0;
+  text-align: left;
 }
 
-@keyframes warning {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
+.curso-box h2 {
+  font-size: 1.5rem;
+  color: var(--uncuyo-blue);
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: 600;
 }
 
-#uncuyoUsb_modal p {
-  color: var(--unc-muted);
-  line-height: 1.6;
-  margin: 1rem 0;
-  font-size: 1rem;
-}
-
-/* Enhanced grid layout */
-.info-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
+.curso-box ul {
+  list-style: none;
+  padding: 0;
   margin: 1.5rem 0;
 }
 
-.info-card {
-  background: #ffffff;
-  padding: 1.5rem;
-  border-radius: 16px;
-  border: 1px solid var(--unc-border);
-  position: relative;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+.curso-box li {
+  background: var(--uncuyo-white);
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 0.75rem;
+  border-left: 4px solid var(--uncuyo-blue);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.info-card:hover {
+.curso-box li:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-  border-color: rgba(26, 115, 232, 0.3);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.info-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--unc-danger), var(--unc-accent));
-  border-radius: 16px 16px 0 0;
-}
-
-.info-card strong {
-  display: block;
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
-  color: var(--unc-text);
+.curso-apertura {
+  background: var(--uncuyo-blue);
+  color: var(--uncuyo-white);
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
   font-weight: 600;
+  margin-top: 1rem;
 }
 
-.info-card ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.info-card li {
-  color: var(--unc-muted);
-  margin: 0.8rem 0;
-  padding-left: 1.5rem;
-  position: relative;
-  line-height: 1.4;
-}
-
-.info-card li::before {
-  content: '•';
-  position: absolute;
-  left: 0;
-  color: var(--unc-accent);
-  font-weight: bold;
-  font-size: 1.2rem;
-}
-
-/* Enhanced buttons */
+/* ===================== */
+/* ===== BOTONES ======= */
+/* ===================== */
 .button-container {
   display: flex;
   gap: 1rem;
@@ -2802,238 +2738,159 @@ html.no-scroll, body.no-scroll { overflow: hidden; }
 }
 
 .uncuyoUsb_btn {
-  padding: 1rem 2rem;
-  border-radius: 12px;
-  border: none;
   font-family: inherit;
-  font-weight: 600;
   font-size: 1rem;
+  font-weight: 500;
+  padding: 0.875rem 1.5rem;
+  border-radius: 8px;
   cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  min-width: 180px;
-  justify-content: center;
-}
-
-.uncuyoUsb_btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s ease;
-}
-
-.uncuyoUsb_btn:hover::before {
-  left: 100%;
+  transition: all 0.2s ease;
+  border: none;
+  min-width: 160px;
 }
 
 .uncuyoUsb_btn.primary {
-  background: linear-gradient(135deg, var(--unc-accent), #4285f4);
-  color: rgba(0, 0, 0, 0.89);
-  box-shadow: 0 4px 15px rgba(26, 115, 232, 0.3);
+  background: var(--uncuyo-blue);
+  color: var(--uncuyo-white);
 }
-
 .uncuyoUsb_btn.primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(26, 115, 232, 0.4);
+  background: var(--uncuyo-light-blue);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
 }
 
 .uncuyoUsb_btn.ghost {
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--unc-muted);
-  border: 1px solid var(--unc-border);
+  background: transparent;
+  color: var(--uncuyo-gray);
+  border: 1px solid #cbd5e1;
 }
-
 .uncuyoUsb_btn.ghost:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--unc-text);
-  border-color: var(--unc-accent);
+  background: var(--uncuyo-light-gray);
+  color: var(--uncuyo-dark);
+  transform: translateY(-1px);
 }
 
-/* Enhanced floating tips */
-.uncuyoUsb_tip {
+/* Botón volver */
+.btn-wrapper {
   position: fixed;
-  max-width: 350px;
-  padding: 1.5rem;
-  background: #ffffff;
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  color: var(--unc-text);
-  border-radius: 16px;
-  box-shadow: 
-    0 10px 40px rgba(0, 0, 0, 0.15),
-    0 0 0 1px var(--unc-border);
-  border: 2px solid var(--unc-accent);
-  z-index: 15000;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 101;
+}
+.uncuyoUsb_btnClose_PageLogin {
+  background: var(--uncuyo-dark);
+  color: var(--uncuyo-white);
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 0.875rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.uncuyoUsb_btnClose_PageLogin:hover {
+  background: #334155;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(30, 41, 59, 0.2);
+}
+
+/* ===================== */
+/* ===== TIPS ========= */
+/* ===================== */
+.uncuyoUsb_tip {
+  position: absolute;
   display: none;
-  font-size: 1rem;
-  line-height: 1.5;
-  animation: tipSlideIn 0.4s ease-out;
+  max-width: 300px;
+  background: var(--uncuyo-white);
+  color: var(--uncuyo-dark);
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1.25rem;
+  font-size: 0.95rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  animation: uncuyo-simulation-slideIn 0.3s ease forwards;
+  z-index: 200;
 }
 
-@keyframes tipSlideIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px) scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+@keyframes uncuyo-simulation-slideIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* Tip positions */
-.uncuyoUsb_tip--top-center {
-  left: 40%;
-  transform: translateX(-50%);
-  top: 0vh;
+.uncuyoUsb_tip strong {
+  color: var(--uncuyo-blue);
+  font-weight: 600;
 }
 
-.uncuyoUsb_tip--right-mid {
-  right: 4vw;
-  top: 45vh;
-  transform: translateY(-50%);
-}
+/* ---- alineación a la derecha del modal ---- */
+.uncuyoUsb_tip--top-center   { top: 10%;  left: 100%; margin-left: 20px;}
+.uncuyoUsb_tip--right-mid    { top: 45%;  left: 100%; margin-left: 20px; }
+.uncuyoUsb_tip--bottom-center{ top: 100%;  left: 100%; margin-left: 20px; }
 
-.uncuyoUsb_tip--bottom-center {
-  left: 40%;
-  transform: translateX(-50%);
-  bottom: 0vh;
-}
-
-.uncuyoUsb_tip--left-mid {
-  left: 4vw;
-  top: 45vh;
-  transform: translateY(-50%);
-}
-
-/* USB Icon animation */
-.usb-icon {
-  display: inline-block;
-  animation: rotate 2s linear infinite;
-}
-
-@keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-  .uncuyoUsb_container {
-    padding: 1rem;
-  }
-  
-  #uncuyoUsb_overlay {
-    align-items: flex-start;
-    padding: 1rem;
-  }
-  
-  #uncuyoUsb_modal {
+/* ===================== */
+/* ===== RESPONSIVE ==== */
+/* ===================== */
+@media (max-width: 900px) {
+  .uncuyoUsb_modal {
     padding: 1.5rem;
-    width: 100%;
-    margin-top: 2rem;
+    margin: 1rem;
   }
-  
-  .info-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-  
-  .button-container {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .uncuyoUsb_btn {
-    width: 100%;
-    max-width: 280px;
-  }
-  
+  .modal-title { font-size: 1.5rem; }
+  .curso-box { padding: 1.5rem; }
+
+  /* Tips se muestran abajo en móviles */
   .uncuyoUsb_tip {
-    position: relative;
-    display: block;
+    position: static;
+    max-width: 90%;
     margin: 1rem auto;
-    max-width: 100%;
     left: auto !important;
-    right: auto !important;
-    top: auto !important;
-    bottom: auto !important;
     transform: none !important;
   }
 }
 
-/* Loading animation for when tips appear */
-.tip-loading {
-  opacity: 0;
-  animation: fadeInUp 0.6s ease-out forwards;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--unc-bg);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--unc-accent);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #4285f4;
-}
-
-/* --- Centrado del botón de regreso --- */
-.btn-wrapper {
+/* ===== FONDO DETRÁS DEL MODAL CUANDO SE CIERRA ===== */
+.back-info {
+  display: none; /* aparece solo al cerrar el modal */
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   display: flex;
-  justify-content: center; /* centra horizontalmente */
-  margin-top: 2rem;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  color: var(--uncuyo-white);
+  background: rgba(30, 41, 59, 0.85);
+  z-index: 10;
 }
 
-.uncuyoUsb_btnClose_PageLogin {
-  font-family: inherit;
-  font-size: 1rem;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  background-color: transparent;
-  color: #00aeff85; /* Naranja institucional */
-  border: 2px solid #5e53fa7e;
+.back-info-content {
+  max-width: 700px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 2rem 2.5rem;
+  border-radius: 12px;
+  backdrop-filter: blur(6px);
 }
 
-.uncuyoUsb_btnClose_PageLogin:hover {
-  background-color: #00e1ff;
+.back-info-content h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
   color: #fff;
-  transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(255, 140, 0, 0.3);
 }
 
-.uncuyoUsb_btnClose_PageLogin:active {
-  transform: scale(0.98);
-  box-shadow: 0 2px 8px rgba(255, 140, 0, 0.2);
+.back-info-content p {
+  font-size: 1.1rem;
+  margin: 0.8rem 0;
+  color: #f1f5f9;
 }
 
+.back-info-content .contact a {
+  color: #60a5fa;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.back-info-content .contact a:hover {
+  text-decoration: underline;
+}

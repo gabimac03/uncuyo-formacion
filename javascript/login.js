@@ -52,7 +52,7 @@ window.addEventListener('DOMContentLoaded', cargarCaptcha);
 // ===== Bloqueo por fecha de inauguración (sin modificar el HTML) =====
 (function initGate() {
   // Configurá la fecha/hora de apertura (zona Mendoza UTC-03)
-  const OPEN_AT_ISO = '2025-10-14T00:00:00'; // <-- CAMBIAR
+  const OPEN_AT_ISO = '2025-02-14T00:00:00'; // <-- CAMBIAR
 
   const openAt = new Date(OPEN_AT_ISO);
   if (isNaN(openAt.valueOf())) {

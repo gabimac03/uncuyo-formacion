@@ -1,94 +1,113 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Simulación — Ataque por USB (UNCUYO)</title>
-<link rel="stylesheet" href="../css/style.css">
-<link rel="icon" type="image/x-icon" href="recursos/favicon.ico">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Simulación — Ataque por USB (UNCUYO)</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" type="image/x-icon" href="recursos/favicon.ico">
 </head>
 <body>
-    <!-- Animated background particles -->
-    <div class="bg-particles">
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
+  <!-- Fondo animado -->
+  <div class="uncuyo-simulation-bg-particles">
+    <div class="uncuyo-simulation-particle"></div>
+    <div class="uncuyo-simulation-particle"></div>
+    <div class="uncuyo-simulation-particle"></div>
+    <div class="uncuyo-simulation-particle"></div>
+    <div class="uncuyo-simulation-particle"></div>
+    <div class="uncuyo-simulation-particle"></div>
+    <div class="uncuyo-simulation-particle"></div>
+    <div class="uncuyo-simulation-particle"></div>
+    <div class="uncuyo-simulation-particle"></div>
+    <div class="uncuyo-simulation-particle"></div>
+  </div>
+
+  <!-- Fondo informativo que se verá cuando se cierre el modal -->
+  <div id="alerta_backInfo" class="back-info">
+    <div class="back-info-content">
+      <h1>🔐 Simulación completada</h1>
+      <p>
+        Esta fue una <strong>simulación oficial</strong> organizada por la
+        <strong>Secretaría de Transformación Digital (UNCUYO)</strong> para aumentar
+        la conciencia en <strong>ciberseguridad</strong>.
+      </p>
+      <p>
+        Próximamente podrás acceder al <strong>Curso A.L.E.R.T.A UNCUYO</strong> para
+        aprender buenas prácticas y proteger mejor tu información.
+      </p>
+      <p class="contact">
+        📧 Contacto: <a href="mailto:ciberseguridad-txd@uncuyo.edu.ar">ciberseguridad-txd@uncuyo.edu.ar</a>
+      </p>
     </div>
+  </div>
 
-    <div class="uncuyoUsb_container">
-        <h1>🔐 Simulación: Ataque por USB — UNCUYO</h1>
-        <p>Has abierto un archivo sospechoso del pendrive. A continuación verás una simulación con un modal explicativo. <strong>Esto es parte de un ejercicio de concienciación en ciberseguridad.</strong></p>
-    </div>
-
-    <!-- Modal principal mejorado -->
-    <div id="uncuyoUsb_overlay" role="dialog" aria-modal="true" aria-labelledby="uncuyoUsb_title" aria-describedby="uncuyoUsb_desc">
-        <div id="uncuyoUsb_modal" role="document">
-            <h2 id="uncuyoUsb_title">Simulación: Archivo Malicioso (USB)</h2>
-            <p id="uncuyoUsb_desc">Al abrir el archivo del pendrive se activó esta simulación. El riesgo real aparece si ejecutás archivos o completás formularios con datos personales.</p>
-
-            <div class="info-grid">
-                <div class="info-card">
-                    <strong>⚠️ Errores Frecuentes</strong>
-                    <ul>
-                        <li>Abrir/ejecutar archivos sin verificar origen</li>
-                        <li>Confiar en nombres engañosos (ej. "INSTRUCTIVO.exe")</li>
-                        <li>No analizar el dispositivo en entorno aislado</li>
-                        <li>Insertar dispositivos USB desconocidos</li>
-                    </ul>
-                </div>
-                <div class="info-card">
-                    <strong>✅ Buenas Prácticas</strong>
-                    <ul>
-                        <li>No ejecutar archivos desconocidos</li>
-                        <li>Analizar con antivirus actualizado</li>
-                        <li>Usar máquina aislada (sandbox) para análisis</li>
-                        <li>Reportar al equipo de ciberseguridad</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="button-container">
-                <button id="uncuyoUsb_btnTips" class="uncuyoUsb_btn primary" aria-controls="uncuyoUsb_tip1">
-                    🎯 ¿Cuál fue mi error?
-                </button>
-                <button id="uncuyoUsb_btnClose" class="uncuyoUsb_btn ghost">
-                    Cerrar Simulación
-                </button>
-            </div>
+  <!-- Modal principal -->
+  <div id="alerta_overlay" class="uncuyoUsb_overlay" role="dialog" aria-modal="true" aria-labelledby="alerta_title" aria-describedby="alerta_desc">
+    <div id="alerta_modal" class="uncuyoUsb_modal" role="document">
+      <h1 id="alerta_title" class="modal-title">
+        <span class="warning-icon">⚠️</span>
+        Simulación de Ciberataque — Secretaría de Transformación Digital (UNCUYO)
+      </h1>
+      <p id="alerta_desc" class="modal-lead">
+        Llegaste a esta página porque hiciste clic en un <strong>archivo de simulación de ciberataque</strong> enviado por la
+        <strong>Secretaría de Transformación Digital de la UNCUYO</strong>.
+      </p>
+      
+      <div class="modal-safe">
+        <span>✅</span>
+        <div>
+          <strong>No te preocupes:</strong> no fue un ataque real, sino un <strong>ejercicio de concientización en ciberseguridad</strong>.
         </div>
-    </div>
+      </div>
 
-    <!-- Tips flotantes mejorados -->
-    <div id="uncuyoUsb_tip1" class="uncuyoUsb_tip uncuyoUsb_tip--top-center" role="status" aria-hidden="true">
-        🎭 <strong>Participaste en una simulación</strong><br>
-        Esta fue una simulación de ataque por USB organizada por la Secretaría de Transformación Digital (UNCUYO) para evaluar y mejorar la conciencia en ciberseguridad.
-    </div>
+      <div class="curso-box">
+        <h2>📚 Curso A.L.E.R.T.A UNCUYO — Próximamente</h2>
+        <ul>
+          <li>🔍 <strong>Mostrar</strong> cómo operan los correos maliciosos.</li>
+          <li>🛡️ <strong>Generar</strong> conciencia sobre la importancia de estar atentos.</li>
+          <li>🎓 <strong>Invitarte</strong> a formarte en buenas prácticas de ciberseguridad.</li>
+        </ul>
+        
+        <div class="curso-apertura">
+          🗓️ <strong>Apertura:</strong> martes, 14 de octubre de 2025 — 12:00 a. m.
+        </div>
+      </div>
 
-    <div id="uncuyoUsb_tip2" class="uncuyoUsb_tip uncuyoUsb_tip--right-mid" role="status" aria-hidden="true">
-        ⚠️ <strong>Error Principal</strong><br>
-        No verificar el origen: ejecutar archivos sin confirmar su procedencia legítima es el primer paso de muchos ataques cibernéticos.
-    </div>
-
-    <div id="uncuyoUsb_tip3" class="uncuyoUsb_tip uncuyoUsb_tip--bottom-center" role="status" aria-hidden="true">
-        🚩 <strong>Señales de Alerta</strong><br>
-        Nombres sospechosos, sensación de urgencia, formularios pidiendo datos personales o archivos con extensiones ejecutables (.exe, .bat, .scr).
-    </div>
-
-    <div id="uncuyoUsb_tip4" class="uncuyoUsb_tip uncuyoUsb_tip--left-mid" role="status" aria-hidden="true">
-        ✅ <strong>Actuación Correcta</strong><br>
-        Reportar inmediatamente, no ingresar datos personales, analizar en entorno controlado y mantener software actualizado.
-    </div>
-    <div class="btn-wrapper">
-        <button class="uncuyoUsb_btnClose_PageLogin" onclick="window.location.href='../login.html'">
-            Volver a página principal Ciberseguridad
+      <!-- Botones -->
+      <div class="button-container">
+        <button id="alerta_btnTips" class="uncuyoUsb_btn primary" aria-controls="alerta_tip1">
+          🎯 ¿Cómo protegerme?
         </button>
+        <button id="alerta_btnClose" class="uncuyoUsb_btn ghost">
+          Cerrar Simulación
+        </button>
+      </div>
     </div>
+  </div>
 
+  <!-- Tips flotantes -->
+  <div id="alerta_tip1" class="uncuyoUsb_tip uncuyoUsb_tip--top-center" role="status" aria-hidden="true">
+    🎭 <strong>Participaste en una simulación oficial</strong><br><br>
+    Esta acción fue organizada por la <strong>Secretaría de Transformación Digital (UNCUYO)</strong> para
+    mejorar tu conciencia en ciberseguridad.
+  </div>
+
+  <div id="alerta_tip2" class="uncuyoUsb_tip uncuyoUsb_tip--right-mid" role="status" aria-hidden="true">
+    ⚠️ <strong>Aprendizaje clave</strong><br><br>
+    No confíes en correos que piden acciones urgentes o datos personales sin verificar el remitente.
+  </div>
+
+  <div id="alerta_tip3" class="uncuyoUsb_tip uncuyoUsb_tip--bottom-center" role="status" aria-hidden="true">
+    🛡️ <strong>Buenas prácticas</strong><br><br>
+    Verificá el remitente, no ejecutes archivos desconocidos y consultá al equipo de ciberseguridad si tenés dudas.
+  </div>
+
+  <!-- Botón volver -->
+  <div class="btn-wrapper">
+    <button class="uncuyoUsb_btnClose_PageLogin" onclick="window.location.href='../login.html'">
+      🔙 Volver a página principal Ciberseguridad
+    </button>
+  </div>
 
 </body>
 <script src="../javascript/ataqueUSB.js"></script>
