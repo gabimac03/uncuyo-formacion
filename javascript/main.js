@@ -12,7 +12,7 @@ window.MODULOS = MODULOS;
 
 // --- Plan de liberación (1 módulo por mes) ---
 (function () {
-  const BASE = new Date(2025, 10, 9);
+  const BASE = new Date(2025, 2, 9);
   const releases = {};
   releases[1] = new Date(0);
   MODULOS.forEach(m => {
@@ -340,3 +340,89 @@ hamburger?.addEventListener('click', () => {
   hamburger.classList.toggle('active');
 });
 
+
+// DESCARGAR PDF
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("btn-pdf");
+
+  btn.addEventListener("click", () => {
+
+    /* ===== 1. Crear un wrapper contenedor ===== */
+    const wrapper = document.createElement("div");
+    wrapper.style.position = "relative";
+    wrapper.style.fontFamily = "Arial, sans-serif";
+
+    /* 🔹 Fondo directamente en el wrapper (sin div absoluto) */
+    wrapper.style.background = "url('./recursos/ALERTAlogovertical.png') center center no-repeat";
+    wrapper.style.backgroundSize = "300px auto";
+    wrapper.style.backgroundColor = "#ffffff";
+
+    /* ===== 2. Contenido ===== */
+    const content = document.createElement("div");
+    content.style.position = "relative";
+    content.style.zIndex = "1";
+    content.style.padding = "20px";
+    wrapper.appendChild(content);
+
+    /* --- Estilo para evitar cortes --- */
+    const style = document.createElement("style");
+    style.textContent = `
+      * { box-sizing: border-box; }
+      h1, h2, h3, p, ul, li, div {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      ul, ol {
+        margin: 0 0 0.5em 1.2em;
+        padding: 0;
+      }
+      li { margin-bottom: 0.3em; }
+    `;
+    content.appendChild(style);
+
+    /* ===== 3. Membrete ===== */
+    const membrete = document.createElement("img");
+    membrete.src = "./recursos/uncuyoSec.png";
+    membrete.style.width = "180px";
+    membrete.style.display = "block";
+    membrete.style.margin = "0 auto 20px auto";
+    content.appendChild(membrete);
+
+    /* ===== 4. Clonar contenido existente (sin tabla de contenidos) ===== */
+    const titulo = document.getElementById("titulo")?.cloneNode(true);
+    const resumen = document.getElementById("resumen")?.cloneNode(true);
+    const contenido = document.getElementById("contenido-principal")?.cloneNode(true);
+
+    if (titulo) content.appendChild(titulo);
+    if (resumen) content.appendChild(resumen);
+    if (contenido) content.appendChild(contenido);
+
+    /* ===== 5. Configuración de PDF ===== */
+    const opt = {
+      margin: [20, 20, 20, 20],
+      filename: (titulo?.innerText || "Modulo") + ".pdf",
+      image: { type: "jpeg", quality: 0.98 },
+      html2canvas: {
+        scale: 2,
+        useCORS: true,
+        scrollY: 0,
+        windowHeight: document.body.scrollHeight,
+        backgroundColor: "#ffffff"
+      },
+      jsPDF: { unit: "pt", format: "a4", orientation: "portrait" },
+      pagebreak: { mode: ['avoid-all','css','legacy'] }
+    };
+
+    /* ===== 6. Generar y descargar PDF ===== */
+    html2pdf().set(opt).from(wrapper).save();
+  });
+});
+
+
+
+// Boton volver
+
+  document.getElementById("btn-volver").addEventListener("click", () => {
+    window.location.href = "index.html"; // 🔹 Cambia la ruta si tu index está en otro lugar
+  });

@@ -12,7 +12,7 @@ import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import mysql from 'mysql2/promise';
-import { Resend } from 'resend';
+import nodemailer from 'nodemailer';
 
 dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
@@ -32,12 +32,8 @@ const DB_PASSWORD = process.env.DB_PASSWORD || '';
 const DB_NAME = process.env.DB_NAME || 'portal_alerta';
 
 const APP_URL      = process.env.APP_URL      || 'http://localhost:3000';
-const RESET_FROM   = process.env.RESET_FROM   || 'ALERTA <macocco.gabriel@uncuyo.edu.ar>';
 const BCRYPT_ROUNDS= Number(process.env.BCRYPT_ROUNDS || 12);
 
-
-// Resend
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 // ------------ DB POOL ------------
 const pool = await mysql.createPool({
@@ -86,49 +82,114 @@ function needsAuthRedirect(req, res, next) {
 }
 
 
-// RESEND EMAIL
 
-// Reemplazar sendResetEmail actual por esta (temporal para debugging)
+// ------------ FORGOT PASSWORD ------
+
+// Función de envío de mail
 async function sendResetEmail({ to, link }) {
-  console.log('[sendResetEmail] START', { to, link, RESET_FROM: String(RESET_FROM).slice(0,60) });
-  try {
-    const payload = {
-      from: RESET_FROM,
-      to,
-      subject: 'Restablecer contraseña',
-      html: `
-        <div style="font-family:Arial,sans-serif;line-height:1.5">
-          <h2>Restablecer contraseña</h2>
-          <p>Recibimos tu solicitud de restablecimiento.</p>
-          <p><a href="${link}" target="_blank">Hacé clic aquí para crear una nueva contraseña</a></p>
-          <p style="color:#6b7280;font-size:12px">El enlace vence en 30 minutos. Si no pediste el cambio, ignorá este mensaje.</p>
+  console.log('[sendResetEmail] START', { to, link, RESET_FROM: process.env.RESET_FROM });
+
+  const transporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST,
+    port: parseInt(process.env.SMTP_PORT),
+    secure: process.env.SMTP_SECURE === 'true', // false para 587 STARTTLS
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS,
+    },
+    logger: true,  // Debug SMTP
+    debug: true,
+    tls: { rejectUnauthorized: false },
+  });
+
+const mailOptions = {
+  from: process.env.RESET_FROM,
+  to,
+  subject: '🔐 Restablecer tu contraseña – Programa A.L.E.R.T.A.',
+  html: `
+  <div style="font-family: Arial, Helvetica, sans-serif; background-color:#f5f5f5; padding:40px 0;">
+    <div style="max-width:600px; margin:0 auto; background:white; border-radius:8px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+      
+      <!-- Encabezado con logo -->
+      <div style="background:#006CE0; padding:20px; text-align:center;">
+        <img src="https://ciberseguridad-txd.uncuyo.edu.ar/recursos/ALERTAlogohorizontal.png" alt="A.L.E.R.T.A UNCuyo" style="max-height:50px;"/>
+      </div>
+      
+      <!-- Contenido principal -->
+      <div style="padding:30px;">
+        <h2 style="color:#333; text-align:center;">Restablecer tu contraseña</h2>
+        <p style="font-size:16px; color:#555; line-height:1.6;">
+          Has solicitado restablecer tu contraseña para acceder al <strong>Programa A.L.E.R.T.A. UNCuyo</strong>.
+        </p>
+        <p style="font-size:16px; color:#555; line-height:1.6;">
+          Haz clic en el siguiente botón para establecer una nueva contraseña. 
+          Este enlace caducará en <strong>30 minutos</strong>.
+        </p>
+        
+        <div style="text-align:center; margin:30px 0;">
+          <a href="${link}" style="background:#001D91; color:white; text-decoration:none; padding:12px 24px; font-size:16px; border-radius:6px; display:inline-block;">
+            🔐 Cambiar contraseña
+          </a>
         </div>
-      `,
-    };
+        
+        <p style="font-size:14px; color:#777; line-height:1.4;">
+          Si el botón no funciona, copia y pega el siguiente enlace en tu navegador:
+        </p>
+        <p style="font-size:13px; color:#555; word-break:break-all;">
+          <a href="${link}" style="color:#660066;">${link}</a>
+        </p>
+        
+        <p style="font-size:12px; color:#999; margin-top:40px;">
+          Si no solicitaste este cambio, puedes ignorar este mensaje. Tu contraseña actual seguirá funcionando.
+        </p>
+      </div>
+      
+      <!-- Footer -->
+      <div style="background:#f0f0f0; text-align:center; font-size:12px; color:#777; padding:15px;">
+        © ${new Date().getFullYear()} UNCuyo – Programa A.L.E.R.T.A. <br/>
+        Este es un correo automático, no respondas a este mensaje.
+      </div>
+    </div>
+  </div>
+  `
+};
 
-    console.log('[sendResetEmail] payload', { from: payload.from, to: payload.to, subject: payload.subject });
 
-    const resp = await resend.emails.send(payload);
-
-    // Resend devuelve objeto con id, status u otros datos: loguealo completo
-    console.log('[sendResetEmail] Resend response:', JSON.stringify(resp, null, 2));
-    return resp;
-  } catch (err) {
-    // intentá extraer info útil de err (axios-like)
-    console.error('[sendResetEmail] Error: message=', err?.message);
-    if (err?.response) {
-      try {
-        console.error('[sendResetEmail] Error response status:', err.response.status);
-        console.error('[sendResetEmail] Error response body:', JSON.stringify(err.response.data || err.response.body || err.response, null, 2));
-      } catch (e) {
-        console.error('[sendResetEmail] Error parsing err.response', e);
-      }
-    } else {
-      console.error('[sendResetEmail] err object:', err);
-    }
-    throw err;
+  try {
+    const info = await transporter.sendMail(mailOptions);
+    console.log('[sendResetEmail] SMTP response:', info);
+    return true;
+  } catch (error) {
+    console.error('[sendResetEmail] ERROR:', error);
+    return false;
   }
 }
+
+// Endpoint de "olvidé mi contraseña"
+async function forgotPassword(req, res) {
+  try {
+    const email = String(req.body.email || '').trim().toLowerCase();
+    if (!email) return res.status(400).json({ ok: false, error: 'Email requerido' });
+
+    const [rows] = await pool.execute('SELECT id FROM users WHERE email = :email', { email });
+    if (!rows.length) {
+      return res.json({ ok: true, msg: 'Si existe una cuenta con ese correo, se enviaron instrucciones.' });
+    }
+
+    const token = jwt.sign({ id: rows[0].id, email }, JWT_SECRET, { expiresIn: '30m' });
+    const link = `${APP_URL}/password-reset.html?token=${token}`;
+
+    // ahora la firma coincide con la función
+    await sendResetEmail({ to: email, link });
+
+    res.json({ ok: true, msg: 'Si existe una cuenta con ese correo, se enviaron instrucciones.' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ ok: false, error: 'No se pudo enviar el email' });
+  }
+}
+
+
 function auth(req, res, next) {
   try {
     const token = req.cookies?.token;
@@ -273,29 +334,6 @@ app.post('/api/logout', (req, res) => {
   res.clearCookie('token', { httpOnly:true, sameSite:'strict', secure:false });
   res.json({ ok:true });
 });
-
-// ------------ FORGOT PASSWORD ------
-
-// Endpoint de "olvidé mi contraseña"
-async function forgotPassword(req, res) {
-  try {
-    const email = String(req.body.email || '').trim().toLowerCase();
-    if (!email) return res.status(400).json({ ok: false, error: 'Email requerido' });
-
-    const [rows] = await pool.execute('SELECT id FROM users WHERE email = :email', { email });
-    if (!rows.length) return res.json({ ok: true, msg: 'Si existe una cuenta con ese correo, se enviaron instrucciones.' });
-
-    const token = jwt.sign({ id: rows[0].id, email }, JWT_SECRET, { expiresIn: '30m' });
-    const link = `${APP_URL}/password-reset.html?token=${token}`;
-
-    await sendResetEmail({ to: email, link });
-
-    res.json({ ok: true, msg: 'Si existe una cuenta con ese correo, se enviaron instrucciones.' });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ ok: false, error: 'No se pudo enviar el email' });
-  }
-}
 
 
 // ENDOPINT Reset Password

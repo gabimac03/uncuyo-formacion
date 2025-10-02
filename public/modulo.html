@@ -5,53 +5,119 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Módulo • Detalle</title>
   <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/modulo-detalle.css">
   <link rel="icon" type="image/x-icon" href="recursos/favicon.ico">
 </head>
 <body>
   <header class="site">
     <div class="wrap bar">
       <div class="logo">
-        <div class="mark">AU</div>
+        <img src="./recursos/ALERTAlogohorizontal.png" alt="" srcset="">
         <div class="brand">A.L.E.R.T.A. UNCuyo</div>
       </div>
       <nav>
-        <a href="index.html#modulos">← Volver a Módulos</a>
+        <a href="index.html#modulos" class="btn-back">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          Volver a Módulos
+        </a>
       </nav>
     </div>
   </header>
 
   <main class="wrap">
-    <h1 id="titulo">Módulo</h1>
-    <p id="resumen" class="lead"></p>
+    <!-- Hero del módulo -->
+    <div class="modulo-hero">
+      <div class="modulo-icon-large">🛡️</div>
+      <h1 id="titulo">Módulo</h1>
+      <p id="resumen" class="lead"></p>
+      <div class="modulo-meta">
+        <span class="meta-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 6v6l4 2"/>
+          </svg>
+          45 min
+        </span>
+        <span class="meta-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+          </svg>
+          Nivel Inicial
+        </span>
+      </div>
+    </div>
 
-    <section>
-      <h2>Resumen del módulo</h2>
-       <div id="puntos" class="resumen-grid"></div>
-    </section>
-    
-    <section>
-      <h2>Contenido</h2>
-      <div id="contenido-list" class="contenido-list"></div>
+    <!-- Índice de contenidos -->
+    <div class="tabla-contenidos">
+      <h3>📋 Contenidos del módulo</h3>
+      <ul id="indice-contenidos">
+        <!-- Se generará dinámicamente -->
+      </ul>
+    </div>
+
+    <!-- Botón descargar -->
+    <section class="pdf-section" style="margin: 2rem 0;">
+      <button id="btn-pdf" class="btn">📄 Descargar en PDF</button>
     </section>
 
-    <section>
-      <h2>Ejemplos prácticos</h2>
-      <div id="ejemplos-ui" class="actions"></div>
-      <div id="ejemplo-contenido" class="card" ...>
-        <em>Elegí un ejemplo para ver su contenido.</em>
+
+    <!-- Contenido narrativo con diseño mejorado -->
+    <section id="contenido-principal" class="modulo-texto">
+      <!-- El contenido se cargará aquí -->
+    </section>
+
+    <!-- Contenedor oculto para exportar -->
+    <div id="export-pdf" style="display:none;"></div>
+
+    <!-- Sección de ejemplos prácticos -->
+    <section class="ejemplos-section">
+      <div class="section-header">
+        <div class="section-icon">💡</div>
+        <div>
+          <h2>Ejemplos prácticos</h2>
+          <p class="section-subtitle">Pon a prueba tus conocimientos con estos ejercicios interactivos</p>
+        </div>
+      </div>
+      
+      <div id="ejemplos-ui" class="ejemplos-grid"></div>
+      
+      <div id="ejemplo-contenido" class="ejemplo-display">
+        <div class="ejemplo-placeholder">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 16v-4M12 8h.01"/>
+          </svg>
+          <p>Selecciona un ejemplo para comenzar</p>
+        </div>
       </div>
     </section>
 
-    <section>
-      <h2>Test del módulo</h2>
-      <div id="cta-test-modulo" class="actions"></div>
+    <!-- CTA Test del módulo -->
+    <section class="test-section">
+      <div class="test-card">
+        <div class="test-icon">✅</div>
+        <div class="test-content">
+          <h2>¿Listo para el test?</h2>
+          <p>Evalúa tus conocimientos sobre protección de la información</p>
+          <div id="cta-test-modulo" class="test-actions"></div>
+        </div>
+      </div>
     </section>
 
-
-    <aside style="margin-top:32px">
-      <h3>Otros módulos</h3>
-      <ul id="otros-modulos"></ul>
+    <!-- Otros módulos -->
+    <aside class="otros-modulos">
+      <h3>🎓 Continúa aprendiendo</h3>
+      <div id="otros-modulos" class="modulos-relacionados"></div>
     </aside>
+
+    <button id="btn-volver" class="btn-volver" title="Volver al inicio">
+      ⬅
+    </button>
+
+
   </main>
 
   <footer>
@@ -60,12 +126,12 @@
     </div>
   </footer>
 
-  <!-- 1) Acceso al array MODULOS ya existente -->
+  <!-- Scripts -->
   <script src="../javascript/main.js" defer></script>
-  <!-- 2) Datos del detalle (vos los completás) -->
   <script src="../javascript/modulo-datos.js" defer></script>
-  <!-- 3) Lógica de la página de detalle -->
   <script src="../javascript/modulos.js" defer></script>
+  <!-- Librería para exportar a PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 </body>
 </html>

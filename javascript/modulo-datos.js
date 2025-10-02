@@ -5,311 +5,245 @@
 // - ejemplos: contenido HTML mostrado al hacer click en los botones (podés usar <h3>, <p>, <ol>, <pre><code>, <img>, etc.).
 
 window.MODULO_DETALLE = {
-// --- MOD. 1 COMPLETO ---
-1: {
-  resumenCorto:
-    "La información es un activo esencial en la universidad. Además de proteger su confidencialidad, integridad y disponibilidad, debemos clasificarla, respaldarla y eliminarla de forma segura. Los errores humanos, los insiders y los ciberdelincuentes son fuentes habituales de incidentes.",
-  puntos: [
-    { titulo: "Activos y amenazas", texto: "Accidentales, insiders y ciberdelincuentes (ej. ransomware)." },
-    { titulo: "Inventario y clasificación", texto: "Antes de actuar: inventariar, clasificar y etiquetar." },
-    { titulo: "Cifrado y metadatos", texto: "Cifrar sensible y eliminar metadatos antes de compartir." },
-    { titulo: "Backups 3-2-1", texto: "Tipos de copia y estrategia fuera del sitio." },
-    { titulo: "Almacenamiento adecuado", texto: "Local vs. red vs. nube según criticidad." }
-  ],
+  1: {
+    titulo: "Protección de la Información",
+    resumen:
+      "La información es uno de los activos más importantes dentro de la universidad. Este módulo explica cómo reconocer amenazas, clasificar y proteger datos, aplicar buenas prácticas de almacenamiento, cifrado y respaldos, y cómo cumplir con la legislación argentina sobre privacidad.",
 
-  contenido: [
-    {
-      icon: "🏷️",
-      titulo: "1) Activos y amenazas típicas",
-      texto: `• Accidentales: borrados, correos a destinatario equivocado, fallas de disco.<br>
-              • Insiders: accesos/filtraciones desde dentro de la comunidad.<br>
-              • Ciberdelincuentes: malware/ingeniería social (p.ej., ransomware).`,
-      aciertos: ["Conciencia de riesgos", "Principio de mínimo privilegio"],
-      peligros: ["Correo mal enviado", "Uso de dispositivos sin controles"]
-    },
+    contenidoNarrativo: `
+      <p>En la universidad, la información es un recurso esencial que sostiene procesos académicos y administrativos. No basta con proteger contraseñas: debemos garantizar que los datos estén disponibles cuando se los necesita, que permanezcan íntegros y que sólo accedan quienes tienen autorización.</p>
 
-    {
-      icon: "🔐",
-      titulo: "2) Tres pilares (CIA)",
-      texto: `• Disponibilidad: acceso cuando se necesita (ransomware la afecta).<br>
-              • Integridad: que no se altere sin autorización.<br>
-              • Confidencialidad: que no accedan personas no autorizadas.`,
-      aciertos: ["MFA", "Backups probados", "Registros de cambios"],
-      peligros: ["Sin respaldos", "Enlaces públicos", "Repositorios abiertos"]
-    },
+      <p>Las amenazas provienen de diferentes fuentes: <strong>errores humanos</strong> como borrar archivos por accidente o enviar correos al destinatario equivocado; <strong>insiders</strong> (personas de la propia comunidad) que filtran o acceden sin cuidado; y <strong>ciberdelincuentes</strong> que usan malware o ingeniería social, por ejemplo ransomware. Conocer estas amenazas es el primer paso para protegernos.</p>
 
-    {
-      icon: "🧭",
-      titulo: "3) Inventario y clasificación",
-      texto: `• Inventariar: listar activos (físicos/digitales), ubicación y responsables.<br>
-              • Criterios: confidencialidad, integridad y disponibilidad requeridas.<br>
-              • Niveles: Confidencial / Restringida / Uso interno / Pública.<br>
-              • Etiquetado sugerido: [confidencial]Proyectos.docx, [restringida]Nóminas.xlsx, etc.`,
-      aciertos: ["Activos etiquetados", "Dueños/roles definidos"],
-      peligros: ["Sin inventario", "Accesos amplios por defecto"]
-    },
+      <h2>Los tres pilares de la seguridad (CIA)</h2>
+      <p><strong>Confidencialidad:</strong> sólo usuarios autorizados pueden acceder a la información.<br>
+         <strong>Integridad:</strong> los datos deben mantenerse correctos y sin alteraciones no autorizadas.<br>
+         <strong>Disponibilidad:</strong> la información debe estar accesible cuando se la necesita. El ransomware, por ejemplo, compromete este principio.</p>
+      <p>Para cuidar estos pilares se recomienda implementar autenticación multifactor (MFA), mantener copias de seguridad verificadas, registrar cambios importantes y evitar publicar información sensible en repositorios o enlaces abiertos.</p>
 
-    {
-      icon: "🧩",
-      titulo: "4) Tratamiento según clasificación",
-      texto: `• Limitar acceso por rol; control de accesos y registro.<br>
-              • Cifrado (en reposo y en tránsito).<br>
-              • Copias de seguridad.<br>
-              • Medidas específicas (acuerdos de confidencialidad, cumplimiento legal).`,
-      aciertos: ["Necesidad de saber", "Trazabilidad"],
-      peligros: ["‘Todos’ con acceso", "Compartir por link público"]
-    },
+      <h2>Inventario y clasificación de información</h2>
+      <p>Antes de aplicar medidas de seguridad hay que saber qué tenemos. Es clave inventariar documentos digitales, dispositivos físicos, bases de datos y aplicaciones, identificando ubicación, responsables y nivel de criticidad. 
+      Luego se clasifica según sensibilidad:</p>
+      <ul>
+        <li><em>Confidencial</em>: datos personales, contratos, información financiera.</li>
+        <li><em>Restringida</em>: documentos internos que podrían causar problemas si se filtran.</li>
+        <li><em>Uso interno</em>: información de poco riesgo que se comparte solo dentro de la institución.</li>
+        <li><em>Pública</em>: datos que cualquiera puede conocer.</li>
+      </ul>
+      <p>Etiquetar archivos (ej. <code>[confidencial]Proyecto.docx</code>) facilita su manejo y control.</p>
 
-    {
-      icon: "🔒",
-      titulo: "5) Cifrado — buenas prácticas",
-      texto: `• Claves robustas y gestión segura (no en papel/correo).<br>
-              • Algoritmos fuertes (p.ej., AES-256).<br>
-              • Revisar periódicamente la robustez del método.<br>
-              • Herramientas actualizadas.`,
-      aciertos: ["Cifrado aplicado", "Gestor de contraseñas"],
-      peligros: ["Claves débiles", "Software desactualizado"]
-    },
+      <h2>Tratamiento y protección según clasificación</h2>
+      <p>Una vez definida la clasificación se aplican controles acordes: limitar el acceso según roles, registrar quién accede, cifrar datos en reposo y en tránsito, mantener copias de seguridad fiables y establecer medidas legales (acuerdos de confidencialidad, cumplimiento normativo). Evitá dar permisos a “todos” o compartir por enlaces públicos sin control.</p>
 
-    {
-      icon: "🧾",
-      titulo: "6) Metadatos: riesgos y borrado",
-      texto: `• Metadatos revelan autor, fechas, ubicación (imágenes), etc.<br>
-              • Antes de publicar/compartir: limpiar metadatos.<br>
-              • Windows: Propiedades → Detalles → Quitar propiedades e información personal → Seleccionar todo.`,
-      aciertos: ["Metadatos eliminados", "Control de versiones"],
-      peligros: ["Subir originales con metadatos", "Exponer ubicación/firma"]
-    },
+      <h2>Cifrado y buenas prácticas</h2>
+      <p>El cifrado asegura que, aunque un archivo caiga en manos no autorizadas, no pueda leerse. Es vital usar claves robustas y gestionarlas con seguridad (no guardarlas en papel ni enviarlas por correo), emplear algoritmos fuertes como AES-256, revisar periódicamente su eficacia y mantener las herramientas actualizadas.</p>
 
-    {
-      icon: "🗄️",
-      titulo: "7) Almacenamiento (local / red / nube)",
-      texto: `• Local: rápido, pero aislado y frágil (riesgo de pérdida).<br>
-              • Red: centralizado y con controles institucionales (preferible).<br>
-              • Nube: accesible; cifrar y aplicar permisos cuando haya datos sensibles.`,
-      aciertos: ["Carpetas de red institucional", "Cifrado en nube"],
-      peligros: ["Descargas locales sin backup", "Nube sin controles"]
-    },
+      <h2>Metadatos: un riesgo silencioso</h2>
+      <p>Los archivos incluyen metadatos que pueden exponer autor, fechas o ubicación GPS. Antes de compartir, conviene limpiarlos. En Windows se hace desde: <em>Propiedades → Detalles → Quitar propiedades e información personal</em>. Subir documentos sin limpiar puede filtrar datos sensibles sin darnos cuenta.</p>
 
-    {
-      icon: "💾",
-      titulo: "8) Backups: tipos + regla 3-2-1",
-      texto: `• Espejo/RAID: copia en tiempo real; rápido pero replica errores/malware.<br>
-              • Completa: todo el contenido; recuperación simple, ocupa más.<br>
-              • Diferencial: cambios desde la última completa; restauración simple.<br>
-              • Incremental: cambios desde la última copia (de cualquier tipo); eficiente, restauración más compleja.<br><br>
-              • Regla 3-2-1: 3 copias, 2 soportes distintos, 1 fuera (off-site).`,
-      aciertos: ["Pruebas de restauración", "Copias off-site"],
-      peligros: ["Una sola copia", "Sin verificación de restauración"]
-    },
+      <h2>Opciones de almacenamiento</h2>
+      <p>El almacenamiento local (en una computadora personal) es rápido pero frágil ante pérdidas y no suele incluir respaldo. Es preferible usar carpetas de red institucional, que tienen controles y copias automáticas. Si se usa la nube, debe configurarse cifrado y permisos adecuados antes de subir información sensible.</p>
 
-    {
-      icon: "🗑️",
-      titulo: "9) Borrado seguro",
-      texto: `• Papel/DVD: triturado. <br>
-              • Discos reutilizables: sobreescritura múltiple. <br>
-              • Pendrives/móviles: cifrar y restaurar a valores de fábrica. <br>
-              • Obsoletos/dañados: destrucción física o certificada (con acta).`,
-      aciertos: ["Inventario de baja", "Certificados de destrucción"],
-      peligros: ["Entregar equipos sin limpiar", "Tirar papeles enteros"]
-    },
+      <h2>Backups y la regla 3-2-1</h2>
+      <p>Existen varios tipos de copia:</p>
+      <ul>
+        <li><strong>Espejo / RAID:</strong> replica en tiempo real pero también errores o malware.</li>
+        <li><strong>Completa:</strong> copia todo; fácil de restaurar pero ocupa mucho espacio.</li>
+        <li><strong>Diferencial:</strong> guarda cambios desde la última copia completa.</li>
+        <li><strong>Incremental:</strong> guarda solo cambios desde la última copia (eficiente pero compleja de restaurar).</li>
+      </ul>
+      <p>La <strong>regla 3-2-1</strong> recomienda mantener <strong>3 copias de los datos, en 2 soportes diferentes y al menos 1 fuera del sitio principal</strong>. Además, deben probarse regularmente las restauraciones.</p>
 
-    {
-      icon: "⚖️",
-      titulo: "10) Privacidad y la Ley (AR)",
-      texto: `• Ley 25.326 (Habeas Data): derechos de acceso, rectificación, actualización y supresión.<br>
-              • Consentimiento informado; finalidad explicada.<br>
-              • AAIP como autoridad; obligación de resguardar seguridad y confidencialidad.`,
-      aciertos: ["Avisos de privacidad", "Consentimiento válido"],
-      peligros: ["Tratar datos sin base legal", "No informar incidentes"]
+      <h2>Borrado seguro</h2>
+      <p>Eliminar información no es sólo pulsar “borrar”. El papel debe triturarse, los discos reutilizables sobreescribirse varias veces, y los dispositivos como pendrives o móviles deben cifrarse y restaurarse a valores de fábrica antes de desecharlos. Los equipos obsoletos pueden requerir destrucción certificada para asegurar que los datos no sean recuperables.</p>
+
+      <h2>Privacidad y legislación argentina</h2>
+      <p>La <strong>Ley 25.326</strong> de Protección de Datos Personales (Habeas Data) regula cómo deben tratarse los datos de las personas. Otorga derechos de acceso, rectificación y supresión. La <strong>AAIP</strong> es la autoridad de control. Tratar datos sin base legal o no informar incidentes puede generar sanciones. Siempre se debe comunicar la finalidad y obtener consentimiento válido.</p>
+
+      <h2>Gestión segura de dispositivos y archivos</h2>
+      <p>Protegé tu computadora y dispositivos: mantené el sistema operativo y los programas actualizados, aplicá cifrado de disco, usá bloqueo de pantalla y evitá compartir cuentas. Guardá información institucional únicamente en ubicaciones autorizadas y con permisos adecuados.</p>
+
+      <h2>Uso responsable de la nube</h2>
+      <p>Preferí plataformas institucionales (por ejemplo, Google Workspace o OneDrive con cuenta universitaria) para documentos sensibles. Evitá subir datos importantes a cuentas personales o servicios sin controles. Configurá permisos de solo lectura y, si es posible, establecé fechas de vencimiento para los enlaces compartidos.</p>
+
+      <h2>Respuesta ante incidentes</h2>
+      <p>Si sospechás de un ataque (por ejemplo, un archivo cifrado inesperadamente o un mensaje extraño solicitando datos), desconectá el equipo de la red, informá al área de ciberseguridad y no intentes resolverlo borrando o descargando herramientas desconocidas. Actuar rápido puede evitar mayores daños.</p>
+    `,
+
+    ejemplos: {
+      ej1: `
+        <div class="quiz">
+          <div class="quiz-q">¿Qué pilar protege contra el acceso no autorizado a la información?</div>
+          <div class="quiz-options">
+            <button class="btn quiz-option">Disponibilidad</button>
+            <button class="btn quiz-option">Integridad</button>
+            <button class="btn quiz-option" data-correct="true"
+                    data-explain="Confidencialidad = acceso sólo para personas autorizadas.">Confidencialidad</button>
+          </div>
+          <div class="badges"><span class="badge badge--ok">CIA</span></div>
+        </div>`,
+
+      ej2: `
+        <div class="quiz">
+          <div class="quiz-q">Un listado con DNI y datos personales de estudiantes. ¿Qué clasificación corresponde?</div>
+          <div class="quiz-options">
+            <button class="btn quiz-option">Pública</button>
+            <button class="btn quiz-option">Uso interno</button>
+            <button class="btn quiz-option">Restringida</button>
+            <button class="btn quiz-option" data-correct="true"
+                    data-explain="Datos personales → confidencial. Minimizar acceso y proteger con controles.">Confidencial</button>
+          </div>
+          <div class="badges"><span class="badge badge--ok">Privacidad</span></div>
+        </div>`,
+
+      ej3: `
+        <div class="quiz">
+          <div class="quiz-q">¿Cuál enuncia correctamente la regla 3–2–1 de respaldo?</div>
+          <div class="quiz-options">
+            <button class="btn quiz-option">3 copias en el mismo disco externo</button>
+            <button class="btn quiz-option">3 copias, 1 soporte, 1 fuera</button>
+            <button class="btn quiz-option" data-correct="true"
+                    data-explain="3 copias, 2 soportes diferentes, 1 fuera de la institución.">3 copias, 2 soportes, 1 fuera</button>
+            <button class="btn quiz-option">2 copias, 2 soportes, 1 en nube</button>
+          </div>
+          <div class="badges"><span class="badge badge--ok">Backups</span></div>
+        </div>`,
+
+      ej4: `
+        <div class="quiz">
+          <div class="quiz-q">Vas a publicar un PDF en la web institucional. ¿Qué hacés con los metadatos?</div>
+          <div class="quiz-options">
+            <button class="btn quiz-option">Nada; publicarlo tal cual</button>
+            <button class="btn quiz-option" data-correct="true"
+                    data-explain="En Windows: Propiedades → Detalles → Quitar propiedades e información personal.">Quitar propiedades e información personal</button>
+            <button class="btn quiz-option">Solo cambiar el nombre del archivo</button>
+          </div>
+          <div class="badges"><span class="badge badge--warn">Metadatos</span></div>
+        </div>`,
+
+      ej5: `
+        <div class="quiz">
+          <div class="quiz-q">Tenés actas con datos confidenciales. ¿Dónde las guardás?</div>
+          <div class="quiz-options">
+            <button class="btn quiz-option">Pendrive sin cifrar</button>
+            <button class="btn quiz-option">Carpeta “Descargas” del equipo personal</button>
+            <button class="btn quiz-option" data-correct="true"
+                    data-explain="Carpeta de red institucional (permisos/backup). En nube, sólo cifrada y con controles.">Carpeta de red institucional o nube cifrada con permisos</button>
+          </div>
+          <div class="badges"><span class="badge badge--ok">Almacenamiento</span></div>
+        </div>`
     }
-  ],
-
-  ejemplos: {
-    // (se mantienen ej1–ej3) y agregamos dos más
-    ej1: `
-      <div class="quiz">
-        <div class="quiz-q">¿Qué pilar protege contra el acceso no autorizado a la información?</div>
-        <div class="quiz-options">
-          <button class="btn quiz-option">Disponibilidad</button>
-          <button class="btn quiz-option">Integridad</button>
-          <button class="btn quiz-option" data-correct="true"
-                  data-explain="Confidencialidad = acceso sólo para personas autorizadas.">Confidencialidad</button>
-        </div>
-        <div class="badges"><span class="badge badge--ok">CIA</span></div>
-      </div>`,
-
-    ej2: `
-      <div class="quiz">
-        <div class="quiz-q">Un listado con DNI y datos personales de estudiantes. ¿Qué clasificación corresponde?</div>
-        <div class="quiz-options">
-          <button class="btn quiz-option">Pública</button>
-          <button class="btn quiz-option">Uso interno</button>
-          <button class="btn quiz-option">Restringida</button>
-          <button class="btn quiz-option" data-correct="true"
-                  data-explain="Datos personales → confidencial. Minimizar acceso y proteger con controles.">Confidencial</button>
-        </div>
-        <div class="badges"><span class="badge badge--ok">Privacidad</span></div>
-      </div>`,
-
-    ej3: `
-      <div class="quiz">
-        <div class="quiz-q">¿Cuál enuncia correctamente la regla 3–2–1 de respaldo?</div>
-        <div class="quiz-options">
-          <button class="btn quiz-option">3 copias en el mismo disco externo</button>
-          <button class="btn quiz-option">3 copias, 1 soporte, 1 fuera</button>
-          <button class="btn quiz-option" data-correct="true"
-                  data-explain="3 copias, 2 soportes diferentes, 1 fuera de la institución.">3 copias, 2 soportes, 1 fuera</button>
-          <button class="btn quiz-option">2 copias, 2 soportes, 1 en nube</button>
-        </div>
-        <div class="badges"><span class="badge badge--ok">Backups</span></div>
-      </div>`,
-
-    // Nuevo — Metadatos
-    ej4: `
-      <div class="quiz">
-        <div class="quiz-q">Vas a publicar un PDF en la web institucional. ¿Qué hacés con los metadatos?</div>
-        <div class="quiz-options">
-          <button class="btn quiz-option">Nada; publicarlo tal cual</button>
-          <button class="btn quiz-option" data-correct="true"
-                  data-explain="En Windows: Propiedades → Detalles → Quitar propiedades e información personal.">Quitar propiedades e información personal</button>
-          <button class="btn quiz-option">Solo cambiar el nombre del archivo</button>
-        </div>
-        <div class="badges"><span class="badge badge--warn">Metadatos</span></div>
-      </div>`,
-
-    // Nuevo — Dónde guardar
-    ej5: `
-      <div class="quiz">
-        <div class="quiz-q">Tenés actas con datos confidenciales. ¿Dónde las guardás?</div>
-        <div class="quiz-options">
-          <button class="btn quiz-option">Pendrive sin cifrar</button>
-          <button class="btn quiz-option">Carpeta “Descargas” del equipo personal</button>
-          <button class="btn quiz-option" data-correct="true"
-                  data-explain="Carpeta de red institucional (permisos/backup). En nube, sólo cifrada y con controles.">Carpeta de red institucional o nube cifrada con permisos</button>
-        </div>
-        <div class="badges"><span class="badge badge--ok">Almacenamiento</span></div>
-      </div>`
-  }
-},
-
+  },
 
 2: {
-  resumenCorto:
-    "El correo electrónico es esencial en la universidad, pero también una de las vías favoritas para fraudes y malware. Para reducir riesgos, hay que validar remitente y dominio real, desconfiar de urgencias, cuidar adjuntos/enlaces y aplicar buenas prácticas (CCO, desactivar descarga automática de imágenes, etc.).",
-  puntos: [
-    { titulo: "Sospechá de lo inesperado", texto: "Remitentes extraños, tono urgente, enlaces/adjuntos." },
-    { titulo: "Verificá el dominio real", texto: "Pasá el mouse o copiá la URL; no te fíes del texto visible." },
-    { titulo: "Buenas prácticas", texto: "Usar CCO, revisar autocompletado, desactivar imágenes automáticas." }
-  ],
+  titulo: "Correo Electrónico Seguro",
+  resumen:
+    "El correo electrónico es una herramienta esencial para la universidad, pero también uno de los canales preferidos para fraudes y malware. Este módulo enseña cómo reconocer mensajes sospechosos, validar remitentes y dominios reales, evitar la descarga de archivos maliciosos y aplicar buenas prácticas para mantener la seguridad y la privacidad en cada envío y recepción.",
 
-  contenido: [
-    {
-      icon: "📧",
-      titulo: "1) El correo como herramienta… y vector de ataque",
-      texto: `El correo es rápido y ubicuo, pero su diseño original no priorizaba la seguridad. Hoy es un canal común para:
-              <br>• Robar credenciales/datos (phishing, scam)<br>• Infectar equipos (malware, ransomware)
-              <br><br>Recordá: en un correo malicioso TODO puede estar manipulado (remitente, asunto, cuerpo, firma, adjuntos, enlaces).`,
-      aciertos: ["Capacitación continua", "Políticas claras de uso"],
-      peligros: ["Confiar “porque parece oficial”", "Responder impulsivamente"]
-    },
+  contenidoNarrativo: `
+    <p>El <strong>correo electrónico</strong> es una de las herramientas más utilizadas en la universidad para la comunicación oficial y académica. Sin embargo, su diseño original no priorizó la seguridad, por lo que hoy es uno de los vectores más explotados por los atacantes para <strong>robar información</strong>, <strong>infectar dispositivos</strong> y <strong>comprometer cuentas institucionales</strong>.</p>
 
-    {
-      icon: "🚨",
-      titulo: "2) Tipos de correos fraudulentos",
-      texto: `1) Phishing → suplantación de entidades para robar claves/datos.<br>
-              2) Scam → falsas herencias/premios/ofertas de empleo para estafar.<br>
-              3) Sextorsión → chantaje con supuestos videos (suelen ser falsos).<br>
-              4) Malware → adjuntos o links que instalan código malicioso.
-              `,
-      aciertos: ["Reportar a TI/Seguridad", "Borrar sin abrir adjuntos"],
-      peligros: ["Pagar extorsiones", "Abrir adjuntos de origen desconocido"]
-    },
+    <h2>1. Por qué el correo es tan atractivo para los atacantes</h2>
+    <p>Los ciberdelincuentes prefieren el correo porque es barato, masivo y permite personalizar ataques (spear phishing). Además, muchas personas confían ciegamente en mensajes que parecen legítimos. A menudo, un solo clic basta para:</p>
+    <ul>
+      <li>Robar <strong>credenciales</strong> y acceder a sistemas internos.</li>
+      <li>Instalar <strong>malware</strong> que roba datos o cifra archivos (ransomware).</li>
+      <li>Lanzar campañas de <strong>fraude económico</strong> o desinformación.</li>
+    </ul>
 
-    {
-      icon: "🔎",
-      titulo: "3) Cómo detectarlos (señales clave)",
-      texto: `• Remitente sospechoso o falseado (spoofing).<br>
-              • Asuntos alarmistas/urgentes (ej.: “tu cuenta será desactivada en 2 h”).<br>
-              • Mensajes impersonales (“Estimado cliente/usuario”).<br>
-              • Adjuntos riesgosos: .exe, .vbs, .docm/.xlsm, .zip, .rar, etc.<br>
-              • Mala redacción/errores de ortografía.<br>
-              • Enlaces falseados: el texto dice una cosa, el dominio real es otro.`,
-      aciertos: ["Leer con calma", "Dudar ante la urgencia"],
-      peligros: ["Dar clic “para ver”", "Habilitar macros"]
-    },
+    <h2>2. Señales de un correo sospechoso</h2>
+    <ul>
+      <li><strong>Remitente falso o extraño</strong>: direcciones que imitan dominios oficiales (ej. <code>uncuyo-seguridad-support.com</code> en lugar de <code>uncuyo.edu.ar</code>).</li>
+      <li><strong>Asuntos alarmistas o urgentes</strong>: “tu cuenta será desactivada en 2 h”, “pago inmediato”.</li>
+      <li><strong>Mensajes impersonales</strong>: “Estimado cliente/usuario”.</li>
+      <li><strong>Errores de ortografía y redacción</strong>: comunes en campañas maliciosas.</li>
+      <li><strong>Adjuntos peligrosos</strong>: .exe, .vbs, .docm, .xlsm, .zip, .rar.</li>
+      <li><strong>Enlaces engañosos</strong>: texto visible que no coincide con el dominio real.</li>
+    </ul>
 
-    {
-      icon: "🌐",
-      titulo: "4) Enlaces: dominio visible vs. dominio real",
-      texto: `Antes de hacer clic:<br>
-              • En PC: pasá el mouse y mirá el destino real (barra de estado).<br>
-              • En móvil: copiá el enlace y pegalo en notas para verlo completo.<br>
-              • Comprobá el dominio principal (ej.: “uncuyo.edu.ar”). Subdominios largos suelen engañar.
-              `,
-      aciertos: ["Ir por la web oficial", "Analizar en VirusTotal si dudás"],
-      peligros: ["Confiar en el texto visible", "Ingresar credenciales “para probar”"]
-    },
+    <h2>3. Tipos de fraudes y ataques más comunes</h2>
+    <ul>
+      <li><strong>Phishing genérico</strong>: suplantación masiva para robar credenciales o datos personales.</li>
+      <li><strong>Spear phishing</strong>: mensajes dirigidos a personas específicas con información personalizada.</li>
+      <li><strong>Business Email Compromise (BEC)</strong>: suplantación de jefes o proveedores para transferencias bancarias fraudulentas.</li>
+      <li><strong>Scam</strong>: falsas herencias, premios o trabajos para estafar dinero.</li>
+      <li><strong>Sextorsión</strong>: chantaje con supuestos videos íntimos (casi siempre falsos).</li>
+      <li><strong>Malware y ransomware</strong>: enlaces o adjuntos que instalan software malicioso.</li>
+    </ul>
 
-    {
-      icon: "📎",
-      titulo: "5) Adjuntos y macros: manejo seguro",
-      texto: `• Nunca abras adjuntos inesperados (aunque “parezcan” del área).<br>
-              • Desconfiá de ZIP/RAR que piden descomprimir y abrir rápido.<br>
-              • DOCM/XLSM → no habilites macros salvo absoluta certeza.<br>
-              • Si hace falta, analizá el archivo con tu antivirus o un servicio multi–motor.`,
-      aciertos: ["Validar por canal oficial", "Escanear antes de abrir"],
-      peligros: ["Abrir “para ver de qué se trata”", "Habilitar macros de Office"]
-    },
+    <h2>4. Buenas prácticas para tu bandeja de entrada</h2>
+    <ul>
+      <li><strong>Verificá el dominio real</strong>: pasá el mouse sobre el enlace (PC) o copialo en una nota (móvil) para comprobar el dominio principal.</li>
+      <li><strong>No confíes en la apariencia</strong>: logos y firmas pueden falsificarse.</li>
+      <li><strong>No habilites macros</strong> en documentos de Office sin certeza total.</li>
+      <li><strong>Usá CCO</strong> para envíos masivos y proteger direcciones.</li>
+      <li><strong>Desactivá la descarga automática de imágenes</strong> para evitar rastreo.</li>
+      <li><strong>Confirmá remitentes por otro canal</strong> si el mensaje es extraño (teléfono, Teams, WhatsApp institucional).</li>
+      <li><strong>Analizá archivos</strong> con antivirus o VirusTotal antes de abrirlos.</li>
+      <li><strong>Revisá la configuración de reenvío automático</strong> en tu cuenta para detectar reglas creadas por atacantes.</li>
+    </ul>
 
-    {
-      icon: "⚠️",
-      titulo: "6) Otros riesgos de uso",
-      texto: `• CC vs CCO: para envíos masivos, usá CCO (no expongas direcciones).<br>
-              • Autocompletado: puede enviar al destinatario equivocado (revisá).<br>
-              • Descarga automática de imágenes: desactivala (rastreo/privacidad).`,
-      aciertos: ["Usar CCO", "Revisar destinatarios", "Bloquear imágenes automáticas"],
-      peligros: ["Exponer correos", "Confirmar lectura sin querer"]
-    },
+    <h2>5. Cómo actuar ante un posible ataque</h2>
+    <p>Si recibís un correo sospechoso:</p>
+    <ol>
+      <li>No hagas clic en enlaces ni abras adjuntos.</li>
+      <li>No respondas al remitente.</li>
+      <li>Reportá al área de TI o Seguridad reenviando el correo como <em>adjunto</em>.</li>
+      <li>Si ya hiciste clic o ingresaste credenciales, cambiá la contraseña de inmediato y activá MFA.</li>
+      <li>Escaneá tu equipo y, si hay indicios de infección, desconectalo de la red y avisá a soporte.</li>
+    </ol>
 
-    {
-      icon: "🧭",
-      titulo: "7) Qué hacer ante la sospecha",
-      texto: `1) No hagas clic ni abras adjuntos; no respondas.<br>
-              2) Reportá al área de TI/Seguridad (reenviá como adjunto el correo).<br>
-              3) Si hiciste clic/ingresaste datos, cambiá contraseñas y avisá de inmediato.<br>
-              4) Escaneá el equipo; si hay indicios, desconectalo de la red y contactá soporte.`,
-      aciertos: ["Reporte temprano", "Cambio de claves y 2FA"],
-      peligros: ["Ocultar el incidente", "Seguir usando el equipo sospechoso"]
-    }
-  ],
+    <h2>6. Configuraciones recomendadas</h2>
+    <ul>
+      <li>Activá <strong>autenticación en dos pasos (2FA)</strong> en tu cuenta institucional.</li>
+      <li>Revisá destinatarios antes de enviar para evitar errores.</li>
+      <li>Usá gestores de contraseñas para no repetir claves y mantenerlas seguras.</li>
+      <li>Deshabilitá la descarga automática de contenido remoto en clientes de correo.</li>
+      <li>Configurá <strong>firmas digitales o certificados</strong> para correos oficiales si la institución lo permite.</li>
+    </ul>
+
+    <h2>7. Políticas institucionales</h2>
+    <p>En la universidad existen políticas de uso seguro del correo. Estas suelen incluir:</p>
+    <ul>
+      <li>Prohibición de compartir credenciales o reenviar correos sospechosos a terceros.</li>
+      <li>Reportar incidentes de inmediato al área de ciberseguridad.</li>
+      <li>Uso de cuentas institucionales solo para actividades académicas o laborales.</li>
+      <li>Restricciones para configurar reenvíos a cuentas personales sin autorización.</li>
+    </ul>
+
+    <h2>8. Riesgos de no seguir estas prácticas</h2>
+    <p>No aplicar estas medidas puede llevar a:</p>
+    <ul>
+      <li>Robo de identidad y acceso no autorizado a sistemas internos.</li>
+      <li>Pérdida de información confidencial y datos personales de estudiantes o docentes.</li>
+      <li>Instalación de ransomware que paraliza la operación administrativa.</li>
+      <li>Compromiso de la reputación institucional y posibles sanciones legales.</li>
+    </ul>
+  `,
 
   ejemplos: {
-    // 1 — Enlace sospechoso (phishing)
     ej1: `
       <div class="quiz">
         <div class="quiz-q">Recibís “Actualizá tu cuenta” con link <strong>Acceso Cuenta UNCuyo</strong>, pero el dominio real es <code>uncuyo-seguridad-support.com</code>. ¿Qué hacés?</div>
         <div class="quiz-options">
           <button class="btn quiz-option" data-explain="El texto visible no garantiza el dominio.">Hacer clic igual</button>
-          <button class="btn quiz-option" data-correct="true" data-explain="Dominio real ≠ <code>uncuyo.edu.ar</code>. Es señuelo. Reportá y borrá.">Reportar como phishing y borrar</button>
-          <button class="btn quiz-option" data-explain="No pruebes a ver qué pasa. Verificá por el sitio oficial.">Entrar pero sin poner datos</button>
+          <button class="btn quiz-option" data-correct="true" data-explain="Dominio real ≠ <code>uncuyo.edu.ar</code>. Es phishing. Reportá y borrá.">Reportar como phishing y borrar</button>
+          <button class="btn quiz-option" data-explain="No pruebes a ver qué pasa; verificá desde el sitio oficial.">Entrar pero sin poner datos</button>
         </div>
         <div class="badges"><span class="badge badge--danger">Phishing</span><span class="badge badge--warn">Dominio</span></div>
       </div>`,
 
-    // 2 — Adjuntos peligrosos
     ej2: `
       <div class="quiz">
         <div class="quiz-q">Te llega “RRHH” con <code>Planilla_sueldos.zip</code> y urgencia para hoy. ¿Acción correcta?</div>
         <div class="quiz-options">
-          <button class="btn quiz-option" data-explain="La urgencia es un gatillo típico.">Abrir el ZIP porque viene de RRHH</button>
+          <button class="btn quiz-option" data-explain="La urgencia es un truco típico.">Abrir el ZIP porque parece oficial</button>
           <button class="btn quiz-option" data-explain="Habilitar macros es vector común de malware.">Abrir y habilitar macros si lo pide</button>
-          <button class="btn quiz-option" data-correct="true" data-explain="No abrir; validar por canal oficial y analizar con antivirus/VirusTotal si hace falta.">No abrir; validar por canal oficial y analizar</button>
+          <button class="btn quiz-option" data-correct="true" data-explain="No abrir; validar por canal oficial y analizar con antivirus/VirusTotal.">No abrir; validar por canal oficial y analizar</button>
         </div>
         <div class="badges"><span class="badge badge--danger">Malware</span><span class="badge badge--ok">Validación</span></div>
       </div>`,
 
-    // 3 — CC vs CCO
     ej3: `
       <div class="quiz">
         <div class="quiz-q">Vas a avisar a 200 estudiantes de carreras distintas. ¿Cómo evitás exponer direcciones?</div>
@@ -321,7 +255,6 @@ window.MODULO_DETALLE = {
         <div class="badges"><span class="badge badge--ok">Privacidad</span></div>
       </div>`,
 
-    // 4 — Verificación de enlace (nuevo)
     ej4: `
       <div class="quiz">
         <div class="quiz-q">Antes de entrar a un link dudoso, ¿qué paso es correcto?</div>
@@ -333,7 +266,6 @@ window.MODULO_DETALLE = {
         <div class="badges"><span class="badge badge--warn">Enlaces</span></div>
       </div>`,
 
-    // 5 — Imágenes automáticas (nuevo)
     ej5: `
       <div class="quiz">
         <div class="quiz-q">Para evitar rastreo y reducir riesgo, ¿qué hacés con la descarga automática de imágenes?</div>
@@ -347,81 +279,42 @@ window.MODULO_DETALLE = {
   }
 },
 
+3: {
+  titulo: "Contraseñas Seguras",
+  resumen:
+    "Las contraseñas son la primera barrera de defensa frente a accesos no autorizados. Este módulo explica por qué es esencial que sean fuertes, únicas y bien gestionadas, cómo complementar su seguridad con factores adicionales y cómo actuar ante filtraciones.",
 
-  3: {
-  resumenCorto:
-    "Las contraseñas son la primera barrera de seguridad. Si son débiles, compartidas o reutilizadas, facilitan el acceso no autorizado y ponen en riesgo la continuidad académica y administrativa.",
-  puntos: [
-    { titulo: "Usá contraseñas largas, complejas y únicas", texto: "Idealmente frases; una distinta por servicio." },
-    { titulo: "No las compartas jamás", texto: "Son personales e intransferibles." },
-    { titulo: "Usá un gestor de contraseñas", texto: "Para generar/guardar claves robustas (no confundir con apps de códigos 2FA)." }
-  ],
+  contenidoNarrativo: `
+    <p>Las contraseñas son como la cerradura de nuestra vida digital. Aunque parezcan un simple requisito de ingreso, de su fortaleza depende la protección de correos, sistemas académicos, plataformas de gestión y datos personales. Una contraseña débil o repetida puede abrir la puerta a intrusos que buscan robar información o sabotear servicios críticos de la universidad.</p>
 
-  contenido: [
-    {
-      icon: "🛡️",
-      titulo: "1) Robustez",
-      texto: `
-        • Mínimo recomendado: 12–16 caracteres (el documento indica como base 8; cuanto más larga, mejor).<br>
-        • Combiná mayúsculas, minúsculas, números y símbolos.<br>
-        • Evitá patrones obvios (123456, qwerty, nombre+fecha).<br>
-        • Frases de paso o generador del gestor = más entropía.
-      `,
-      aciertos: ["Frases largas", "Generador activo"],
-      peligros: ["Patrones previsibles", "Demasiado corta"]
-    },
+    <h2>El verdadero valor de una contraseña fuerte</h2>
+    <p>Muchos ataques informáticos no son tan sofisticados como imaginamos. Los ciberdelincuentes suelen comenzar probando combinaciones simples con herramientas automáticas: contraseñas comunes como <em>123456</em>, <em>qwerty</em> o nombres propios aparecen entre los primeros intentos. También aprovechan filtraciones previas; si una contraseña fue expuesta en otra web y la reutilizaste, la probarán en tu correo institucional u otros sistemas.</p>
+    <p>Además existen técnicas como la <strong>fuerza bruta</strong> (probar millones de combinaciones), el <strong>ataque de diccionario</strong> (usar listas de palabras y variantes) y el <strong>credential stuffing</strong> (usar contraseñas filtradas de otras plataformas). Todo esto hace que una clave débil pueda caer en segundos.</p>
 
-    {
-      icon: "🙅‍♂️",
-      titulo: "2) No compartidas",
-      texto: `
-        • Las contraseñas son personales e intransferibles.<br>
-        • Si otro la usa, las acciones figuran como tuyas (responsabilidad).<br>
-        • Para accesos compartidos, usá cofres/colecciones del gestor.
-      `,
-      aciertos: ["Uso personal", "Cofres compartidos"],
-      peligros: ["Enviar por chat/correo", "Anotarlas en papel"]
-    },
+    <h2>Cómo construir contraseñas robustas</h2>
+    <p>La regla de oro es la <strong>longitud</strong>: mientras más larga sea la contraseña, más difícil será descifrarla. Hoy se recomienda un mínimo de 12 a 16 caracteres, pero una frase completa es todavía mejor. Combinar <strong>mayúsculas, minúsculas, números y símbolos</strong> añade entropía y vuelve más costoso el ataque.</p>
+    <p>Evita datos personales (nombre, fecha de nacimiento, DNI) y patrones obvios (palabras del teclado, fechas importantes). Una buena estrategia son las <strong>frases de paso</strong>, como: <code>ElCactus_Baila+en2025!</code>. Son fáciles de recordar y muy difíciles de adivinar.</p>
 
-    {
-      icon: "🚫",
-      titulo: "3) No reutilizarlas",
-      texto: `
-        • Usá una contraseña distinta por servicio.<br>
-        • Si una se filtra (phishing/fuga), no debe abrir otras cuentas.<br>
-        • Si hubo filtración: cambiá, activá MFA y cerrá sesiones.
-      `,
-      aciertos: ["Única por servicio"],
-      peligros: ["Reutilización en varios sitios"]
-    },
+    <h2>No compartir ni anotar claves</h2>
+    <p>Tu contraseña es personal e intransferible. Compartirla, enviarla por chat o dejarla anotada en un papel visible puede implicar que acciones maliciosas aparezcan como si las hubieras hecho vos. Si un equipo necesita acceso compartido, existen <strong>cofres seguros dentro de gestores de contraseñas</strong> que permiten administrar claves sin divulgarlas.</p>
 
-    {
-      icon: "🔐",
-      titulo: "4) Doble factor (2FA/MFA)",
-      texto: `
-        • Activalo siempre que puedas (app autenticadora TOTP o llave física).<br>
-        • Mejor TOTP/llaves FIDO/U2F que SMS como único factor.<br>
-        • Guardá códigos de recuperación en lugar seguro.
-      `,
-      aciertos: ["MFA activo", "Códigos de backup"],
-      peligros: ["Solo contraseña", "Usar solo SMS"]
-    },
+    <h2>El peligro de reutilizar contraseñas</h2>
+    <p>Usar la misma clave en varios servicios es como tener una llave que abre todas las puertas: basta que un sitio se vea comprometido para que los atacantes entren a todo lo demás. Si alguna vez te avisan que una plataforma sufrió una filtración, cambiá tu contraseña en todos los lugares donde la hayas usado y activá MFA.</p>
 
-    {
-      icon: "🗂️",
-      titulo: "5) Gestores de contraseñas",
-      texto: `
-        • Guardan y autocompletan de forma segura todas tus claves.<br>
-        • Generan contraseñas aleatorias robustas automáticamente.<br>
-        • Solo recordás la “maestra”: debe ser muy fuerte.
-      `,
-      aciertos: ["Gestor en uso", "Generador"],
-      peligros: ["Maestra débil", "Post-it en el monitor"]
-    }
-  ],
+    <h2>Autenticación multifactor: un refuerzo esencial</h2>
+    <p>Incluso la mejor contraseña puede ser robada mediante phishing. Por eso se recomienda añadir un <strong>segundo factor de autenticación</strong> (MFA). Una app de códigos temporales (TOTP) como Google Authenticator o una llave física FIDO/U2F es mucho más segura que depender sólo de SMS. Los mensajes de texto son vulnerables a robo de SIM y redirecciones. Guardá tus <strong>códigos de recuperación</strong> en un lugar seguro (no en tu correo electrónico).</p>
+
+    <h2>Gestores de contraseñas: aliados imprescindibles</h2>
+    <p>Recordar docenas de contraseñas complejas es imposible sin ayuda. Un <strong>gestor de contraseñas</strong> (como Bitwarden, KeePassXC o 1Password) guarda todas tus claves de forma cifrada y puede generar contraseñas aleatorias muy fuertes. Solo necesitás una contraseña maestra, que debe ser extremadamente sólida y complementarse con MFA. Además, estos gestores suelen avisarte si alguna de tus claves aparece en filtraciones conocidas.</p>
+
+    <h2>Qué hacer ante una filtración</h2>
+    <p>Si sospechás que tu contraseña fue comprometida: cambiála inmediatamente, activá MFA si no lo tenías, cerrá todas las sesiones abiertas y revisá si tu cuenta tiene reglas de reenvío sospechosas. Sitios como <a href="https://haveibeenpwned.com/" target="_blank">Have I Been Pwned</a> pueden ayudarte a saber si tu correo apareció en alguna filtración.</p>
+
+    <h2>Políticas recomendadas</h2>
+    <p>Las organizaciones modernas recomiendan evitar cambios de contraseña periódicos sin motivo; lo importante es <strong>rotar solo si hay riesgo o evidencia de compromiso</strong>. Lo esencial es que sean largas, únicas y estén protegidas con MFA. También se aconseja bloquear cuentas tras múltiples intentos fallidos y avisar al usuario ante accesos sospechosos.</p>
+  `,
 
   ejemplos: {
-    // Ejemplo 1 — Elegir la contraseña más robusta
     ej1: `
       <div class="quiz">
         <div class="quiz-q">¿Cuál de estas contraseñas es la más robusta?</div>
@@ -430,13 +323,8 @@ window.MODULO_DETALLE = {
           <button class="btn quiz-option" data-explain="Es aleatoria, pero corta (8). Mejor 12–16+ o frase.">Ls!r72qP</button>
           <button class="btn quiz-option" data-correct="true" data-explain="Frase larga con palabras no relacionadas, símbolos y espacios → alta entropía.">Cactus-cielo_caracol 19!</button>
         </div>
-        <div class="badges">
-          <span class="badge badge--ok">Robustez</span>
-          <span class="badge badge--warn">Frases largas</span>
-        </div>
+        <div class="badges"><span class="badge badge--ok">Robustez</span><span class="badge badge--warn">Frases largas</span></div>
       </div>`,
-
-    // Ejemplo 2 — Reutilización y respuesta ante filtraciones
     ej2: `
       <div class="quiz">
         <div class="quiz-q">Usaste la misma contraseña en tu correo institucional y en un campus virtual. Te llega alerta de filtración del campus. ¿Qué hacés?</div>
@@ -445,13 +333,8 @@ window.MODULO_DETALLE = {
           <button class="btn quiz-option" data-explain="Si reutilizaste, cambiar solo uno deja el otro expuesto.">Cambio la del campus y listo</button>
           <button class="btn quiz-option" data-correct="true" data-explain="Cambiá en ambos, activá MFA, cerrá sesiones abiertas y revisá reenvíos sospechosos.">Cambio ambas, activo MFA y reviso sesiones</button>
         </div>
-        <div class="badges">
-          <span class="badge badge--danger">No reutilizar</span>
-          <span class="badge badge--ok">Respuesta a incidentes</span>
-        </div>
+        <div class="badges"><span class="badge badge--danger">No reutilizar</span><span class="badge badge--ok">Respuesta a incidentes</span></div>
       </div>`,
-
-    // Ejemplo 3 — Mejor segundo factor (MFA)
     ej3: `
       <div class="quiz">
         <div class="quiz-q">¿Qué opción de segundo factor (MFA) es MÁS recomendable?</div>
@@ -460,99 +343,51 @@ window.MODULO_DETALLE = {
           <button class="btn quiz-option" data-correct="true" data-explain="App autenticadora (TOTP) o llave física FIDO2/U2F → más resistente a phishing y robo de SIM.">App autenticadora o llave física</button>
           <button class="btn quiz-option" data-explain="El correo puede estar comprometido; no es un canal robusto para MFA.">Código enviado por e-mail</button>
         </div>
-        <div class="badges">
-          <span class="badge badge--ok">MFA</span>
-          <span class="badge badge--warn">Buenas prácticas</span>
-        </div>
+        <div class="badges"><span class="badge badge--ok">MFA</span><span class="badge badge--warn">Buenas prácticas</span></div>
       </div>`
   }
 },
 
+4: {
+  titulo: "Puesto de Trabajo Seguro",
+  resumen:
+    "El lugar donde trabajamos —nuestro escritorio físico y digital— puede ser una puerta de entrada para fugas de información o malware. Este módulo explica cómo protegerlo, desde el orden físico y el bloqueo de la pantalla hasta el software actualizado, el uso responsable de Internet y la gestión segura de dispositivos externos.",
 
-  4: {
-  resumenCorto:
-    "El puesto de trabajo (oficina, equipos, documentos y periféricos) es un punto crítico: allí accedemos a sistemas y datos sensibles. Para evitar fugas, accesos indebidos o malware, aplicamos ‘mesa limpia’, bloqueo de sesión, software/antivirus/firewall actualizados, uso institucional de recursos y manejo seguro de soportes.",
-  puntos: [
-    { titulo: "Mesa limpia y bloqueo", texto: "Guardar documentos y bloquear el equipo al ausentarse." },
-    { titulo: "Actualizar y proteger", texto: "SO y apps al día; antivirus y firewall siempre activos." },
-    { titulo: "Uso institucional", texto: "Internet y sistemas sólo para fines de la universidad; software legítimo." },
-    { titulo: "Confidencialidad y reporte", texto: "Acuerdos cuando aplique y notificar incidentes de inmediato." },
-    { titulo: "USB/soportes", texto: "Uso autorizado, cifrado y borrado/ destrucción seguros." }
-  ],
+  contenidoNarrativo: `
+    <p>Un puesto de trabajo desordenado, con documentos a la vista y un equipo sin protección, es un blanco fácil para ataques internos y externos. En oficinas y aulas circulan muchas personas y cualquier descuido puede permitir el acceso a información sensible. Mantener el espacio físico y digital seguro no solo te protege a vos: resguarda los datos y servicios de toda la universidad.</p>
 
-  contenido: [
-    {
-      icon: "🧹",
-      titulo: "1) Organización y documentación",
-      texto: `
-        • Mantener el puesto limpio y ordenado (sin contraseñas a la vista).<br>
-        • Guardar documentación sensible al finalizar la jornada (cajón/armario).<br>
-        • Retirar documentos de impresoras/escáneres y destruir en forma segura al final de su ciclo de vida.`,
-      aciertos: ["Mesa limpia", "Documentos bajo llave"],
-      peligros: ["Papeles a la vista", "Post-it con contraseñas"]
-    },
-    {
-      icon: "💻",
-      titulo: "2) Bloqueo de sesión y fin de jornada",
-      texto: `
-        • Bloqueá al levantarte: Windows Win+L · macOS Ctrl+⌥+Q · Linux Ctrl+Alt+L.<br>
-        • Configurá bloqueo automático por inactividad; en móviles, bloqueo corto con PIN/biometría.<br>
-        • Al terminar, apagá equipos y guardá portátiles/móviles bajo llave.`,
-      aciertos: ["Bloqueo inmediato", "Auto-bloqueo"],
-      peligros: ["Equipo desbloqueado", "Dejar equipos encendidos"]
-    },
-    {
-      icon: "🛠️",
-      titulo: "3) Software actualizado, antivirus y firewall",
-      texto: `
-        • Activá actualizaciones automáticas de SO y aplicaciones.<br>
-        • Antivirus y firewall siempre ACTIVOS y actualizados; son complementarios.<br>
-        • Un equipo desactualizado es vulnerable a exploits y ransomware.`,
-      aciertos: ["Auto-update", "AV/Firewall activos"],
-      peligros: ["Parcheo tardío", "Desactivar protección"]
-    },
-    {
-      icon: "🌐",
-      titulo: "4) Uso responsable de recursos e Internet",
-      texto: `
-        • Los recursos institucionales son para fines de la universidad.<br>
-        • Evitá webs de riesgo (descargas, juego, adultos) y publicidad engañosa/pop-ups.<br>
-        • No alteres configuración ni instales software sin autorización.`,
-      aciertos: ["Uso institucional", "Políticas claras"],
-      peligros: ["Webs dudosas", "Cambios no autorizados"]
-    },
-    {
-      icon: "✅",
-      titulo: "5) Software legítimo",
-      texto: `
-        • Usá software con licencia. Nada de programas pirata ni cracks.<br>
-        • El software ilegal suele traer adware/malware o pedir “parches” maliciosos.`,
-      aciertos: ["Licencias válidas"],
-      peligros: ["Instalar cracks", "Descargas de sitios no oficiales"]
-    },
-    {
-      icon: "📢",
-      titulo: "6) Confidencialidad e incidentes",
-      texto: `
-        • Establecé acuerdos de confidencialidad cuando corresponda (definición, duración, jurisdicción).<br>
-        • Ante incidentes: identificar tipo (acceso no autorizado, DDoS/indisponibilidad, malware, robo de info), avisar a los responsables y, si aplica, denunciar.`,
-      aciertos: ["Acuerdos firmados", "Reporte inmediato"],
-      peligros: ["No informar", "Minimizar el impacto"]
-    },
-    {
-      icon: "💾",
-      titulo: "7) Dispositivos extraíbles (USB, discos, tarjetas, CD)",
-      texto: `
-        • Usalos sólo si está permitido y con criterios claros; cifrá si llevan datos sensibles.<br>
-        • No conectar USB desconocidos; ante pérdida/robo, reportar de inmediato.<br>
-        • Borrado/ destrucción segura al reutilizar o desechar los soportes.`,
-      aciertos: ["USB cifrado", "Canal oficial de reporte"],
-      peligros: ["USB hallado sin control", "Reutilizar sin borrar seguro"]
-    }
-  ],
+    <h2>La importancia de una “mesa limpia”</h2>
+    <p>El concepto de <strong>mesa limpia</strong> implica que al finalizar tu jornada no quede información sensible sobre el escritorio: papeles, notas con contraseñas, dispositivos externos. Guardar documentación bajo llave y retirar impresiones olvidadas de la fotocopiadora o impresora evita que terceros puedan acceder a datos personales o académicos.</p>
+
+    <h2>Bloqueo de sesión cada vez que te alejás</h2>
+    <p>Un equipo desbloqueado es una invitación abierta a cualquiera que pase. Aunque te ausentes solo unos minutos, bloqueá tu sesión con:</p>
+    <ul>
+      <li><kbd>Win + L</kbd> en Windows</li>
+      <li><kbd>Ctrl + ⌥ + Q</kbd> en macOS</li>
+      <li><kbd>Ctrl + Alt + L</kbd> en Linux</li>
+    </ul>
+    <p>Configura también el <strong>bloqueo automático por inactividad</strong> y usa PIN o biometría en dispositivos móviles. Si el equipo queda expuesto por la noche, apágalo y guárdalo en un lugar seguro.</p>
+
+    <h2>Software actualizado, antivirus y firewall</h2>
+    <p>Los atacantes suelen explotar vulnerabilidades conocidas en sistemas desactualizados. Mantener el sistema operativo y las aplicaciones al día es esencial para cerrar puertas a malware y ransomware. Además, el <strong>antivirus y el firewall</strong> deben estar siempre activos y actualizados. Evitá la tentación de desactivarlos “porque ralentizan” el equipo: el costo de una infección supera con creces cualquier demora.</p>
+
+    <h2>Uso responsable de Internet y recursos</h2>
+    <p>El acceso institucional debe destinarse a fines académicos y laborales. Navegar en sitios de descargas ilegales, apuestas o contenido adulto no solo compromete la reputación, sino que expone a malware y phishing. Tampoco instales software no autorizado ni alteres configuraciones críticas sin consultar al área de TI.</p>
+
+    <h2>Software legítimo</h2>
+    <p>Instalar programas piratas o cracks es abrir la puerta a adware, spyware y puertas traseras. Siempre descargá software desde sitios oficiales o tiendas reconocidas, y si necesitás una herramienta específica, pedí ayuda a soporte técnico.</p>
+
+    <h2>Dispositivos externos y USB</h2>
+    <p>Los pendrives y discos externos son una de las vías más comunes para introducir malware. Nunca conectes dispositivos desconocidos, aunque parezcan inofensivos. Si necesitás transportar datos sensibles, <strong>cifralos</strong> y, en caso de pérdida, informá inmediatamente. Antes de desechar un dispositivo, realizá un <strong>borrado seguro</strong> o solicitá destrucción certificada.</p>
+
+    <h2>Confidencialidad y respuesta rápida ante incidentes</h2>
+    <p>En entornos con datos sensibles se recomienda firmar <strong>acuerdos de confidencialidad</strong> y comprender su alcance. Ante cualquier sospecha de incidente —desde malware hasta robo de información— no intentes resolverlo por tu cuenta: desconectá el equipo de la red y avisá inmediatamente al área de seguridad informática. Actuar rápido puede limitar el daño y evitar que el incidente se propague.</p>
+
+    <h2>Entorno físico seguro</h2>
+    <p>No dejes laptops ni dispositivos móviles sin supervisión en espacios compartidos. Usá <strong>candados de seguridad</strong> si tu equipo queda expuesto y asegurate de controlar quién tiene acceso físico a tu oficina. La seguridad empieza con las pequeñas decisiones cotidianas.</p>
+  `,
 
   ejemplos: {
-    // Ejemplo 1 — Bloqueo de sesión y mesa limpia
     ej1: `
       <div class="quiz">
         <div class="quiz-q">Tenés que levantarte 5 minutos del puesto. ¿Qué corresponde hacer?</div>
@@ -561,14 +396,8 @@ window.MODULO_DETALLE = {
           <button class="btn quiz-option" data-explain="Tapar la pantalla no impide uso del teclado/ratón.">Poner un papel tapando el monitor</button>
           <button class="btn quiz-option" data-correct="true" data-explain="Bloqueá (Win+L / Ctrl+⌥+Q / Ctrl+Alt+L) y guardá documentos sensibles.">Bloquear la sesión y guardar documentos</button>
         </div>
-        <div class="badges">
-          <span class="badge badge--ok">Mesa limpia</span>
-          <span class="badge badge--ok">Bloqueo de sesión</span>
-          <span class="badge badge--warn">Datos a la vista</span>
-        </div>
+        <div class="badges"><span class="badge badge--ok">Mesa limpia</span><span class="badge badge--ok">Bloqueo</span></div>
       </div>`,
-
-    // Ejemplo 2 — USB desconocido
     ej2: `
       <div class="quiz">
         <div class="quiz-q">Encontrás un pendrive en un aula con etiqueta “Actas”. ¿Qué hacés?</div>
@@ -577,13 +406,8 @@ window.MODULO_DETALLE = {
           <button class="btn quiz-option" data-explain="En tu equipo personal también es riesgoso.">Lo conecto en mi equipo personal</button>
           <button class="btn quiz-option" data-correct="true" data-explain="No lo conectes. Entregalo a Soporte/Seguridad para tratamiento seguro.">No conectar; derivar a Soporte/Informática</button>
         </div>
-        <div class="badges">
-          <span class="badge badge--danger">USB desconocido</span>
-          <span class="badge badge--ok">Canal oficial</span>
-        </div>
+        <div class="badges"><span class="badge badge--danger">USB desconocido</span><span class="badge badge--ok">Canal oficial</span></div>
       </div>`,
-
-    // Ejemplo 3 — “Actualización” sospechosa / software legítimo
     ej3: `
       <div class="quiz">
         <div class="quiz-q">Aparece un pop-up: “Tu reproductor está desactualizado. Descargá este <em>codec</em>”. ¿Cómo procedés?</div>
@@ -592,13 +416,8 @@ window.MODULO_DETALLE = {
           <button class="btn quiz-option" data-explain="No actualizar nunca deja vulnerabilidades sin parche.">Ignoro siempre las actualizaciones</button>
           <button class="btn quiz-option" data-correct="true" data-explain="Cerrá el pop-up. Si necesitás actualizar, hacelo desde tienda/sitio oficial o pedilo a Soporte.">Actualizar sólo desde tienda/sitio oficial</button>
         </div>
-        <div class="badges">
-          <span class="badge badge--ok">Software legítimo</span>
-          <span class="badge badge--warn">Evitar pop-ups</span>
-        </div>
+        <div class="badges"><span class="badge badge--ok">Software legítimo</span><span class="badge badge--warn">Evitar pop-ups</span></div>
       </div>`,
-
-    // Ejemplo 4 — Documentos en impresora (nuevo)
     ej4: `
       <div class="quiz">
         <div class="quiz-q">Al pasar por la impresora ves listados con DNI olvidados. ¿Qué hacés?</div>
@@ -607,13 +426,8 @@ window.MODULO_DETALLE = {
           <button class="btn quiz-option" data-correct="true" data-explain="Retiralos y avisá/entregá al responsable o a Soporte; evitás exposición de datos.">Retirarlos y avisar/entregar al responsable</button>
           <button class="btn quiz-option">Les saco foto por si alguien los reclama</button>
         </div>
-        <div class="badges">
-          <span class="badge badge--ok">Custodia</span>
-          <span class="badge badge--warn">Evitar exposición</span>
-        </div>
+        <div class="badges"><span class="badge badge--ok">Custodia</span><span class="badge badge--warn">Evitar exposición</span></div>
       </div>`,
-
-    // Ejemplo 5 — Antivirus/Firewall (nuevo)
     ej5: `
       <div class="quiz">
         <div class="quiz-q">Tu PC está lento y pensás desactivar el antivirus y el firewall. ¿Qué corresponde?</div>
@@ -622,83 +436,44 @@ window.MODULO_DETALLE = {
           <button class="btn quiz-option" data-correct="true" data-explain="Nunca desactives protección. Pedí a Soporte revisión/optimización y mantené todo actualizado.">Mantenerlos activos y pedir soporte</button>
           <button class="btn quiz-option">Desactivar el firewall pero dejar el antivirus</button>
         </div>
-        <div class="badges">
-          <span class="badge badge--ok">Protección activa</span>
-          <span class="badge badge--warn">Soporte</span>
-        </div>
+        <div class="badges"><span class="badge badge--ok">Protección activa</span><span class="badge badge--warn">Soporte</span></div>
       </div>`
   }
 },
 
-  5: {
-  resumenCorto:
-    "Los dispositivos móviles (portátiles, smartphones, tablets) habilitan estudiar y trabajar desde cualquier lugar, pero traen riesgos: pérdida/robo, malware, apps con permisos excesivos y redes Wi-Fi inseguras. La protección exige bloqueo, cifrado, software legítimo/actualizado, no recordar contraseñas, y evitar Wi-Fi pública salvo con VPN.",
+5: {
+  titulo: "Dispositivos Móviles Seguros",
+  resumen:
+    "Los dispositivos móviles permiten estudiar y trabajar desde cualquier lugar, pero también son blancos fáciles para robo, malware y espionaje. Este módulo enseña cómo protegerlos con bloqueo y cifrado, apps seguras y actualizadas, gestión correcta de contraseñas y redes, y qué hacer ante pérdida o robo.",
 
-  puntos: [
-    { titulo: "Bloqueo y cifrado", texto: "Bloqueo de pantalla rápido y cifrado del dispositivo." },
-    { titulo: "Software y apps", texto: "Actualizaciones, antimalware y descargas sólo de tiendas oficiales." },
-    { titulo: "Contraseñas y gestor", texto: "No ‘recordar’ en el dispositivo; usar gestor de contraseñas." },
-    { titulo: "Redes seguras", texto: "Evitar Wi-Fi públicas; preferir datos o usar VPN institucional." },
-    { titulo: "BYOD responsable", texto: "Nada de root/jailbreak; normativa y no prestar el equipo." }
-  ],
+  contenidoNarrativo: `
+    <p>Celulares, tablets y portátiles son herramientas clave para acceder a correo, sistemas académicos y documentos en todo momento. Su movilidad es una ventaja enorme, pero también abre la puerta a riesgos importantes: basta un descuido para que un atacante robe información o controle el dispositivo.</p>
 
-  contenido: [
-    {
-      icon: "⚠️",
-      titulo: "1) Riesgos principales",
-      texto: `
-        • Robo o pérdida (incidente más frecuente).<br>
-        • Malware/phishing y sitios web fraudulentos, especialmente en móviles.<br>
-        • Wi-Fi inseguras que permiten interceptar comunicaciones o suplantan redes legítimas.<br>
-        • Apps con permisos excesivos; controles de acceso débiles; sistemas desactualizados.<br>
-        • Root/jailbreak que elimina controles de seguridad del fabricante.
-      `,
-      aciertos: ["Equipo cifrado", "Accesos robustos"],
-      peligros: ["Wi-Fi pública", "Apps no oficiales"]
-    },
+    <h2>Riesgos frecuentes en movilidad</h2>
+    <p>El incidente más común es la <strong>pérdida o el robo</strong> del equipo. Si no está cifrado ni protegido con bloqueo seguro, cualquiera podría acceder a correos, documentos y cuentas guardadas. Otro riesgo creciente es el <strong>malware móvil</strong>: aplicaciones que espían conversaciones, capturan contraseñas o muestran publicidad invasiva. Los <strong>ataques de phishing</strong> también están diseñados para pantallas pequeñas, donde es fácil no notar una URL sospechosa.</p>
+    <p>Las <strong>redes Wi-Fi abiertas</strong> —cafeterías, aeropuertos, hoteles— permiten que un atacante intercepte tráfico, robe sesiones o monte portales falsos para obtener credenciales. Además, muchas apps piden <strong>permisos excesivos</strong>: acceso a SMS, micrófono, cámara o contactos sin una justificación real. Y el <em>root</em> o <em>jailbreak</em> elimina protecciones críticas, dejando al dispositivo sin defensas frente a malware.</p>
 
-    {
-      icon: "🛡️",
-      titulo: "2) Medidas de protección",
-      texto: `
-        • Antimalware actualizado; ideal que bloquee webs de phishing/peligrosas.<br>
-        • Bloqueo automático y contraseña/PIN robusto + biometría cuando aplique.<br>
-        • Cifrado del dispositivo y tratamiento prudente de la información (evitar descargas locales de info sensible).<br>
-        • Apps sólo de tiendas oficiales; software y SO siempre actualizados y con licencia.<br>
-        • NO usar “Recordar contraseña” en el dispositivo; preferí un gestor de contraseñas.<br>
-        • Evitá Wi-Fi públicas; si es imprescindible, conectá primero la VPN institucional.<br>
-        • En casa: Wi-Fi con WPA2/WPA3, clave robusta y WPS desactivado.<br>
-        • No rootear ni hacer jailbreak.
-      `,
-      aciertos: ["Antivirus/antiphishing", "Auto-bloqueo y cifrado"],
-      peligros: ["Recordar contraseñas", "Descargas fuera de tiendas"]
-    },
+    <h2>Protección esencial: bloqueo y cifrado</h2>
+    <p>Activá un <strong>bloqueo de pantalla robusto</strong>: PIN largo, contraseña alfanumérica o biometría confiable (huella/rostro). Evitá patrones simples y deslizamientos sin clave. Comprobá que el <strong>cifrado completo</strong> esté habilitado: en Android desde “Seguridad > Cifrado”, en iOS es automático, y en portátiles activá BitLocker (Windows) o FileVault (macOS). Un dispositivo cifrado impide que un atacante lea datos sin tu clave.</p>
 
-    {
-      icon: "👨‍💻",
-      titulo: "3) BYOD (Trae tu propio dispositivo)",
-      texto: `
-        • Beneficios: flexibilidad y costos.<br>
-        • Riesgos: distracciones, mezcla personal/laboral, prestar el dispositivo, salida del empleado con datos.<br>
-        • Medidas: normativa interna, registro de equipos y apps autorizadas, configuraciones seguras, custodia permanente, prohibido root/jailbreak.
-      `,
-      aciertos: ["Normativa clara", "Apps controladas"],
-      peligros: ["Prestado a terceros", "Datos laborales mezclados"]
-    },
+    <h2>Software y apps de confianza</h2>
+    <p>Mantené el <strong>sistema operativo y las aplicaciones actualizadas</strong>; activá actualizaciones automáticas cuando sea posible. Instalá apps solo desde tiendas oficiales y revisá los permisos: una app de linterna no necesita tu lista de contactos ni SMS. Desconfiá de APK descargadas de blogs o sitios no verificados. Un <strong>antimalware confiable</strong> ayuda a bloquear phishing, sitios maliciosos y aplicaciones peligrosas.</p>
 
-    {
-      icon: "🆘",
-      titulo: "4) En caso de robo o pérdida",
-      texto: `
-        • Avisar de inmediato a la institución y hacer la denuncia policial cuando aplique.<br>
-        • Bloqueo y geolocalización remotos; si no se recupera, ejecutar BORRADO remoto.<br>
-        • Revisar y cerrar sesiones, cambiar contraseñas críticas y aplicar MFA.
-      `,
-      aciertos: ["Bloqueo/borrado remoto", "Notificación inmediata"],
-      peligros: ["No reportar", "Dejar sesiones abiertas"]
-    }
-  ],
+    <h2>Contraseñas y gestores</h2>
+    <p>No uses la función de “recordar contraseñas” del navegador si no está protegida por clave maestra. Preferí un <strong>gestor de contraseñas</strong> que guarde de forma cifrada y sincronizada tus credenciales. Configurá <strong>MFA (doble factor)</strong> en servicios críticos y guarda los códigos de recuperación en un lugar seguro.</p>
 
+    <h2>Redes Wi-Fi y VPN</h2>
+    <p>Usar <strong>Wi-Fi pública sin protección</strong> es un riesgo serio: un atacante puede interceptar tus datos (ataques MITM). Si debés conectarte, hacelo solo mediante una <strong>VPN institucional</strong> o preferí usar <strong>datos móviles</strong>. En casa, protegé tu red con <strong>WPA2/WPA3, contraseña fuerte, WPS desactivado y firmware del router actualizado</strong>. Evitá compartir tu clave doméstica con terceros.</p>
+
+    <h2>BYOD (Bring Your Own Device) con responsabilidad</h2>
+    <p>Usar el dispositivo personal para trabajar o estudiar es cómodo, pero mezcla datos y responsabilidades. Seguí las <strong>políticas de la institución</strong>, mantené un perfil de trabajo separado si es posible y nunca prestes el equipo a terceros. Evitá el <em>root</em>/<em>jailbreak</em> y mantené controles de acceso activos.</p>
+
+    <h2>Qué hacer ante pérdida o robo</h2>
+    <p>Actuá de inmediato: <strong>bloqueá y localizá</strong> el equipo desde servicios como “Buscar mi iPhone” o “Encontrar mi dispositivo”. Si no podés recuperarlo, hacé un <strong>borrado remoto</strong>. Cambiá contraseñas críticas (correo institucional, gestores de contraseñas, banca) y cerrá sesiones abiertas. Avisá al área de TI o ciberseguridad de tu institución y realizá denuncia policial si corresponde.</p>
+
+    <h2>Extra: copias de seguridad y datos sensibles</h2>
+    <p>Mantené <strong>copias de seguridad cifradas</strong> de la información importante. Así, si el equipo se pierde o sufre ransomware, podés recuperar tu contenido. Guardá documentos sensibles solo si es imprescindible y eliminá archivos temporales que ya no necesites.</p>
+  `,
   ejemplos: {
     // 1 — Wi-Fi pública y acceso a sistemas
     ej1: `
@@ -772,86 +547,39 @@ window.MODULO_DETALLE = {
   }
 },
 
-
 6: {
-  resumenCorto:
-    "Las redes sociales potencian la visibilidad y la marca de la universidad, pero un error humano, una configuración de privacidad débil o el fraude (suplantación, malware, phishing) pueden dañar la reputación e incluso comprometer datos. Protegé tus perfiles con contraseñas robustas + 2FA, privacidad bien configurada, gobernanza (quién publica) y prudencia con enlaces/adjuntos.",
+  titulo: "Redes Sociales Seguras",
+  resumen:
+    "Las redes sociales son una herramienta poderosa para comunicar y fortalecer la imagen institucional, pero un mal uso o un ataque puede dañar la reputación y comprometer datos. Este módulo explica cómo gestionarlas con seguridad y responsabilidad.",
 
-  puntos: [
-    { titulo: "Valor y riesgo", texto: "Aportan alcance y marca; un mal uso daña reputación." },
-    { titulo: "Gobernanza", texto: "Solo personal autorizado publica; políticas claras." },
-    { titulo: "Privacidad y seguridad", texto: "Contraseñas fuertes + 2FA; revisar apps conectadas." },
-    { titulo: "Prudencia al publicar", texto: "Pensar la audiencia y evitar datos sensibles." },
-    { titulo: "Enlaces/adjuntos", texto: "Desconfiar y analizar; ante duda, no abrir." }
-  ],
+  contenidoNarrativo: `
+    <p>Facebook, Instagram, X y LinkedIn son canales vitales para la universidad: informan, atraen estudiantes y construyen reputación. Sin embargo, también son un objetivo frecuente para atacantes y pueden volverse un problema si se administran sin políticas claras. Un comentario impulsivo, un enlace malicioso o una filtración puede viralizarse en minutos y dañar la imagen institucional.</p>
 
-  contenido: [
-    {
-      icon: "📣",
-      titulo: "1) Valor y reputación",
-      texto: `
-        • Las redes sociales acercan la universidad a su comunidad y refuerzan la marca institucional (más tráfico y visibilidad).<br>
-        • Un comentario inoportuno o una mala gestión puede afectar negativamente la imagen institucional.`,
-      aciertos: ["Estrategia y tono definidos", "Objetivos claros"],
-      peligros: ["Publicar sin revisar", "Reacciones impulsivas"]
-    },
-    {
-      icon: "👥",
-      titulo: "2) Gobernanza de cuentas",
-      texto: `
-        • Definí roles: ¿quiénes administran? ¿quién aprueba? ¿qué se publica y cómo se responde?<br>
-        • Solo personal autorizado publica contenidos; evitá que “cualquiera” tenga permisos.<br>
-        • Revisá periódicamente apps de terceros conectadas al perfil y retirales acceso si no son necesarias.`,
-      aciertos: ["Roles y permisos controlados", "Revisión de accesos"],
-      peligros: ["Permisos abiertos", "Apps con acceso innecesario"]
-    },
-    {
-      icon: "🔐",
-      titulo: "3) Acceso seguro (contraseña + 2FA)",
-      texto: `
-        • Usá contraseña robusta para cada perfil institucional y activá el doble factor (2FA).<br>
-        • Si un atacante roba la contraseña, el segundo factor bloquea el acceso.`,
-      aciertos: ["2FA activado", "Claves robustas"],
-      peligros: ["Una sola clave débil", "Sin segundo factor"]
-    },
-    {
-      icon: "🕵️",
-      titulo: "4) Privacidad y audiencia",
-      texto: `
-        • Configurá la privacidad de forma restrictiva sin afectar el objetivo del perfil.<br>
-        • Antes de publicar, verificá si la audiencia es la correcta (público, listas, grupos) y si el contenido podría usarse en contra.`,
-      aciertos: ["Audiencias adecuadas", "Privacidad revisada"],
-      peligros: ["Perfiles abiertos sin control", "Datos sensibles expuestos"]
-    },
-    {
-      icon: "⚠️",
-      titulo: "5) Fraudes y suplantación",
-      texto: `
-        • Suplantación: perfiles falsos que imitan a la universidad para engañar seguidores (piden datos, cambian contactos).<br>
-        • Phishing: enlaces a sitios fraudulentos para robar credenciales o información.<br>
-        • Malware: adjuntos o webs maliciosas enviadas por DM o publicaciones.`,
-      aciertos: ["Verificar identidad del perfil", "Reportar suplantaciones"],
-      peligros: ["Seguir perfiles falsos", "Compartir sorteos dudosos"]
-    },
-    {
-      icon: "🧷",
-      titulo: "6) Enlaces y adjuntos",
-      texto: `
-        • Considerá cualquier adjunto recibido por redes como potencialmente malicioso; analizalo con tu antivirus o servicios como VirusTotal.<br>
-        • Ante la duda con un enlace, no hagas clic; accedé a la información desde los canales oficiales.`,
-      aciertos: ["Analizar adjuntos", "Comprobar enlaces"],
-      peligros: ["Abrir sin verificar", "Confiar en acortadores"]
-    },
-    {
-      icon: "🧭",
-      titulo: "7) Sentido común y conducta",
-      texto: `
-        • Evitá discutir, insultar, difundir noticias falsas o publicar información confidencial/PI.<br>
-        • Recordá que lo publicado puede ser capturado y difundido fuera de contexto.`,
-      aciertos: ["Tono profesional", "Chequeo previo"],
-      peligros: ["Juicios de valor", "Filtrar datos por error"]
-    }
-  ],
+    <h2>Gobernanza y control de cuentas</h2>
+    <p>Es fundamental definir <strong>quién administra cada cuenta</strong>, qué roles existen (propietario, editor, moderador) y cómo se aprueba el contenido antes de publicarlo. Nunca uses una sola contraseña compartida entre varios. Preferí accesos nominativos y, cuando la plataforma lo permita, configurá <strong>roles oficiales</strong> para cada usuario.</p>
+    <p>Revisá periódicamente las <strong>aplicaciones de terceros conectadas</strong> (programadores de posts, herramientas de análisis) y revocá las que ya no uses. Cada integración extra es un punto de riesgo.</p>
+
+    <h2>Acceso seguro: contraseñas fuertes y 2FA</h2>
+    <p>Una cuenta institucional robada puede publicar mensajes falsos o distribuir malware. Protegela con una <strong>contraseña robusta y única</strong>, guardada en un gestor seguro, y activá siempre la <strong>autenticación en dos pasos</strong> (TOTP o llaves físicas). Evitá SMS como único segundo factor cuando sea posible, ya que pueden ser vulnerables a ataques de SIM swapping.</p>
+
+    <h2>Privacidad y segmentación de audiencias</h2>
+    <p>Antes de publicar, revisá quién puede ver el contenido. Algunas plataformas permiten <strong>listas o públicos personalizados</strong> para evitar que información interna llegue a todos. Pensá que todo lo que publiques puede ser capturado, recortado y difundido fuera de contexto, incluso si lo borrás luego.</p>
+
+    <h2>Fraudes y suplantación de identidad</h2>
+    <p>Los <strong>perfiles falsos</strong> que imitan a la universidad (typosquatting: “UNCuy0” con cero en vez de “O”) buscan engañar a estudiantes y pedir datos o pagos. También circulan <strong>mensajes de phishing</strong> con enlaces acortados que llevan a sitios falsos. Ante la mínima duda, <strong>no hagas clic</strong>, validá con los canales oficiales y reportá el perfil falso.</p>
+
+    <h2>Enlaces y archivos adjuntos</h2>
+    <p>Cualquier archivo recibido por mensaje privado puede contener malware. Analizalo antes con antivirus o herramientas como VirusTotal. Los enlaces acortados ocultan su destino real; usá servicios para previsualizarlos o accedé a la información desde la web oficial directamente.</p>
+
+    <h2>Conducta profesional y reputación</h2>
+    <p>Las redes son una extensión de la imagen institucional. Mantené un <strong>tono profesional y respetuoso</strong> al responder comentarios, incluso ante críticas. Evitá discusiones personales, publicar datos internos o información que pueda ser malinterpretada. Antes de compartir, verificá fuentes y asegurate de no difundir noticias falsas.</p>
+
+    <h2>Gestión de incidentes</h2>
+    <p>Si una cuenta es hackeada, actuá rápido: cambiá la contraseña, revocá accesos sospechosos, activá 2FA si no estaba habilitado y notificá públicamente que la cuenta fue comprometida para evitar engaños a los seguidores. Documentá lo sucedido para mejorar políticas y prevenir futuros incidentes.</p>
+
+    <h2>Extra: monitoreo y auditoría</h2>
+    <p>Implementá <strong>monitoreo de menciones y actividad</strong> para detectar intentos de suplantación o publicaciones no autorizadas. Guardá registros de quién accedió y qué cambios realizó para tener trazabilidad ante un incidente.</p>
+  `,
 
   ejemplos: {
     // 1 — DM con enlace acortado (phishing)
@@ -948,86 +676,72 @@ window.MODULO_DETALLE = {
 },
 
 7: {
+  titulo: "Uso Responsable de la Inteligencia Artificial",
   resumenCorto:
-    "La Inteligencia Artificial automatiza tareas, optimiza decisiones y mejora la productividad. Aporta beneficios en bienestar laboral, pero implica riesgos: dependencia, sesgos, errores, privacidad y seguridad. Usala con límites claros, capacitación y controles éticos.",
+    "La Inteligencia Artificial automatiza tareas, optimiza decisiones y mejora la productividad. Puede beneficiar la experiencia educativa y el bienestar laboral, pero también implica riesgos: dependencia, sesgos, errores, filtración de datos y problemas de privacidad y seguridad. Su uso debe ser ético, con límites claros, capacitación y controles adecuados.",
 
   puntos: [
     { titulo: "Definición", texto: "Rama de la informática que simula la inteligencia humana." },
     { titulo: "Utilización", texto: "Automatiza, optimiza procesos y complementa tareas." },
     { titulo: "Bienestar laboral", texto: "Mejora seguridad y salud en el trabajo." },
-    { titulo: "Vulnerabilidades", texto: "Carga de datos sensibles, ciberataques." },
+    { titulo: "Vulnerabilidades", texto: "Carga de datos sensibles, ciberataques y manipulación de modelos." },
     { titulo: "Riesgos", texto: "Dependencia, sesgos, privacidad y errores." },
-    { titulo: "Prevención", texto: "Límites, gestión de accesos, monitoreo y capacitación." }
+    { titulo: "Prevención", texto: "Límites claros, gestión de accesos, monitoreo y capacitación." }
   ],
 
-  contenido: [
-    {
-      icon: "🤖",
-      titulo: "1) ¿Qué es la IA?",
-      texto: `
-        • Rama de la informática que desarrolla sistemas capaces de simular la inteligencia humana.<br>
-        • Incluye aprendizaje, razonamiento, percepción y resolución de problemas.<br>
-        • Puede operar de manera autónoma o con mínima intervención humana.`,
-      aciertos: ["Comprensión clara del alcance", "Uso responsable"],
-      peligros: ["Expectativas irreales", "Aplicaciones sin supervisión"]
-    },
-    {
-      icon: "⚙️",
-      titulo: "2) Usos de la IA en el trabajo",
-      texto: `
-        • Chatbots y servicio al cliente.<br>
-        • Optimización de documentos y recursos.<br>
-        • Automatización de tareas repetitivas.<br>
-        • Soporte en la toma de decisiones.`,
-      aciertos: ["Mejora de productividad", "Ahorro de tiempo"],
-      peligros: ["Automatización sin control", "Errores no revisados"]
-    },
-    {
-      icon: "🩺",
-      titulo: "3) Bienestar laboral",
-      texto: `
-        • La IA puede mejorar la salud y seguridad en el lugar de trabajo.<br>
-        • Sistemas de vigilancia que detectan riesgos.<br>
-        • Es clave mantener un enfoque centrado en el bienestar humano.`,
-      aciertos: ["Ambientes más seguros", "Supervisión eficiente"],
-      peligros: ["Exceso de control", "Afectar privacidad del empleado"]
-    },
-    {
-      icon: "🔓",
-      titulo: "4) Vulnerabilidades",
-      texto: `
-        • Riesgo al subir información confidencial.<br>
-        • Posibles fallas de seguridad en datos.<br>
-        • Mayor exposición a ciberataques.`,
-      aciertos: ["Gestión de accesos", "Protección de datos"],
-      peligros: ["Filtrar info sensible", "Apps sin seguridad"]
-    },
-    {
-      icon: "⚠️",
-      titulo: "5) Riesgos",
-      texto: `
-        • Dependencia tecnológica excesiva.<br>
-        • Sesgos y discriminación por datos incompletos.<br>
-        • Problemas de privacidad por uso masivo de datos.<br>
-        • Errores o imprecisiones que afecten reputación o cumplimiento normativo.`,
-      aciertos: ["Revisar resultados", "Datos de calidad"],
-      peligros: ["Sesgos no detectados", "Errores no corregidos"]
-    },
-    {
-      icon: "🛡️",
-      titulo: "6) Cómo evitar riesgos",
-      texto: `
-        • Definir límites claros en el uso de herramientas (ej. ChatGPT).<br>
-        • Gestionar accesos y privilegios.<br>
-        • Monitorear la actividad y capacitar a empleados.<br>
-        • Asegurar un uso ético y planes de respuesta rápida.`,
-      aciertos: ["Políticas claras", "Capacitación continua"],
-      peligros: ["Uso sin reglas", "Falta de monitoreo"]
-    }
-  ],
+  contenidoNarrativo: `
+    <p>La <strong>Inteligencia Artificial (IA)</strong> es una rama de la informática dedicada a crear sistemas capaces de realizar tareas que normalmente requieren inteligencia humana, como aprender, razonar, analizar información, identificar patrones y tomar decisiones. Hoy la IA está presente en asistentes virtuales, buscadores, generación de contenido, detección de amenazas y automatización de procesos en casi todos los sectores.</p>
+
+    <h2>¿Por qué es relevante?</h2>
+    <p>La IA <strong>aumenta la productividad</strong> al reducir el trabajo repetitivo y mejorar la toma de decisiones. En universidades ayuda a analizar grandes volúmenes de datos, responder consultas de estudiantes, recomendar contenidos y optimizar procesos administrativos. En el ámbito laboral libera tiempo para tareas estratégicas y mejora la seguridad mediante análisis predictivos de amenazas.</p>
+
+    <h2>Principales usos en educación y trabajo</h2>
+    <ul>
+      <li>Chatbots y asistentes para responder preguntas frecuentes.</li>
+      <li>Corrección automática y análisis de desempeño estudiantil.</li>
+      <li>Clasificación de documentos y análisis de datos administrativos.</li>
+      <li>Generación de reportes, resúmenes y material de apoyo.</li>
+      <li>Herramientas de ciberseguridad con IA para detectar amenazas.</li>
+    </ul>
+    <p>Sin embargo, estos usos requieren <strong>vigilancia humana constante</strong> para asegurar que la IA no produzca información incorrecta o sesgada.</p>
+
+    <h2>Impacto en el bienestar laboral</h2>
+    <p>La IA puede mejorar la seguridad y la salud en el trabajo, reduciendo la carga de tareas repetitivas y ayudando a identificar riesgos antes de que ocurran. También permite trabajar con mayor flexibilidad. Sin embargo, una vigilancia excesiva o decisiones automatizadas sin transparencia pueden generar estrés, sensación de control permanente y pérdida de confianza.</p>
+
+    <h2>Vulnerabilidades y riesgos principales</h2>
+    <p>Su uso no está exento de riesgos importantes:</p>
+    <ul>
+      <li><strong>Filtración de datos:</strong> subir información confidencial a IA públicas puede exponerla sin control.</li>
+      <li><strong>Sesgos en resultados:</strong> la IA aprende de datos existentes y puede perpetuar prejuicios o errores históricos.</li>
+      <li><strong>Dependencia excesiva:</strong> delegar decisiones clave sin supervisión humana puede ser costoso y peligroso.</li>
+      <li><strong>Alucinaciones o errores:</strong> la IA puede generar contenido falso con apariencia confiable.</li>
+      <li><strong>Ciberataques:</strong> actores maliciosos pueden manipular modelos para generar resultados engañosos.</li>
+      <li><strong>Privacidad y cumplimiento legal:</strong> el uso indebido puede violar la Ley 25.326 de Protección de Datos Personales en Argentina u otras normativas de privacidad.</li>
+    </ul>
+
+    <h2>Uso ético y cumplimiento normativo</h2>
+    <p>El uso responsable de IA implica respetar la privacidad de las personas, proteger información sensible y garantizar la transparencia en los procesos. Si una herramienta de IA interactúa con estudiantes o personal, es importante <strong>informar que se trata de un sistema automatizado</strong> y explicar sus limitaciones.</p>
+    <p>Siempre revisá los términos de servicio y las políticas de datos de la plataforma. Nunca subas contraseñas, información personal identificable ni datos institucionales críticos a sistemas que no tengan garantías claras de seguridad.</p>
+
+    <h2>Buenas prácticas para un uso seguro</h2>
+    <ul>
+      <li>Definí <strong>qué datos están permitidos</strong> y cuáles jamás deben cargarse en sistemas externos.</li>
+      <li>Activá <strong>autenticación multifactor</strong> en herramientas que utilicen IA para proteger accesos.</li>
+      <li>Usá <strong>cuentas institucionales</strong> para evitar mezclar información personal con la de la universidad.</li>
+      <li>Mantené un <strong>monitoreo y registro</strong> de las interacciones con IA, para detectar abusos o fugas.</li>
+      <li>Capacitá a los usuarios para entender cómo funciona la IA y sus limitaciones.</li>
+      <li>Revisá críticamente todos los resultados antes de publicarlos o tomarlos como definitivos.</li>
+      <li>Establecé un <strong>plan de respuesta</strong> para incidentes (errores críticos, filtración de datos, contenido inapropiado).</li>
+    </ul>
+
+    <h2>IA generativa y reputación institucional</h2>
+    <p>Los modelos que crean texto, imágenes o código pueden producir resultados sesgados, incorrectos o que infringen derechos de autor. Antes de publicar material generado con IA, <strong>revisá la exactitud y adecuación del contenido</strong>. Difundir información errónea puede afectar la credibilidad y la imagen de la universidad o la organización.</p>
+
+    <h2>Supervisión humana: clave para el éxito</h2>
+    <p>La IA debe complementar, no reemplazar, la toma de decisiones humanas. Mantener el juicio crítico, revisar datos y resultados, y usar la experiencia profesional para interpretar lo que la IA genera es fundamental para prevenir errores y asegurar un uso ético y seguro.</p>
+  `,
 
   ejemplos: {
-    // 1 — Subida de datos sensibles
     ej1: `
       <div class="quiz">
         <div class="quiz-q">Un compañero sube a la IA un documento con datos de clientes. ¿Es correcto?</div>
@@ -1041,8 +755,6 @@ window.MODULO_DETALLE = {
           <span class="badge badge--ok">Protección</span>
         </div>
       </div>`,
-
-    // 2 — Sesgos en resultados
     ej2: `
       <div class="quiz">
         <div class="quiz-q">El sistema de IA devuelve un resultado con sesgo. ¿Qué hacés?</div>
@@ -1056,8 +768,6 @@ window.MODULO_DETALLE = {
           <span class="badge badge--ok">Validación</span>
         </div>
       </div>`,
-
-    // 3 — Dependencia tecnológica
     ej3: `
       <div class="quiz">
         <div class="quiz-q">La empresa empieza a depender totalmente de la IA para tomar decisiones clave. ¿Cuál es la mejor práctica?</div>
@@ -1071,8 +781,6 @@ window.MODULO_DETALLE = {
           <span class="badge badge--ok">Supervisión</span>
         </div>
       </div>`,
-
-    // 4 — Privacidad y vigilancia
     ej4: `
       <div class="quiz">
         <div class="quiz-q">La empresa instala IA de vigilancia que graba todo lo que hacen los empleados. ¿Es correcto?</div>
@@ -1086,8 +794,6 @@ window.MODULO_DETALLE = {
           <span class="badge badge--ok">Bienestar</span>
         </div>
       </div>`,
-
-    // 5 — Errores y revisión
     ej5: `
       <div class="quiz">
         <div class="quiz-q">La IA genera un informe con algunos errores de cálculo. ¿Qué corresponde hacer?</div>
@@ -1103,5 +809,6 @@ window.MODULO_DETALLE = {
       </div>`
   }
 }
+
 
 };
