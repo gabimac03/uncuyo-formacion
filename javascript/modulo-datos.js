@@ -5,135 +5,173 @@
 // - ejemplos: contenido HTML mostrado al hacer click en los botones (podés usar <h3>, <p>, <ol>, <pre><code>, <img>, etc.).
 
 window.MODULO_DETALLE = {
-  1: {
-    titulo: "Protección de la Información",
-    resumen:
-      "La información es uno de los activos más importantes dentro de la universidad. Este módulo explica cómo reconocer amenazas, clasificar y proteger datos, aplicar buenas prácticas de almacenamiento, cifrado y respaldos, y cómo cumplir con la legislación argentina sobre privacidad.",
+1: {
+  titulo: "Protección de la Información",
+  resumen:
+    "La información es uno de los activos más importantes dentro de la universidad. Este módulo explica cómo reconocer amenazas, clasificar y proteger datos, aplicar buenas prácticas de almacenamiento, cifrado y respaldos, y cómo cumplir con la legislación argentina sobre privacidad y seguridad de datos.",
 
-    contenidoNarrativo: `
-      <p>En la universidad, la información es un recurso esencial que sostiene procesos académicos y administrativos. No basta con proteger contraseñas: debemos garantizar que los datos estén disponibles cuando se los necesita, que permanezcan íntegros y que sólo accedan quienes tienen autorización.</p>
+  contenidoNarrativo: `
+    <p>En la universidad, la información es un recurso esencial que sostiene procesos académicos, investigativos y administrativos. Incluye desde bases de datos de estudiantes hasta resultados de investigación y documentación interna. Su disponibilidad, integridad y confidencialidad son clave para el funcionamiento institucional.</p>
 
-      <p>Las amenazas provienen de diferentes fuentes: <strong>errores humanos</strong> como borrar archivos por accidente o enviar correos al destinatario equivocado; <strong>insiders</strong> (personas de la propia comunidad) que filtran o acceden sin cuidado; y <strong>ciberdelincuentes</strong> que usan malware o ingeniería social, por ejemplo ransomware. Conocer estas amenazas es el primer paso para protegernos.</p>
+    <p>Los sistemas de información incluyen datos, recursos materiales (ordenadores, teléfonos, dispositivos de almacenamiento), recursos intangibles (know-how, reputación, propiedad intelectual) y las personas que los gestionan. Si esta información se altera, se difunde sin autorización o se pierde, puede afectar gravemente la actividad y reputación de la universidad.</p>
 
-      <h2>Los tres pilares de la seguridad (CIA)</h2>
-      <p><strong>Confidencialidad:</strong> sólo usuarios autorizados pueden acceder a la información.<br>
-         <strong>Integridad:</strong> los datos deben mantenerse correctos y sin alteraciones no autorizadas.<br>
-         <strong>Disponibilidad:</strong> la información debe estar accesible cuando se la necesita. El ransomware, por ejemplo, compromete este principio.</p>
-      <p>Para cuidar estos pilares se recomienda implementar autenticación multifactor (MFA), mantener copias de seguridad verificadas, registrar cambios importantes y evitar publicar información sensible en repositorios o enlaces abiertos.</p>
+    <h2>Amenazas más comunes</h2>
+    <ul>
+      <li><strong>Errores humanos:</strong> borrado accidental de archivos, envío de correos al destinatario equivocado, fallas de configuración.</li>
+      <li><strong>Insiders:</strong> miembros de la comunidad universitaria que filtran o modifican información, cambian notas, roban exámenes o facilitan acceso a terceros.</li>
+      <li><strong>Ciberdelincuentes:</strong> malware, ransomware o ingeniería social que explota vulnerabilidades y la falta de preparación.</li>
+    </ul>
 
-      <h2>Inventario y clasificación de información</h2>
-      <p>Antes de aplicar medidas de seguridad hay que saber qué tenemos. Es clave inventariar documentos digitales, dispositivos físicos, bases de datos y aplicaciones, identificando ubicación, responsables y nivel de criticidad. 
-      Luego se clasifica según sensibilidad:</p>
-      <ul>
-        <li><em>Confidencial</em>: datos personales, contratos, información financiera.</li>
-        <li><em>Restringida</em>: documentos internos que podrían causar problemas si se filtran.</li>
-        <li><em>Uso interno</em>: información de poco riesgo que se comparte solo dentro de la institución.</li>
-        <li><em>Pública</em>: datos que cualquiera puede conocer.</li>
-      </ul>
-      <p>Etiquetar archivos (ej. <code>[confidencial]Proyecto.docx</code>) facilita su manejo y control.</p>
+    <h2>Los tres pilares de la seguridad (CIA)</h2>
+    <p><strong>Confidencialidad:</strong> la información no debe estar disponible para personas no autorizadas.<br>
+       <strong>Integridad:</strong> la información debe mantenerse correcta y sin alteraciones no autorizadas.<br>
+       <strong>Disponibilidad:</strong> la información debe estar accesible cuando se la necesita (un ataque de ransomware puede comprometerla).</p>
 
-      <h2>Tratamiento y protección según clasificación</h2>
-      <p>Una vez definida la clasificación se aplican controles acordes: limitar el acceso según roles, registrar quién accede, cifrar datos en reposo y en tránsito, mantener copias de seguridad fiables y establecer medidas legales (acuerdos de confidencialidad, cumplimiento normativo). Evitá dar permisos a “todos” o compartir por enlaces públicos sin control.</p>
+    <h2>Inventario y clasificación de activos</h2>
+    <p>Antes de aplicar medidas de seguridad hay que saber qué activos tenemos. El inventario debe incluir documentos digitales, dispositivos físicos, bases de datos y aplicaciones, registrando atributos como ubicación, tamaño, departamentos responsables y criticidad.</p>
+    <p>Clasificamos la información según sensibilidad:</p>
+    <ul>
+      <li><em>Confidencial:</em> datos personales, contratos, información financiera o estratégica.</li>
+      <li><em>Restringida:</em> documentos internos críticos para el trabajo de ciertos sectores.</li>
+      <li><em>Uso interno:</em> información de bajo riesgo que solo circula dentro de la institución.</li>
+      <li><em>Pública:</em> datos abiertos al público, por ejemplo lo publicado en el sitio web.</li>
+    </ul>
+    <p>Etiquetar archivos (ej. <code>[confidencial]Proyecto.docx</code>) y usar marcas de agua o códigos de color ayuda a gestionarlos.</p>
 
-      <h2>Cifrado y buenas prácticas</h2>
-      <p>El cifrado asegura que, aunque un archivo caiga en manos no autorizadas, no pueda leerse. Es vital usar claves robustas y gestionarlas con seguridad (no guardarlas en papel ni enviarlas por correo), emplear algoritmos fuertes como AES-256, revisar periódicamente su eficacia y mantener las herramientas actualizadas.</p>
+    <h2>Tratamiento y controles de seguridad</h2>
+    <p>Una vez clasificada la información se aplican controles como:</p>
+    <ul>
+      <li>Limitar el acceso según roles y llevar registros de accesos.</li>
+      <li>Cifrar datos en reposo y en tránsito (especialmente en dispositivos móviles o nube).</li>
+      <li>Firmar acuerdos de confidencialidad.</li>
+      <li>Mantener copias de seguridad confiables y probadas.</li>
+      <li>Evitar permisos globales (ej. “para todos”) o enlaces públicos sin control.</li>
+    </ul>
 
-      <h2>Metadatos: un riesgo silencioso</h2>
-      <p>Los archivos incluyen metadatos que pueden exponer autor, fechas o ubicación GPS. Antes de compartir, conviene limpiarlos. En Windows se hace desde: <em>Propiedades → Detalles → Quitar propiedades e información personal</em>. Subir documentos sin limpiar puede filtrar datos sensibles sin darnos cuenta.</p>
+    <h2>Cifrado</h2>
+    <p>El cifrado hace ilegible la información a quienes no tengan la clave. Es clave para almacenar y transmitir datos sensibles, especialmente en portátiles, pendrives y nube. Usar algoritmos fuertes (AES-256), gestionar las claves de forma segura (no enviarlas por correo ni guardarlas en papel) y mantener el software actualizado.</p>
 
-      <h2>Opciones de almacenamiento</h2>
-      <p>El almacenamiento local (en una computadora personal) es rápido pero frágil ante pérdidas y no suele incluir respaldo. Es preferible usar carpetas de red institucional, que tienen controles y copias automáticas. Si se usa la nube, debe configurarse cifrado y permisos adecuados antes de subir información sensible.</p>
+    <h2>Metadatos</h2>
+    <p>Los archivos digitales contienen metadatos (autor, fechas, ubicación GPS, software usado). Pueden filtrar información sensible. En Windows: <em>Propiedades → Detalles → Quitar propiedades e información personal</em>. En suites ofimáticas también existe la opción de limpiar metadatos antes de compartir.</p>
 
-      <h2>Backups y la regla 3-2-1</h2>
-      <p>Existen varios tipos de copia:</p>
-      <ul>
-        <li><strong>Espejo / RAID:</strong> replica en tiempo real pero también errores o malware.</li>
-        <li><strong>Completa:</strong> copia todo; fácil de restaurar pero ocupa mucho espacio.</li>
-        <li><strong>Diferencial:</strong> guarda cambios desde la última copia completa.</li>
-        <li><strong>Incremental:</strong> guarda solo cambios desde la última copia (eficiente pero compleja de restaurar).</li>
-      </ul>
-      <p>La <strong>regla 3-2-1</strong> recomienda mantener <strong>3 copias de los datos, en 2 soportes diferentes y al menos 1 fuera del sitio principal</strong>. Además, deben probarse regularmente las restauraciones.</p>
+    <h2>Opciones de almacenamiento</h2>
+    <ul>
+      <li><strong>Local:</strong> rápido y cómodo, pero riesgoso ante fallas o pérdida del equipo y genera silos de información.</li>
+      <li><strong>Red interna:</strong> centraliza y permite controles y respaldos institucionales; recomendado.</li>
+      <li><strong>Nube:</strong> accesible desde cualquier lugar; usar solo servicios institucionales o cifrar antes de subir información sensible y configurar permisos adecuados.</li>
+    </ul>
 
-      <h2>Borrado seguro</h2>
-      <p>Eliminar información no es sólo pulsar “borrar”. El papel debe triturarse, los discos reutilizables sobreescribirse varias veces, y los dispositivos como pendrives o móviles deben cifrarse y restaurarse a valores de fábrica antes de desecharlos. Los equipos obsoletos pueden requerir destrucción certificada para asegurar que los datos no sean recuperables.</p>
+    <h2>Copias de seguridad</h2>
+    <p>Son esenciales para recuperarse de incidentes. Pasos clave:</p>
+    <ol>
+      <li>Determinar qué información copiar según clasificación.</li>
+      <li>Definir periodicidad adecuada (diaria, semanal, mensual según riesgo).</li>
+      <li>Elegir soporte:</li>
+    </ol>
+    <ul>
+      <li><strong>Cintas magnéticas:</strong> muy económicas para grandes volúmenes, alta vida útil (>30 años), pero acceso lento.</li>
+      <li><strong>Discos duros externos:</strong> fáciles de usar, buen rendimiento, pero vida útil menor y coste mayor por TB.</li>
+      <li><strong>NAS:</strong> dispositivos centralizados con aplicaciones de backup y gestión sencilla.</li>
+      <li><strong>Nube:</strong> acceso remoto y protección ante incidentes físicos, pero exige cifrado y buena conexión.</li>
+      <li><strong>Discos ópticos (Blu-ray):</strong> económicos, resistentes a ransomware (por no estar conectados), pero capacidad limitada.</li>
+    </ul>
+    <p>Tipos de copia:</p>
+    <ul>
+      <li><strong>Espejo / RAID 1:</strong> copia en tiempo real; rápido de recuperar pero replica errores y malware.</li>
+      <li><strong>Completa:</strong> copia todo; fácil restauración pero ocupa mucho espacio y tarda más.</li>
+      <li><strong>Diferencial:</strong> guarda cambios desde la última completa; fácil restaurar, uso moderado de espacio.</li>
+      <li><strong>Incremental:</strong> solo cambios desde la última copia (eficiente pero restauración más compleja).</li>
+    </ul>
+    <p><strong>Regla 3-2-1:</strong> mantener 3 copias (1 original + 2 backups), en 2 soportes diferentes, con al menos 1 copia fuera de la institución.</p>
 
-      <h2>Privacidad y legislación argentina</h2>
-      <p>La <strong>Ley 25.326</strong> de Protección de Datos Personales (Habeas Data) regula cómo deben tratarse los datos de las personas. Otorga derechos de acceso, rectificación y supresión. La <strong>AAIP</strong> es la autoridad de control. Tratar datos sin base legal o no informar incidentes puede generar sanciones. Siempre se debe comunicar la finalidad y obtener consentimiento válido.</p>
+    <h2>Borrado seguro</h2>
+    <ul>
+      <li>Papel y soportes ópticos: triturar.</li>
+      <li>Discos y USB reutilizables: sobrescribir varias veces.</li>
+      <li>Teléfonos: cifrar antes de restaurar a valores de fábrica.</li>
+      <li>Dispositivos obsoletos: desmagnetizar o destruir físicamente.</li>
+      <li>Puede usarse destrucción certificada, que emite un documento legal del proceso.</li>
+    </ul>
 
-      <h2>Gestión segura de dispositivos y archivos</h2>
-      <p>Protegé tu computadora y dispositivos: mantené el sistema operativo y los programas actualizados, aplicá cifrado de disco, usá bloqueo de pantalla y evitá compartir cuentas. Guardá información institucional únicamente en ubicaciones autorizadas y con permisos adecuados.</p>
+    <h2>Privacidad y legislación argentina</h2>
+    <p>La <strong>Ley 25.326</strong> y su Decreto 1558/2001 protegen los datos personales. Dato personal es cualquier información sobre una persona identificada o identificable (DNI, foto, altura, etc.).</p>
+    <p>La autoridad de control es la <strong>AAIP</strong>, que administra el Registro Nacional de Bases de Datos (RNBD). El artículo 43 de la Constitución garantiza el hábeas data (acceso, rectificación y supresión de datos propios).</p>
+    <p>Las universidades deben:</p>
+    <ul>
+      <li>Publicar avisos de privacidad claros en formularios y sistemas.</li>
+      <li>Llevar inventario de tratamientos y registrar bases en el RNBD si corresponde.</li>
+      <li>Firmar contratos con proveedores que procesen datos (incluir ubicación y cláusulas si hay nube internacional).</li>
+      <li>Implementar controles técnicos: acceso restringido, cifrado, registros de actividad, segmentación de redes, gestión de vulnerabilidades y notificación de incidentes.</li>
+      <li>Capacitar periódicamente a su comunidad en protección de datos.</li>
+    </ul>
 
-      <h2>Uso responsable de la nube</h2>
-      <p>Preferí plataformas institucionales (por ejemplo, Google Workspace o OneDrive con cuenta universitaria) para documentos sensibles. Evitá subir datos importantes a cuentas personales o servicios sin controles. Configurá permisos de solo lectura y, si es posible, establecé fechas de vencimiento para los enlaces compartidos.</p>
+    <h2>Gestión segura de dispositivos</h2>
+    <p>Mantener sistemas actualizados, cifrado de disco, bloqueo de pantalla, no compartir cuentas y guardar datos institucionales solo en ubicaciones autorizadas.</p>
 
-      <h2>Respuesta ante incidentes</h2>
-      <p>Si sospechás de un ataque (por ejemplo, un archivo cifrado inesperadamente o un mensaje extraño solicitando datos), desconectá el equipo de la red, informá al área de ciberseguridad y no intentes resolverlo borrando o descargando herramientas desconocidas. Actuar rápido puede evitar mayores daños.</p>
-    `,
+    <h2>Respuesta ante incidentes</h2>
+    <p>Si sospechás de un ataque (archivo cifrado inesperadamente, mensajes pidiendo datos), desconectá el equipo, informá al área de ciberseguridad y no intentes soluciones improvisadas. Actuar rápido limita el daño.</p>
+  `,
 
-    ejemplos: {
-      ej1: `
-        <div class="quiz">
-          <div class="quiz-q">¿Qué pilar protege contra el acceso no autorizado a la información?</div>
-          <div class="quiz-options">
-            <button class="btn quiz-option">Disponibilidad</button>
-            <button class="btn quiz-option">Integridad</button>
-            <button class="btn quiz-option" data-correct="true"
-                    data-explain="Confidencialidad = acceso sólo para personas autorizadas.">Confidencialidad</button>
-          </div>
-          <div class="badges"><span class="badge badge--ok">CIA</span></div>
-        </div>`,
-
-      ej2: `
-        <div class="quiz">
-          <div class="quiz-q">Un listado con DNI y datos personales de estudiantes. ¿Qué clasificación corresponde?</div>
-          <div class="quiz-options">
-            <button class="btn quiz-option">Pública</button>
-            <button class="btn quiz-option">Uso interno</button>
-            <button class="btn quiz-option">Restringida</button>
-            <button class="btn quiz-option" data-correct="true"
-                    data-explain="Datos personales → confidencial. Minimizar acceso y proteger con controles.">Confidencial</button>
-          </div>
-          <div class="badges"><span class="badge badge--ok">Privacidad</span></div>
-        </div>`,
-
-      ej3: `
-        <div class="quiz">
-          <div class="quiz-q">¿Cuál enuncia correctamente la regla 3–2–1 de respaldo?</div>
-          <div class="quiz-options">
-            <button class="btn quiz-option">3 copias en el mismo disco externo</button>
-            <button class="btn quiz-option">3 copias, 1 soporte, 1 fuera</button>
-            <button class="btn quiz-option" data-correct="true"
-                    data-explain="3 copias, 2 soportes diferentes, 1 fuera de la institución.">3 copias, 2 soportes, 1 fuera</button>
-            <button class="btn quiz-option">2 copias, 2 soportes, 1 en nube</button>
-          </div>
-          <div class="badges"><span class="badge badge--ok">Backups</span></div>
-        </div>`,
-
-      ej4: `
-        <div class="quiz">
-          <div class="quiz-q">Vas a publicar un PDF en la web institucional. ¿Qué hacés con los metadatos?</div>
-          <div class="quiz-options">
-            <button class="btn quiz-option">Nada; publicarlo tal cual</button>
-            <button class="btn quiz-option" data-correct="true"
-                    data-explain="En Windows: Propiedades → Detalles → Quitar propiedades e información personal.">Quitar propiedades e información personal</button>
-            <button class="btn quiz-option">Solo cambiar el nombre del archivo</button>
-          </div>
-          <div class="badges"><span class="badge badge--warn">Metadatos</span></div>
-        </div>`,
-
-      ej5: `
-        <div class="quiz">
-          <div class="quiz-q">Tenés actas con datos confidenciales. ¿Dónde las guardás?</div>
-          <div class="quiz-options">
-            <button class="btn quiz-option">Pendrive sin cifrar</button>
-            <button class="btn quiz-option">Carpeta “Descargas” del equipo personal</button>
-            <button class="btn quiz-option" data-correct="true"
-                    data-explain="Carpeta de red institucional (permisos/backup). En nube, sólo cifrada y con controles.">Carpeta de red institucional o nube cifrada con permisos</button>
-          </div>
-          <div class="badges"><span class="badge badge--ok">Almacenamiento</span></div>
-        </div>`
-    }
-  },
+  ejemplos: {
+    ej1: `
+      <div class="quiz">
+        <div class="quiz-q">¿Qué pilar protege contra el acceso no autorizado a la información?</div>
+        <div class="quiz-options">
+          <button class="btn quiz-option">Disponibilidad</button>
+          <button class="btn quiz-option">Integridad</button>
+          <button class="btn quiz-option" data-correct="true"
+                  data-explain="Confidencialidad = acceso solo para personas autorizadas.">Confidencialidad</button>
+        </div>
+        <div class="badges"><span class="badge badge--ok">CIA</span></div>
+      </div>`,
+    ej2: `
+      <div class="quiz">
+        <div class="quiz-q">Un listado con DNI y datos personales de estudiantes. ¿Qué clasificación corresponde?</div>
+        <div class="quiz-options">
+          <button class="btn quiz-option">Pública</button>
+          <button class="btn quiz-option">Uso interno</button>
+          <button class="btn quiz-option">Restringida</button>
+          <button class="btn quiz-option" data-correct="true"
+                  data-explain="Datos personales → confidencial. Minimizar acceso y proteger con controles.">Confidencial</button>
+        </div>
+        <div class="badges"><span class="badge badge--ok">Privacidad</span></div>
+      </div>`,
+    ej3: `
+      <div class="quiz">
+        <div class="quiz-q">¿Cuál enuncia correctamente la regla 3–2–1 de respaldo?</div>
+        <div class="quiz-options">
+          <button class="btn quiz-option">3 copias en el mismo disco externo</button>
+          <button class="btn quiz-option">3 copias, 1 soporte, 1 fuera</button>
+          <button class="btn quiz-option" data-correct="true"
+                  data-explain="3 copias, 2 soportes diferentes, 1 fuera de la institución.">3 copias, 2 soportes, 1 fuera</button>
+          <button class="btn quiz-option">2 copias, 2 soportes, 1 en nube</button>
+        </div>
+        <div class="badges"><span class="badge badge--ok">Backups</span></div>
+      </div>`,
+    ej4: `
+      <div class="quiz">
+        <div class="quiz-q">Vas a publicar un PDF en la web institucional. ¿Qué hacés con los metadatos?</div>
+        <div class="quiz-options">
+          <button class="btn quiz-option">Nada; publicarlo tal cual</button>
+          <button class="btn quiz-option" data-correct="true"
+                  data-explain="En Windows: Propiedades → Detalles → Quitar propiedades e información personal.">Quitar propiedades e información personal</button>
+          <button class="btn quiz-option">Solo cambiar el nombre del archivo</button>
+        </div>
+        <div class="badges"><span class="badge badge--warn">Metadatos</span></div>
+      </div>`,
+    ej5: `
+      <div class="quiz">
+        <div class="quiz-q">Tenés actas con datos confidenciales. ¿Dónde las guardás?</div>
+        <div class="quiz-options">
+          <button class="btn quiz-option">Pendrive sin cifrar</button>
+          <button class="btn quiz-option">Carpeta “Descargas” del equipo personal</button>
+          <button class="btn quiz-option" data-correct="true"
+                  data-explain="Carpeta de red institucional (permisos/backup). En nube, solo cifrada y con controles.">Carpeta de red institucional o nube cifrada con permisos</button>
+        </div>
+        <div class="badges"><span class="badge badge--ok">Almacenamiento</span></div>
+      </div>`
+  }
+},
 
 2: {
   titulo: "Correo Electrónico Seguro",
@@ -677,7 +715,7 @@ window.MODULO_DETALLE = {
 
 7: {
   titulo: "Uso Responsable de la Inteligencia Artificial",
-  resumenCorto:
+      resumen:
     "La Inteligencia Artificial automatiza tareas, optimiza decisiones y mejora la productividad. Puede beneficiar la experiencia educativa y el bienestar laboral, pero también implica riesgos: dependencia, sesgos, errores, filtración de datos y problemas de privacidad y seguridad. Su uso debe ser ético, con límites claros, capacitación y controles adecuados.",
 
   puntos: [

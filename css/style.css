@@ -69,7 +69,7 @@ header .bar {
 }
 
 /* Logo */
-.logo { display:flex; align-items:center; gap:12px; cursor:pointer; }
+.logo { display:flex; align-items:center; gap:12px; cursor:pointer; text-decoration: none; }
 .logo .mark {
   width: 40px; height: 40px;
   border-radius: 6px;
@@ -842,14 +842,15 @@ footer .wrap{
 
 .modulo-icon-large {
   font-size: 64px;
-  margin-bottom: 16px;
-  animation: float 3s ease-in-out infinite;
+  margin-bottom: 10px;
+  animation: iconFloat 4s ease-in-out infinite; /* 👈 usa un nombre único */
 }
 
-@keyframes float {
+@keyframes iconFloat {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-40px); }
 }
+
 
 .modulo-hero h1 {
   font-size: 2.5rem;
@@ -3033,20 +3034,20 @@ html.no-scroll, body.no-scroll { overflow: hidden; }
 /* ===== VARIABLES ===== */
 /* ===================== */
 :root {
-  --uncuyo-blue: #2563eb;          /* azul institucional */
-  --uncuyo-light-blue: #3b82f6;    /* azul claro */
-  --uncuyo-dark: #1e293b;          /* gris azulado oscuro */
-  --uncuyo-gray: #475569;          /* gris medio */
-  --uncuyo-light-gray: #f1f5f9;    /* gris claro */
-  --uncuyo-white: #ffffff;
-  --success-green: #16a34a;
-  --warning-orange: #f59e0b;
+  --uncuyoUsbSim2025-blue: #2563eb;
+  --uncuyoUsbSim2025-light-blue: #3b82f6;
+  --uncuyoUsbSim2025-dark: #1e293b;
+  --uncuyoUsbSim2025-gray: #475569;
+  --uncuyoUsbSim2025-light-gray: #f1f5f9;
+  --uncuyoUsbSim2025-white: #ffffff;
+  --uncuyoUsbSim2025-success-green: #16a34a;
+  --uncuyoUsbSim2025-warning-orange: #f59e0b;
 }
 
 /* ===================== */
 /* ===== FONDO ========= */
 /* ===================== */
-.uncuyo-simulation-bg-particles {
+.uncuyoUsbSim2025-bg-particles {
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
@@ -3055,14 +3056,14 @@ html.no-scroll, body.no-scroll { overflow: hidden; }
   opacity: 0.3;
 }
 
-.uncuyo-simulation-particle {
+.uncuyoUsbSim2025-particle {
   position: absolute;
-  background: var(--uncuyo-blue);
+  background: var(--uncuyoUsbSim2025-blue);
   border-radius: 50%;
-  animation: uncuyo-simulation-float 25s infinite linear;
+  animation: uncuyoUsbSim2025-float 25s infinite linear;
 }
 
-@keyframes uncuyo-simulation-float {
+@keyframes uncuyoUsbSim2025-float {
   0% { transform: translateY(100vh) scale(0) rotate(0deg); opacity: 0; }
   5% { opacity: 1; }
   95% { opacity: 1; }
@@ -3072,25 +3073,25 @@ html.no-scroll, body.no-scroll { overflow: hidden; }
 /* ===================== */
 /* ===== MODAL ========= */
 /* ===================== */
-.uncuyoUsb_overlay {
-  position: relative; /* importante para que los tips se ubiquen respecto al modal */
+.uncuyoUsbSim2025-overlay {
+  position: relative;
   width: 100%; height: 100%;
   background: rgba(30, 41, 59, 0.85);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 100;
-  animation: uncuyo-simulation-fadeIn 0.3s ease forwards;
+  animation: uncuyoUsbSim2025-fadeIn 0.3s ease forwards;
 }
 
-@keyframes uncuyo-simulation-fadeIn {
+@keyframes uncuyoUsbSim2025-fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
-.uncuyoUsb_modal {
-  position: relative; /* clave para que los tips usen este contenedor como referencia */
-  background: var(--uncuyo-white);
+.uncuyoUsbSim2025-modal {
+  position: relative;
+  background: var(--uncuyoUsbSim2025-white);
   border-radius: 12px;
   max-width: 800px;
   width: 90%;
@@ -3103,33 +3104,33 @@ html.no-scroll, body.no-scroll { overflow: hidden; }
 /* ===================== */
 /* ==== TITULOS ======== */
 /* ===================== */
-.modal-title {
+.uncuyoUsbSim2025-modal-title {
   font-size: 1.8rem;
   font-weight: 700;
   margin-bottom: 1.2rem;
-  color: var(--uncuyo-dark);
+  color: var(--uncuyoUsbSim2025-dark);
   line-height: 1.3;
 }
-.modal-title .warning-icon {
-  color: var(--warning-orange);
+.uncuyoUsbSim2025-modal-title .uncuyoUsbSim2025-warning-icon {
+  color: var(--uncuyoUsbSim2025-warning-orange);
   margin-right: 0.5rem;
 }
 
-.modal-lead {
+.uncuyoUsbSim2025-modal-lead {
   font-size: 1.1rem;
-  color: var(--uncuyo-gray);
+  color: var(--uncuyoUsbSim2025-gray);
   margin-bottom: 1.5rem;
   font-weight: 400;
 }
 
 /* Caja de seguridad */
-.modal-safe {
+.uncuyoUsbSim2025-modal-safe {
   background: #f0fdf4;
   border: 1px solid #bbf7d0;
   border-radius: 8px;
   padding: 1.2rem;
   margin: 1.5rem 0;
-  color: var(--success-green);
+  color: var(--uncuyoUsbSim2025-success-green);
   font-weight: 500;
   display: flex;
   align-items: center;
@@ -3139,7 +3140,7 @@ html.no-scroll, body.no-scroll { overflow: hidden; }
 /* ===================== */
 /* ==== CURSO BOX ====== */
 /* ===================== */
-.curso-box {
+.uncuyoUsbSim2025-curso-box {
   background: #fafbfc;
   border: 1px solid #e2e8f0;
   border-radius: 12px;
@@ -3148,38 +3149,38 @@ html.no-scroll, body.no-scroll { overflow: hidden; }
   text-align: left;
 }
 
-.curso-box h2 {
+.uncuyoUsbSim2025-curso-box h2 {
   font-size: 1.5rem;
-  color: var(--uncuyo-blue);
+  color: var(--uncuyoUsbSim2025-blue);
   margin-bottom: 1rem;
   text-align: center;
   font-weight: 600;
 }
 
-.curso-box ul {
+.uncuyoUsbSim2025-curso-box ul {
   list-style: none;
   padding: 0;
   margin: 1.5rem 0;
 }
 
-.curso-box li {
-  background: var(--uncuyo-white);
+.uncuyoUsbSim2025-curso-box li {
+  background: var(--uncuyoUsbSim2025-white);
   border-radius: 8px;
   padding: 1rem 1.5rem;
   margin-bottom: 0.75rem;
-  border-left: 4px solid var(--uncuyo-blue);
+  border-left: 4px solid var(--uncuyoUsbSim2025-blue);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.curso-box li:hover {
+.uncuyoUsbSim2025-curso-box li:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.curso-apertura {
-  background: var(--uncuyo-blue);
-  color: var(--uncuyo-white);
+.uncuyoUsbSim2025-curso-apertura {
+  background: var(--uncuyoUsbSim2025-blue);
+  color: var(--uncuyoUsbSim2025-white);
   padding: 1rem;
   border-radius: 8px;
   text-align: center;
@@ -3190,7 +3191,7 @@ html.no-scroll, body.no-scroll { overflow: hidden; }
 /* ===================== */
 /* ===== BOTONES ======= */
 /* ===================== */
-.button-container {
+.uncuyoUsbSim2025-button-container {
   display: flex;
   gap: 1rem;
   justify-content: center;
@@ -3198,7 +3199,7 @@ html.no-scroll, body.no-scroll { overflow: hidden; }
   flex-wrap: wrap;
 }
 
-.uncuyoUsb_btn {
+.uncuyoUsbSim2025-btn {
   font-family: inherit;
   font-size: 1rem;
   font-weight: 500;
@@ -3210,37 +3211,37 @@ html.no-scroll, body.no-scroll { overflow: hidden; }
   min-width: 160px;
 }
 
-.uncuyoUsb_btn.primary {
-  background: var(--uncuyo-blue);
-  color: var(--uncuyo-white);
+.uncuyoUsbSim2025-btn.primary {
+  background: var(--uncuyoUsbSim2025-blue);
+  color: var(--uncuyoUsbSim2025-white);
 }
-.uncuyoUsb_btn.primary:hover {
-  background: var(--uncuyo-light-blue);
+.uncuyoUsbSim2025-btn.primary:hover {
+  background: var(--uncuyoUsbSim2025-light-blue);
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
 }
 
-.uncuyoUsb_btn.ghost {
+.uncuyoUsbSim2025-btn.ghost {
   background: transparent;
-  color: var(--uncuyo-gray);
+  color: var(--uncuyoUsbSim2025-gray);
   border: 1px solid #cbd5e1;
 }
-.uncuyoUsb_btn.ghost:hover {
-  background: var(--uncuyo-light-gray);
-  color: var(--uncuyo-dark);
+.uncuyoUsbSim2025-btn.ghost:hover {
+  background: var(--uncuyoUsbSim2025-light-gray);
+  color: var(--uncuyoUsbSim2025-dark);
   transform: translateY(-1px);
 }
 
 /* Botón volver */
-.btn-wrapper {
+.uncuyoUsbSim2025-btn-wrapper {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
   z-index: 101;
 }
-.uncuyoUsb_btnClose_PageLogin {
-  background: var(--uncuyo-dark);
-  color: var(--uncuyo-white);
+.uncuyoUsbSim2025-btnClose-PageLogin {
+  background: var(--uncuyoUsbSim2025-dark);
+  color: var(--uncuyoUsbSim2025-white);
   font-weight: 500;
   font-size: 0.95rem;
   padding: 0.875rem 1.5rem;
@@ -3249,7 +3250,7 @@ html.no-scroll, body.no-scroll { overflow: hidden; }
   cursor: pointer;
   transition: all 0.2s ease;
 }
-.uncuyoUsb_btnClose_PageLogin:hover {
+.uncuyoUsbSim2025-btnClose-PageLogin:hover {
   background: #334155;
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(30, 41, 59, 0.2);
@@ -3258,49 +3259,49 @@ html.no-scroll, body.no-scroll { overflow: hidden; }
 /* ===================== */
 /* ===== TIPS ========= */
 /* ===================== */
-.uncuyoUsb_tip {
+.uncuyoUsbSim2025-tip {
   position: absolute;
   display: none;
   max-width: 300px;
-  background: var(--uncuyo-white);
-  color: var(--uncuyo-dark);
+  background: var(--uncuyoUsbSim2025-white);
+  color: var(--uncuyoUsbSim2025-dark);
   border: 1px solid #e2e8f0;
   border-radius: 8px;
   padding: 1.25rem;
   font-size: 0.95rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  animation: uncuyo-simulation-slideIn 0.3s ease forwards;
+  animation: uncuyoUsbSim2025-slideIn 0.3s ease forwards;
   z-index: 200;
 }
 
-@keyframes uncuyo-simulation-slideIn {
+@keyframes uncuyoUsbSim2025-slideIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-.uncuyoUsb_tip strong {
-  color: var(--uncuyo-blue);
+.uncuyoUsbSim2025-tip strong {
+  color: var(--uncuyoUsbSim2025-blue);
   font-weight: 600;
 }
 
-/* ---- alineación a la derecha del modal ---- */
-.uncuyoUsb_tip--top-center   { top: 10%;  left: 100%; margin-left: 20px;}
-.uncuyoUsb_tip--right-mid    { top: 45%;  left: 100%; margin-left: 20px; }
-.uncuyoUsb_tip--bottom-center{ top: 100%;  left: 100%; margin-left: 20px; }
+/* ---- alineación ---- */
+.uncuyoUsbSim2025-tip--top-center   { top: 10%;  left: 100%; margin-left: 20px;}
+.uncuyoUsbSim2025-tip--right-mid    { top: 45%;  left: 100%; margin-left: 20px; }
+.uncuyoUsbSim2025-tip--bottom-center{ top: 100%; left: 100%; margin-left: 20px; }
 
 /* ===================== */
 /* ===== RESPONSIVE ==== */
 /* ===================== */
 @media (max-width: 900px) {
-  .uncuyoUsb_modal {
+  .uncuyoUsbSim2025-modal {
     padding: 1.5rem;
     margin: 1rem;
   }
-  .modal-title { font-size: 1.5rem; }
-  .curso-box { padding: 1.5rem; }
+  .uncuyoUsbSim2025-modal-title { font-size: 1.5rem; }
+  .uncuyoUsbSim2025-curso-box { padding: 1.5rem; }
 
-  /* Tips se muestran abajo en móviles */
-  .uncuyoUsb_tip {
+  /* Tips en móviles */
+  .uncuyoUsbSim2025-tip {
     position: static;
     max-width: 90%;
     margin: 1rem auto;
@@ -3310,8 +3311,8 @@ html.no-scroll, body.no-scroll { overflow: hidden; }
 }
 
 /* ===== FONDO DETRÁS DEL MODAL CUANDO SE CIERRA ===== */
-.back-info {
-  display: none; /* aparece solo al cerrar el modal */
+.uncuyoUsbSim2025-backInfo {
+  display: none;
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
@@ -3320,12 +3321,12 @@ html.no-scroll, body.no-scroll { overflow: hidden; }
   align-items: center;
   text-align: center;
   padding: 2rem;
-  color: var(--uncuyo-white);
+  color: var(--uncuyoUsbSim2025-white);
   background: rgba(30, 41, 59, 0.85);
   z-index: 10;
 }
 
-.back-info-content {
+.uncuyoUsbSim2025-backInfo-content {
   max-width: 700px;
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.2);
@@ -3334,27 +3335,123 @@ html.no-scroll, body.no-scroll { overflow: hidden; }
   backdrop-filter: blur(6px);
 }
 
-.back-info-content h1 {
+.uncuyoUsbSim2025-backInfo-content h1 {
   font-size: 2rem;
   margin-bottom: 1rem;
   color: #fff;
 }
 
-.back-info-content p {
+.uncuyoUsbSim2025-backInfo-content p {
   font-size: 1.1rem;
   margin: 0.8rem 0;
   color: #f1f5f9;
 }
 
-.back-info-content .contact a {
+.uncuyoUsbSim2025-contact a {
   color: #60a5fa;
   font-weight: bold;
   text-decoration: none;
 }
 
-.back-info-content .contact a:hover {
+.uncuyoUsbSim2025-contact a:hover {
   text-decoration: underline;
 }
+
+/* ========================================================== */
+/* === VERSIÓN COMPACTA Y ANCHA PARA NOTEBOOK (1024–1440 px) */
+/* ========================================================== */
+@media screen and (min-width:1024px) and (max-width:1440px) {
+
+  /* ----- Modal ----- */
+  .uncuyoUsbSim2025-modal {
+    max-width: 820px;       /* más ancho */
+    width: 85%;
+    padding: 1rem 1.5rem;   /* mucho menos padding vertical y lateral */
+    text-align: left;
+    font-size: 0.9rem;      /* todo el contenido reducido */
+  }
+
+  /* ----- Títulos y textos ----- */
+  .uncuyoUsbSim2025-modal-title {
+    font-size: 1.4rem;      /* más chico */
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+  .uncuyoUsbSim2025-modal-lead {
+    font-size: 0.95rem;
+    line-height: 1.35;
+    margin-bottom: 0.8rem;
+  }
+
+  /* Caja seguridad */
+  .uncuyoUsbSim2025-modal-safe {
+    font-size: 0.85rem;
+    padding: 0.6rem 0.8rem;
+    margin: 0.8rem 0;
+    gap: 0.5rem;
+  }
+
+  /* Caja curso */
+  .uncuyoUsbSim2025-curso-box {
+    padding: 1rem 1.2rem;
+    margin: 1rem 0;
+  }
+  .uncuyoUsbSim2025-curso-box h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  .uncuyoUsbSim2025-curso-box li {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.8rem;
+    margin-bottom: 0.5rem;
+  }
+  .uncuyoUsbSim2025-curso-apertura {
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+
+  /* Botones */
+  .uncuyoUsbSim2025-button-container {
+    justify-content: flex-start;
+    gap: 0.6rem;
+    margin-top: 0.8rem;
+  }
+  .uncuyoUsbSim2025-btn {
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+    min-width: 120px;
+  }
+
+  /* Botón volver */
+  .uncuyoUsbSim2025-btn-wrapper {
+    position: static;
+    margin-top: 1rem;
+  }
+  .uncuyoUsbSim2025-btnClose-PageLogin {
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+  }
+
+  /* Tips */
+  .uncuyoUsbSim2025-tip {
+    max-width: 200px;
+    font-size: 0.8rem;
+    padding: 0.6rem 0.8rem;
+  }
+
+  /* Fondo informativo */
+  .uncuyoUsbSim2025-backInfo-content {
+    max-width: 620px;
+    padding: 1.5rem 2rem;
+  }
+  .uncuyoUsbSim2025-backInfo-content h1 {
+    font-size: 1.4rem;
+  }
+  .uncuyoUsbSim2025-backInfo-content p {
+    font-size: 0.95rem;
+  }
+}
+
 
 
 /* ==== Descarga archivos ==== */
@@ -3395,3 +3492,8 @@ html.no-scroll, body.no-scroll { overflow: hidden; }
 .btn-volver:hover {
   background: #f0f0f0;
 }
+
+
+
+/* MODAL DE ATAQUE USB NOTEBOOK RESPONSIVO */
+

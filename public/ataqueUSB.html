@@ -9,22 +9,22 @@
 </head>
 <body>
   <!-- Fondo animado -->
-  <div class="uncuyo-simulation-bg-particles">
-    <div class="uncuyo-simulation-particle"></div>
-    <div class="uncuyo-simulation-particle"></div>
-    <div class="uncuyo-simulation-particle"></div>
-    <div class="uncuyo-simulation-particle"></div>
-    <div class="uncuyo-simulation-particle"></div>
-    <div class="uncuyo-simulation-particle"></div>
-    <div class="uncuyo-simulation-particle"></div>
-    <div class="uncuyo-simulation-particle"></div>
-    <div class="uncuyo-simulation-particle"></div>
-    <div class="uncuyo-simulation-particle"></div>
+  <div class="uncuyoUsbSim2025-bg-particles">
+    <div class="uncuyoUsbSim2025-particle"></div>
+    <div class="uncuyoUsbSim2025-particle"></div>
+    <div class="uncuyoUsbSim2025-particle"></div>
+    <div class="uncuyoUsbSim2025-particle"></div>
+    <div class="uncuyoUsbSim2025-particle"></div>
+    <div class="uncuyoUsbSim2025-particle"></div>
+    <div class="uncuyoUsbSim2025-particle"></div>
+    <div class="uncuyoUsbSim2025-particle"></div>
+    <div class="uncuyoUsbSim2025-particle"></div>
+    <div class="uncuyoUsbSim2025-particle"></div>
   </div>
 
   <!-- Fondo informativo que se verá cuando se cierre el modal -->
-  <div id="alerta_backInfo" class="back-info">
-    <div class="back-info-content">
+  <div id="uncuyoUsbSim2025_backInfo" class="uncuyoUsbSim2025-backInfo">
+    <div class="uncuyoUsbSim2025-backInfo-content">
       <h1>🔐 Simulación completada</h1>
       <p>
         Esta fue una <strong>simulación oficial</strong> organizada por la
@@ -38,33 +38,33 @@
         Próximamente podrás acceder al <strong>Curso A.L.E.R.T.A UNCUYO</strong> para
         aprender buenas prácticas y proteger mejor tu información.
       </p>
-      <p class="contact">
+      <p class="uncuyoUsbSim2025-contact">
         📧 Contacto: <a href="mailto:ciberseguridad-txd@uncuyo.edu.ar">ciberseguridad-txd@uncuyo.edu.ar</a>
       </p>
     </div>
   </div>
 
   <!-- Modal principal -->
-  <div id="alerta_overlay" class="uncuyoUsb_overlay" role="dialog" aria-modal="true" aria-labelledby="alerta_title" aria-describedby="alerta_desc">
-    <div id="alerta_modal" class="uncuyoUsb_modal" role="document">
-      <h1 id="alerta_title" class="modal-title">
-        <span class="warning-icon">⚠️</span>
+  <div id="uncuyoUsbSim2025_overlay" class="uncuyoUsbSim2025-overlay" role="dialog" aria-modal="true" aria-labelledby="uncuyoUsbSim2025_title" aria-describedby="uncuyoUsbSim2025_desc">
+    <div id="uncuyoUsbSim2025_modal" class="uncuyoUsbSim2025-modal" role="document">
+      <h1 id="uncuyoUsbSim2025_title" class="uncuyoUsbSim2025-modal-title">
+        <span class="uncuyoUsbSim2025-warning-icon">⚠️</span>
         Simulación de Ciberataque — Secretaría de Transformación Digital (UNCUYO)
       </h1>
-      <p id="alerta_desc" class="modal-lead">
+      <p id="uncuyoUsbSim2025_desc" class="uncuyoUsbSim2025-modal-lead">
         Llegaste a esta página porque conectaste un <strong>pendrive desconocido</strong> y abriste un
         <strong>archivo malicioso</strong> preparado para esta simulación por la
         <strong>Secretaría de Transformación Digital de la UNCUYO</strong>.
       </p>
       
-      <div class="modal-safe">
+      <div class="uncuyoUsbSim2025-modal-safe">
         <span>✅</span>
         <div>
-          <strong>No te preocupes:</strong> no fue un ataque real, sino un <strong>ejercicio de concientización en ciberseguridad</strong>.
+          <strong>No te preocupes:</strong> no fue un ataque real, por lo cual no almacenaremos, ni publicaremos ninguna información personal tuya. Es un <strong>ejercicio de concientización en ciberseguridad</strong>.
         </div>
       </div>
 
-      <div class="curso-box">
+      <div class="uncuyoUsbSim2025-curso-box">
         <h2>📚 Curso A.L.E.R.T.A UNCUYO — Próximamente</h2>
         <ul>
           <li>🔍 <strong>Mostrar</strong> cómo un simple pendrive puede comprometer tu equipo.</li>
@@ -72,17 +72,17 @@
           <li>🎓 <strong>Enseñar</strong> buenas prácticas para proteger tu información ante ataques por USB.</li>
         </ul>
         
-        <div class="curso-apertura">
+        <div class="uncuyoUsbSim2025-curso-apertura">
           🗓️ <strong>Apertura:</strong> martes, 14 de octubre de 2025 — 12:00 a. m.
         </div>
       </div>
 
       <!-- Botones -->
-      <div class="button-container">
-        <button id="alerta_btnTips" class="uncuyoUsb_btn primary" aria-controls="alerta_tip1">
-          🎯 ¿Cual fue mi error?
+      <div class="uncuyoUsbSim2025-button-container">
+        <button id="uncuyoUsbSim2025_btnTips" class="uncuyoUsbSim2025-btn primary" aria-controls="uncuyoUsbSim2025_tip1">
+          🎯 ¿Cuál fue mi error?
         </button>
-        <button id="alerta_btnClose" class="uncuyoUsb_btn ghost">
+        <button id="uncuyoUsbSim2025_btnClose" class="uncuyoUsbSim2025-btn ghost">
           Cerrar Simulación
         </button>
       </div>
@@ -90,25 +90,25 @@
   </div>
 
   <!-- Tips flotantes -->
-  <div id="alerta_tip1" class="uncuyoUsb_tip uncuyoUsb_tip--top-center" role="status" aria-hidden="true">
+  <div id="uncuyoUsbSim2025_tip1" class="uncuyoUsbSim2025-tip uncuyoUsbSim2025-tip--top-center" role="status" aria-hidden="true">
     🎭 <strong>Participaste en una simulación oficial</strong><br><br>
     Esta acción fue organizada por la <strong>Secretaría de Transformación Digital (UNCUYO)</strong> para
     mejorar tu conciencia en ciberseguridad.
   </div>
 
-  <div id="alerta_tip2" class="uncuyoUsb_tip uncuyoUsb_tip--right-mid" role="status" aria-hidden="true">
+  <div id="uncuyoUsbSim2025_tip2" class="uncuyoUsbSim2025-tip uncuyoUsbSim2025-tip--right-mid" role="status" aria-hidden="true">
     ⚠️ <strong>Aprendizaje clave</strong><br><br>
     Nunca conectes dispositivos USB desconocidos: pueden contener malware que comprometa tu equipo y tu información.
   </div>
 
-  <div id="alerta_tip3" class="uncuyoUsb_tip uncuyoUsb_tip--bottom-center" role="status" aria-hidden="true">
+  <div id="uncuyoUsbSim2025_tip3" class="uncuyoUsbSim2025-tip uncuyoUsbSim2025-tip--bottom-center" role="status" aria-hidden="true">
     🛡️ <strong>Buenas prácticas</strong><br><br>
     Utilizá solo dispositivos de confianza, mantené tu antivirus actualizado y ante dudas consultá al equipo de ciberseguridad.
   </div>
 
   <!-- Botón volver -->
-  <div class="btn-wrapper">
-    <button class="uncuyoUsb_btnClose_PageLogin" onclick="window.location.href='../login.html'">
+  <div class="uncuyoUsbSim2025-btn-wrapper">
+    <button class="uncuyoUsbSim2025-btnClose-PageLogin" onclick="window.location.href='../login.html'">
       🔙 Volver a página principal Ciberseguridad
     </button>
   </div>
