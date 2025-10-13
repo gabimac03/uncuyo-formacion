@@ -52,7 +52,7 @@ window.addEventListener('DOMContentLoaded', cargarCaptcha);
 // ===== Bloqueo por fecha de inauguración (sin modificar el HTML) =====
 (function initGate() {
   // Configurá la fecha/hora de apertura (zona Mendoza UTC-03)
-  const OPEN_AT_ISO = '2025-02-14T00:00:00'; // <-- CAMBIAR
+  const OPEN_AT_ISO = '2025-09-14T00:00:00'; // <-- CAMBIAR
 
   const openAt = new Date(OPEN_AT_ISO);
   if (isNaN(openAt.valueOf())) {
@@ -69,6 +69,7 @@ window.addEventListener('DOMContentLoaded', cargarCaptcha);
   overlay.innerHTML = `
     <div id="gate-dialog">
       <h2 id="gate-title">Curso A.L.E.R.T.A UNCUYO — Próximamente</h2>
+      <p id="gate-title"> <strong>Pedimos tu total colaboración de NO comentar a compañeros/as para que el ejercicio sea mas eficaz. Gracias </strong></p>
       <p id="gate-desc">
 	Llegaste hasta aquí porque hiciste clic en un correo de simulación de ciberataque organizado por la Secretaría de Transformación Digital.
 	No te preocupes: no se trató de un ataque real, sino de un ejercicio de concientización.

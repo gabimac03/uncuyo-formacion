@@ -4,7 +4,8 @@ const tourSteps = [
     element: 'header.site',
     title: 'Barra superior',
     description: 'Esta es la barra superior del sitio, donde podés navegar entre Módulos, Preguntas Frecuentes, Contacto y Cerrar Sesión.',
-    position: 'bottom'
+    position: 'bottom',
+    image: './recursos/deFrenteSaludando.png'
   },
 
   // HERO - badge
@@ -12,21 +13,24 @@ const tourSteps = [
     element: '.hero .badge',
     title: 'Programa institucional',
     description: 'Este badge indica el programa y el año correspondiente.',
-    position: 'bottom'
+    position: 'bottom',
+    image: './recursos/deFrentehaciendoOk.png'
   },
   // HERO - actions
   {
     element: '.hero .actions',
     title: 'Acciones principales',
     description: 'Podés acceder directamente a los módulos o a la sección de preguntas frecuentes.',
-    position: 'bottom'
+    position: 'bottom',
+    image: './recursos/deFrentehaciendoOk.png'
   },
   // HERO - search
   {
     element: '.hero .search',
     title: 'Buscar contenido',
     description: 'Aquí podés buscar por tema, por ejemplo contraseñas, phishing o backups.',
-    position: 'top'
+    position: 'bottom',
+    image: './recursos/deFrentehaciaArriba.png'
   },
 
   // HERO - card test-card
@@ -34,7 +38,8 @@ const tourSteps = [
     element: '.card.test-card',
     title: 'Certificado de finalización',
     description: 'Completá y aprobá todos los módulos requeridos para poder solicitar tu certificado.',
-    position: 'top'
+    position: 'top',
+    image: './recursos/deFrentemanosCruzadas.png'
   },
 
   // Módulos - título
@@ -42,7 +47,8 @@ const tourSteps = [
     element: '.modulos h2',
     title: 'Módulos formativos',
     description: 'Acá vas a encontrar la sección de módulos.',
-    position: 'top'
+    position: 'top',
+    image: './recursos/deFrentehaciaArriba.png'
   },
 
   // FAQ
@@ -50,7 +56,8 @@ const tourSteps = [
     element: '.faq',
     title: 'Preguntas frecuentes',
     description: 'Si tenés dudas sobre cómo usar la plataforma, esta sección te ayudará.',
-    position: 'top'
+    position: 'top',
+    image: './recursos/deFrentehaciaAbajo.png'
   },
 
   // Contacto
@@ -58,7 +65,8 @@ const tourSteps = [
     element: '#contacto',
     title: 'Contacto',
     description: 'Consultas y soporte del programa A.L.E.R.T.A. UNCuyo.',
-    position: 'top'
+    position: 'top',
+    image: './recursos/deFrentehaciaAbajo.png'
   },
 
   // Footer
@@ -66,7 +74,8 @@ const tourSteps = [
     element: '#footer',
     title: 'Footer',
     description: 'Aquí se encuentra información de contacto y links adicionales.',
-    position: 'top'
+    position: 'top',
+    image: './recursos/deFrentehaciaAbajo.png'
   }
 ];
 
@@ -102,18 +111,22 @@ class TourGuide {
     // Crear tooltip
         this.elements.tooltip = document.createElement('div');
         this.elements.tooltip.id = 'tour-tooltip';
-        this.elements.tooltip.innerHTML = 
-        `<br>
-          <h3 id="tour-title"></h3>
-          <p id="tour-desc"></p>
-          <div class="tour-controls">
-            <div class="tour-step-info">
-              <span id="tour-step-current">1</span> de <span id="tour-step-total">${this.steps.length}</span>
-            </div>
-            <div class="tour-buttons">
-              <button id="tour-prev" class="secondary">Anterior</button>
-              <button id="tour-next">Siguiente</button>
-              <button id="tour-close" class="danger">Cerrar</button>
+        this.elements.tooltip.innerHTML = `
+          <div class="tour-guide-wrapper">
+            <img id="tour-character" alt="Guía del tour">
+            <div class="tour-content">
+              <h3 id="tour-title"></h3>
+              <p id="tour-desc"></p>
+              <div class="tour-controls">
+                <div class="tour-step-info">
+                  <span id="tour-step-current">1</span> de <span id="tour-step-total">${this.steps.length}</span>
+                </div>
+                <div class="tour-buttons">
+                  <button id="tour-prev" class="secondary">Anterior</button>
+                  <button id="tour-next">Siguiente</button>
+                  <button id="tour-close" class="danger">Cerrar</button>
+                </div>
+              </div>
             </div>
           </div>
         `;
@@ -302,6 +315,13 @@ positionTooltip(target, step) {
       nextBtn.textContent = 'Siguiente';
       nextBtn.className = '';
     }
+    const img = document.getElementById('tour-character');
+    if (step.image) {
+      img.src = step.image;
+      img.style.display = 'block';
+    } else {
+      img.style.display = 'none';
+    }
   }
 
   showElements() {
@@ -409,6 +429,6 @@ positionTooltip(target, step) {
   
   // iniciar el tour después de que todo cargue
   setTimeout(() => TourGuide.start(), 500);
-});
+});*/
 
-window.restartTour = () => TourGuide.start();*/
+window.restartTour = () => TourGuide.start();

@@ -2335,9 +2335,7 @@ html.no-scroll, body.no-scroll { overflow: hidden; }
       }
     }
 
-/* ===========================================================
-      TOOLTIP MODERNO ESTILO UNCuyo – OPTIMIZADO
-=============================================================*/
+
 
 /* ===========================================================
       TOOLTIP MODERNO ESTILO UNCuyo – OPTIMIZADO
@@ -2346,10 +2344,10 @@ html.no-scroll, body.no-scroll { overflow: hidden; }
 /* Tooltip principal */
 #tour-tooltip {
   position: absolute;
-  max-width: 380px;
+  max-width: 450px !important;
   background: linear-gradient(145deg, #0b1e40, #1e2f55); /* gradiente azul oscuro UNCuyo */
   color: #fff;
-  padding: 22px 24px;
+  padding: 36px 42px;
   border-radius: 14px;
   z-index: 10003; /* encima del spotlight */
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.45);
@@ -2401,8 +2399,8 @@ html.no-scroll, body.no-scroll { overflow: hidden; }
 
 /* Tipografía */
 #tour-tooltip h3 {
-  margin: 0 0 10px 0;
-  font-weight: 700;
+  margin: 0 0 8px 0;
+  font-weight: 500;
   font-size: 1.15rem;
   color: #fefefe;
   display: flex;
@@ -2412,9 +2410,9 @@ html.no-scroll, body.no-scroll { overflow: hidden; }
 
 #tour-tooltip p {
   margin: 0 0 14px 0;
-  line-height: 1.6;
+  line-height: 1.2;
   color: #dce1f2;
-  font-size: 0.9rem;
+  font-size: 0.5rem;
 }
 
 /* Controles del tooltip */
@@ -2483,6 +2481,7 @@ html.no-scroll, body.no-scroll { overflow: hidden; }
 .tour-overlay.active {
   opacity: 1;
   visibility: visible;
+  pointer-events: all;
 }
 
 /* Spotlight - área visible de la sección seleccionada */
@@ -2525,21 +2524,7 @@ html.no-scroll, body.no-scroll { overflow: hidden; }
       RESPONSIVE
 =============================================================*/
 
-/* Tooltip y flecha adaptables */
-@media (max-width: 768px) {
-  #tour-tooltip {
-    max-width: 300px;
-    padding: 18px 20px;
-    font-size: 0.85rem;
-  }
 
-  #tour-tooltip h3 {
-    font-size: 1rem;
-  }
-
-  #tour-tooltip p {
-    font-size: 0.82rem;
-  }
 
   #tour-tooltip.position-bottom::before,
   #tour-tooltip.position-top::before {
@@ -2549,15 +2534,7 @@ html.no-scroll, body.no-scroll { overflow: hidden; }
     border-top-width: 10px;
     border-bottom-width: 10px;
   }
-}
 
-/* Ajuste extremo para móviles muy chicos */
-@media (max-width: 480px) {
-  #tour-tooltip {
-    max-width: 90%;
-    padding: 16px 18px;
-    font-size: 0.82rem;
-  }
 
   #tour-tooltip h3 {
     font-size: 0.95rem;
@@ -2574,6 +2551,41 @@ html.no-scroll, body.no-scroll { overflow: hidden; }
     border-right: 6px solid transparent;
     border-top-width: 8px;
     border-bottom-width: 8px;
+  }
+
+
+/* === Personaje acompañante del tour === */
+.tour-guide-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+#tour-character {
+  width: 60px;
+  height: auto;
+  flex-shrink: 0;
+  border-radius: 10px;
+  user-select: none;
+  pointer-events: none;
+  object-fit: contain;
+}
+
+.tour-content {
+  flex: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tour-guide-wrapper {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  #tour-character {
+    width: 80px;
+    margin-bottom: 10px;
   }
 }
 
@@ -3073,16 +3085,15 @@ html.no-scroll, body.no-scroll { overflow: hidden; }
 /* ===================== */
 /* ===== MODAL ========= */
 /* ===================== */
-.uncuyoUsbSim2025-overlay {
-  position: relative;
-  width: 100%; height: 100%;
-  background: rgba(30, 41, 59, 0.85);
-  display: flex;
+.uncuyoUsbSim2025-overlay{
+  position: fixed;          /* antes relative */
+  inset: 0;                 /* top:0; right:0; bottom:0; left:0 */
+  z-index: 1000;            /* base: debajo de tips y botón */
+  display: flex;            /* preserva centrado */
   align-items: center;
   justify-content: center;
-  z-index: 100;
-  animation: uncuyoUsbSim2025-fadeIn 0.3s ease forwards;
 }
+
 
 @keyframes uncuyoUsbSim2025-fadeIn {
   from { opacity: 0; }
@@ -3271,7 +3282,7 @@ html.no-scroll, body.no-scroll { overflow: hidden; }
   font-size: 0.95rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   animation: uncuyoUsbSim2025-slideIn 0.3s ease forwards;
-  z-index: 200;
+  z-index: 1100;
 }
 
 @keyframes uncuyoUsbSim2025-slideIn {
@@ -3423,13 +3434,18 @@ html.no-scroll, body.no-scroll { overflow: hidden; }
   }
 
   /* Botón volver */
-  .uncuyoUsbSim2025-btn-wrapper {
-    position: static;
-    margin-top: 1rem;
-  }
+ .uncuyoUsbSim2025-btn-wrapper{
+  position: fixed;          /* flotante */
+  bottom: 20px;
+  right: 20px;
+  z-index: 1200;            /* > tips y > overlay */
+  pointer-events: auto;
+}
   .uncuyoUsbSim2025-btnClose-PageLogin {
     font-size: 0.85rem;
     padding: 0.5rem 1rem;
+    display: inline-block;    /* por si cambiás a <a> */
+    pointer-events: auto;
   }
 
   /* Tips */
