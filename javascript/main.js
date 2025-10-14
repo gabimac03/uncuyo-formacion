@@ -10,31 +10,55 @@ const MODULOS = [
 
 window.MODULOS = MODULOS;
 
-// --- Plan de liberación (1 módulo por mes) ---
+// --- Plan de liberación (1 módulo por mes, salteando enero) ---
 (function () {
-  const BASE = new Date(2025, 10, 14);
+  const BASE = new Date(2025, 10, 14); // noviembre = mes 10 (0-indexado)
   const releases = {};
-  releases[1] = new Date(0);
+
+  releases[1] = new Date(0); // Módulo 1 siempre desbloqueado
+
   MODULOS.forEach(m => {
     if (m.id <= 1) return;
+
+    // Calculamos fecha base según orden
     const d = new Date(BASE);
-    d.setMonth(BASE.getMonth() + (m.id - 2));
+    let monthOffset = m.id - 2; // Módulo 2 => +0 (noviembre)
+
+    // Ajuste para saltar enero: si después de sumar pasamos a enero o más, agregamos un mes extra
+    let targetMonth = BASE.getMonth() + monthOffset;
+    if (targetMonth >= 12) {
+      // Si pasamos de diciembre, aumentamos el año y saltamos enero
+      d.setFullYear(BASE.getFullYear() + 1);
+      d.setMonth(targetMonth - 12 + 1); // +1 para saltar enero
+    } else {
+      if (targetMonth === 0) targetMonth = 1; // Si cae justo en enero, saltarlo
+      d.setMonth(targetMonth);
+    }
+
     releases[m.id] = d;
   });
+
+  // Guardamos en el objeto global
   window.MODULE_OPEN_DATES = releases;
 
+  // === Helpers ===
   window.isModuleUnlocked = function (id, now = new Date()) {
     const d = releases[id];
     return !!d && now >= d;
   };
+
   window.getModuleReleaseLabel = function (id) {
     const d = releases[id];
-    return d ? d.toLocaleDateString('es-AR', { month: 'long', year: 'numeric' }) : '';
+    return d
+      ? d.toLocaleDateString("es-AR", { month: "long", year: "numeric" })
+      : "";
   };
+
   window.areAllModulesOpen = function (now = new Date()) {
     return MODULOS.every(m => window.isModuleUnlocked(m.id, now));
   };
 })();
+
 
 // --- Render de cards ---
 function render(mods) {

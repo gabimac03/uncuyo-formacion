@@ -11,6 +11,18 @@ window.MODULO_DETALLE = {
     "La información es uno de los activos más importantes dentro de la universidad. Este módulo explica cómo reconocer amenazas, clasificar y proteger datos, aplicar buenas prácticas de almacenamiento, cifrado y respaldos, y cómo cumplir con la legislación argentina sobre privacidad y seguridad de datos.",
 
   contenidoNarrativo: `
+
+    <h2>Video: Protección de la Información</h2>
+      <div class="video-container">
+        <iframe 
+          src="https://www.youtube.com/embed/851CLZcqoXE" 
+          title="Protección de la Información - Video"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+
     <p>En la universidad, la información es un recurso esencial que sostiene procesos académicos, investigativos y administrativos. Incluye desde bases de datos de estudiantes hasta resultados de investigación y documentación interna. Su disponibilidad, integridad y confidencialidad son clave para el funcionamiento institucional.</p>
 
     <p>Los sistemas de información incluyen datos, recursos materiales (ordenadores, teléfonos, dispositivos de almacenamiento), recursos intangibles (know-how, reputación, propiedad intelectual) y las personas que los gestionan. Si esta información se altera, se difunde sin autorización o se pierde, puede afectar gravemente la actividad y reputación de la universidad.</p>
