@@ -3530,3 +3530,468 @@ html.no-scroll, body.no-scroll { overflow: hidden; }
   width: 100%;
   height: 100%;
 }
+
+
+/* MODAL INFORMATIVO PREVIO LOGIN */
+
+/* =========================================================
+   OVERLAY INFORMATIVO INICIAL - DISEÑO MODERNO
+   ========================================================= */
+
+/* Contenedor principal del overlay */
+#infoOverlay {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 50%, #0f2744 100%);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 9999;
+  padding: 2rem;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  overflow: hidden;
+}
+
+/* Efecto de fondo animado */
+#infoOverlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.1;
+  background: 
+    radial-gradient(circle at 20% 50%, #00a2ff 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, #0066cc 0%, transparent 50%);
+  animation: infoOverlayPulse 8s ease-in-out infinite;
+}
+
+@keyframes infoOverlayPulse {
+  0%, 100% { 
+    transform: scale(1); 
+    opacity: 0.1; 
+  }
+  50% { 
+    transform: scale(1.1); 
+    opacity: 0.15; 
+  }
+}
+
+/* Contenedor glassmorphism */
+.info-glass-container {
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 3rem 2.5rem;
+  max-width: 680px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  animation: infoSlideUp 0.6s ease-out;
+}
+
+@keyframes infoSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Logo con efecto */
+.info-logo {
+  width: 140px;
+  margin-bottom: 2rem;
+  filter: drop-shadow(0 4px 12px rgba(0, 162, 255, 0.3));
+  animation: infoFadeIn 0.8s ease-out;
+}
+
+/* Título con gradiente */
+.info-title {
+  font-size: 2.25rem;
+  margin-bottom: 1.25rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ffffff 0%, #a8d8ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: infoFadeIn 0.8s ease-out 0.2s backwards;
+}
+
+/* Párrafo introductorio */
+.info-intro {
+  line-height: 1.7;
+  color: #e2e8f0;
+  margin-bottom: 1.25rem;
+  font-size: 1.05rem;
+  animation: infoFadeIn 0.8s ease-out 0.4s backwards;
+}
+
+.info-intro strong {
+  color: #00d4ff;
+}
+
+/* Caja de información con detalles */
+.info-details-box {
+  background: rgba(0, 162, 255, 0.08);
+  border-left: 3px solid #00a2ff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  text-align: left;
+  animation: infoFadeIn 0.8s ease-out 0.6s backwards;
+}
+
+/* Items de información */
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 0.9rem;
+}
+
+.info-item:last-child {
+  margin-bottom: 0;
+}
+
+.info-item-icon {
+  font-size: 1.5rem;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}
+
+.info-item-content {
+  flex: 1;
+}
+
+.info-item-label {
+  color: #00d4ff;
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+
+.info-item-text {
+  color: #cbd5e1;
+  margin: 0;
+}
+
+/* Botón de acción principal */
+.info-btn-action {
+  background: linear-gradient(135deg, #00a2ff 0%, #0077cc 100%);
+  color: white;
+  padding: 16px 40px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.125rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 30px -10px rgba(0, 162, 255, 0.5);
+  position: relative;
+  overflow: hidden;
+  animation: infoFadeIn 0.8s ease-out 0.8s backwards;
+}
+
+.info-btn-action:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 15px 40px -10px rgba(0, 162, 255, 0.7);
+}
+
+.info-btn-action:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Efecto de brillo en el botón */
+.info-btn-action::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.info-btn-action:hover::before {
+  left: 100%;
+}
+
+/* Animación de fade in genérica */
+@keyframes infoFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+/* Tablets */
+@media (max-width: 768px) {
+  #infoOverlay {
+    padding: 1.5rem;
+  }
+
+  .info-glass-container {
+    padding: 2rem 1.5rem;
+    max-width: 90%;
+  }
+
+  .info-title {
+    font-size: 1.75rem;
+  }
+
+  .info-intro {
+    font-size: 1rem;
+  }
+
+  .info-details-box {
+    padding: 1.25rem;
+  }
+
+  .info-btn-action {
+    padding: 14px 32px;
+    font-size: 1rem;
+    width: 100%;
+  }
+}
+
+/* Móviles */
+@media (max-width: 480px) {
+  #infoOverlay {
+    padding: 1rem;
+    align-items: flex-start;
+    overflow-y: auto;
+  }
+
+  .info-glass-container {
+    padding: 1.75rem 1.5rem;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 100%;
+    margin: auto 0;
+  }
+
+  .info-logo {
+    width: 110px;
+    margin-bottom: 1.25rem;
+  }
+
+  .info-title {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .info-intro {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  .info-details-box {
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .info-item {
+    margin-bottom: 1rem;
+    align-items: center;
+  }
+
+  .info-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .info-item-icon {
+    font-size: 1.4rem;
+    margin-right: 0.75rem;
+  }
+
+  .info-item-label {
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .info-item-text {
+    font-size: 0.88rem;
+    line-height: 1.4;
+  }
+
+  .info-btn-action {
+    padding: 14px 32px;
+    font-size: 1rem;
+    width: 100%;
+  }
+}
+
+/* Notebooks (1024px - 1440px) */
+@media (min-width: 1024px) and (max-width: 1440px) {
+  #infoOverlay {
+    padding: 1.5rem;
+  }
+
+  .info-glass-container {
+    padding: 2rem 2.5rem;
+    max-width: 650px;
+  }
+
+  .info-logo {
+    width: 120px;
+    margin-bottom: 1.5rem;
+  }
+
+  .info-title {
+    font-size: 1.85rem;
+    margin-bottom: 1rem;
+  }
+
+  .info-intro {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .info-details-box {
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .info-item {
+    margin-bottom: 0.7rem;
+  }
+
+  .info-item-icon {
+    font-size: 1.3rem;
+  }
+
+  .info-item-label,
+  .info-item-text {
+    font-size: 0.9rem;
+  }
+
+  .info-btn-action {
+    padding: 13px 32px;
+    font-size: 1rem;
+  }
+}
+
+/* Notebooks con pantalla vertical pequeña (altura < 900px) */
+@media (max-height: 900px) and (min-width: 1024px) {
+  #infoOverlay {
+    padding: 1rem;
+  }
+
+  .info-glass-container {
+    padding: 1.5rem 2rem;
+    max-width: 600px;
+  }
+
+  .info-logo {
+    width: 100px;
+    margin-bottom: 1rem;
+  }
+
+  .info-title {
+    font-size: 1.6rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .info-intro {
+    font-size: 0.88rem;
+    line-height: 1.5;
+    margin-bottom: 0.8rem;
+  }
+
+  .info-details-box {
+    padding: 1rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .info-item {
+    margin-bottom: 0.6rem;
+  }
+
+  .info-item-icon {
+    font-size: 1.2rem;
+    margin-right: 0.6rem;
+  }
+
+  .info-item-label {
+    font-size: 0.85rem;
+    margin-bottom: 0.15rem;
+  }
+
+  .info-item-text {
+    font-size: 0.82rem;
+  }
+
+  .info-btn-action {
+    padding: 11px 28px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Notebooks muy compactos (1366x768) */
+@media (max-height: 768px) and (min-width: 1024px) {
+  .info-glass-container {
+    padding: 1.25rem 1.75rem;
+    max-width: 580px;
+  }
+
+  .info-logo {
+    width: 90px;
+    margin-bottom: 0.8rem;
+  }
+
+  .info-title {
+    font-size: 1.4rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .info-intro {
+    font-size: 0.82rem;
+    line-height: 1.4;
+    margin-bottom: 0.7rem;
+  }
+
+  .info-details-box {
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .info-item {
+    margin-bottom: 0.5rem;
+  }
+
+  .info-item-icon {
+    font-size: 1.1rem;
+    margin-right: 0.5rem;
+  }
+
+  .info-item-label {
+    font-size: 0.8rem;
+    margin-bottom: 0.1rem;
+  }
+
+  .info-item-text {
+    font-size: 0.78rem;
+  }
+
+  .info-btn-action {
+    padding: 10px 24px;
+    font-size: 0.9rem;
+  }
+}

@@ -359,3 +359,13 @@ function initTips() {
 document.addEventListener('DOMContentLoaded', () => {
   setTimeout(initTips, 500);
 });
+
+// INFORMATIVO
+
+      // Botón manual para mostrar el login
+      const overlay = document.getElementById("infoOverlay");
+      document.getElementById("btnContinuar").addEventListener("click", () => {
+        overlay.style.transition = "opacity 0.6s ease";
+        overlay.style.opacity = "0";
+        setTimeout(() => { overlay.style.display = "none"; }, 600);
+      });

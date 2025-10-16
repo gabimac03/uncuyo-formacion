@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrusel ALERTA</title>
+  <link rel="icon" type="image/x-icon" href="recursos/favicon.ico">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #000;
+      overflow: hidden;
+    }
+    .carousel-container {
+      width: 100vw; height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .carousel-slide {
+      position: absolute;
+      width: 100%; height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .carousel-slide.active { opacity: 1; }
+    .carousel-slide img {
+      width: 100%; height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
+    .indicator {
+      position: fixed;
+      top: 40px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; gap: 12px;
+      z-index: 100;
+    }
+    .dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+      transition: all 0.3s ease;
+    }
+    .dot.active {
+      background: #fff;
+      width: 32px;
+      border-radius: 6px;
+    }
+    .timer-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #984caf, #59006b);
+      width: 0%;
+      transition: width 0.1s linear;
+      z-index: 101;
+    }
+  </style>
+</head>
+<body>
+  <div class="timer-bar" id="timerBar"></div>
+  <div class="carousel-container" id="carousel"></div>
+  <div class="indicator" id="indicator"></div>
+
+  <script>
+    const timerBar = document.getElementById('timerBar');
+    const indicator = document.getElementById('indicator');
+    const carousel = document.getElementById('carousel');
+
+    const slideDuration = 8000; // 8 segundos
+    let currentSlide = 0;
+    let autoplayInterval, timerInterval, startTime;
+    let isPlaying = true;
+    let slides = [];
+
+    // 📸 Imágenes separadas según orientación
+    const slidesHorizontal = [
+      "recursos/carpetaGabi/bannerciberseguridad-mail.jpg",
+      "recursos/carpetaGabi/Poster-ciberseguridad-Horizontal - Banner.jpg",
+      "recursos/carpetaGabi/POSTER-CIBERSEGURIDAD - Banner.jpg"
+    ];
+
+    const slidesVertical = [
+      "recursos/carpetaGabi/Poster-ciberseguridad-Vertical - Banner.jpg",
+      "recursos/carpetaGabi/POSTER-CIBERSEGURIDAD2 - Banner.jpg"
+    ];
+
+    // Detectar orientación actual
+    function isPortrait() {
+      return window.matchMedia("(orientation: portrait)").matches;
+    }
+
+    // Construir el carrusel dinámicamente
+    function buildCarousel() {
+      carousel.innerHTML = "";
+      indicator.innerHTML = "";
+      currentSlide = 0;
+
+      slides = isPortrait() ? slidesVertical : slidesHorizontal;
+
+      slides.forEach((src, i) => {
+        const div = document.createElement('div');
+        div.className = 'carousel-slide' + (i === 0 ? ' active' : '');
+        const img = document.createElement('img');
+        img.src = src;
+        div.appendChild(img);
+        carousel.appendChild(div);
+
+        const dot = document.createElement('div');
+        dot.className = 'dot' + (i === 0 ? ' active' : '');
+        dot.onclick = () => goToSlide(i);
+        indicator.appendChild(dot);
+      });
+
+      startAutoplay();
+    }
+
+    // Funciones del carrusel
+    function updateSlide() {
+      document.querySelectorAll('.carousel-slide').forEach((slide, i) =>
+        slide.classList.toggle('active', i === currentSlide)
+      );
+      document.querySelectorAll('.dot').forEach((dot, i) =>
+        dot.classList.toggle('active', i === currentSlide)
+      );
+      resetTimer();
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      updateSlide();
+    }
+
+    function goToSlide(index) {
+      currentSlide = index;
+      updateSlide();
+    }
+
+    function startAutoplay() {
+      clearInterval(autoplayInterval);
+      autoplayInterval = setInterval(nextSlide, slideDuration);
+      startTimer();
+    }
+
+    function startTimer() {
+      clearInterval(timerInterval);
+      startTime = Date.now();
+      timerBar.style.width = '0%';
+      timerInterval = setInterval(() => {
+        const elapsed = Date.now() - startTime;
+        const progress = (elapsed / slideDuration) * 100;
+        timerBar.style.width = Math.min(progress, 100) + '%';
+      }, 50);
+    }
+
+    function resetTimer() {
+      if (isPlaying) {
+        clearInterval(timerInterval);
+        startTimer();
+      }
+    }
+
+    // Cambiar automáticamente si rota el televisor
+    window.matchMedia("(orientation: portrait)").addEventListener("change", () => {
+      buildCarousel();
+    });
+
+    // Iniciar
+    buildCarousel();
+  </script>
+</body>
+</html>

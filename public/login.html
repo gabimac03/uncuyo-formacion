@@ -8,7 +8,58 @@
   <link rel="icon" type="image/x-icon" href="recursos/favicon.ico">
 </head>
 <body class="login-body">
-  <div class="card">
+
+<!-- === Pantalla informativa inicial === -->
+<div id="infoOverlay">
+  <div class="info-glass-container">
+    <img src="recursos/ALERTAlogovertical.png" alt="ALERTA UNCuyo" class="info-logo">
+    
+    <h1 class="info-title">Curso de Ciberseguridad UNCuyo</h1>
+    
+    <p class="info-intro">
+      <strong>ALERTA UNCuyo</strong> es una capacitación gratuita orientada a toda la comunidad universitaria —docentes y personal administrativo— para fortalecer las buenas prácticas en el uso seguro de la información y los sistemas. 
+      <strong>En este curso se entregará certificación emitida por la Universidad.</strong>
+    </p>
+    
+    <div class="info-details-box">
+      <div class="info-item">
+        <span class="info-item-icon">📘</span>
+        <div class="info-item-content">
+          <strong class="info-item-label">Modalidad</strong>
+          <span class="info-item-text">100% online y autogestionada</span>
+        </div>
+      </div>
+      
+      <div class="info-item">
+        <span class="info-item-icon">⏱️</span>
+        <div class="info-item-content">
+          <strong class="info-item-label">Duración</strong>
+          <span class="info-item-text">8 meses - 2 horas por mes</span>
+        </div>
+      </div>
+      
+      <div class="info-item">
+        <span class="info-item-icon">🎓</span>
+        <div class="info-item-content">
+          <strong class="info-item-label">Certificación</strong>
+          <span class="info-item-text">Emitida por la Secretaría de Transformación Digital</span>
+        </div>
+      </div>
+      
+      <div class="info-item">
+        <span class="info-item-icon">👥</span>
+        <div class="info-item-content">
+          <strong class="info-item-label">Requisitos</strong>
+          <span class="info-item-text">Ser personal de la Universidad</span>
+        </div>
+      </div>
+    </div>
+    
+    <button id="btnContinuar" class="info-btn-action">Iniciar sesión</button>
+  </div>
+</div>
+
+<div class="card">
     <img src="./recursos/ALERTAlogovertical.png" alt="" srcset="">
     <form id="loginForm" autocomplete="off">
       <label>Usuario (DNI)
@@ -37,7 +88,7 @@
     </p>
 
     </form>
-  </div>
+</div>
   <script src="../javascript/login.js"></script>
 </body>
 </html>
