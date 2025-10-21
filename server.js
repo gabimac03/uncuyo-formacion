@@ -250,84 +250,119 @@ app.post('/api/login', async (req, res) => {
     const ip  = req.headers['x-forwarded-for']?.toString().split(',')[0]?.trim() || req.socket.remoteAddress;
     const ua  = req.headers['user-agent'] || '';
 
+    // --- Validación de campos ---
     if (!username || !password) {
-      return res.status(400).json({ ok:false, error:'Faltan credenciales.' });
+      return res.status(400).json({ ok:false, error:'⚠️ Ingresá tu usuario (DNI) y contraseña.' });
     }
 
+    // --- Validación del CAPTCHA ---
     const cap = CAPTCHAS.get(captchaId);
     CAPTCHAS.delete(captchaId);
     if (!cap || cap.expires < Date.now() || String(captchaAnswer).trim() !== cap.answer) {
       await insertAudit({ username: String(username), success: false, ip, userAgent: ua });
-      return res.status(400).json({ ok:false, error:'CAPTCHA inválido o vencido.' });
+      return res.status(400).json({ ok:false, error:'⚠️ CAPTCHA inválido o vencido. Intentá de nuevo.' });
     }
 
+    // --- Buscar usuario ---
     const user = await getUserByUsername(String(username));
     if (!user) {
       await insertAudit({ username: String(username), success: false, ip, userAgent: ua });
-      return res.status(401).json({ ok:false, error:'Credenciales inválidas.' });
+      return res.status(401).json({
+        ok:false,
+        error:'⚠️ Usuario o contraseña incorrectos. Verificá tus datos.'
+      });
     }
 
+    // --- Verificar contraseña ---
     const ok = await bcrypt.compare(String(password), user.password_hash);
     if (!ok) {
       await insertAudit({ username: user.username, success: false, ip, userAgent: ua });
-      return res.status(401).json({ ok:false, error:'Credenciales inválidas.' });
+      return res.status(401).json({
+        ok:false,
+        error:'⚠️ Usuario o contraseña incorrectos. Verificá tus datos.'
+      });
     }
 
+    // --- Login exitoso ---
     const token = jwt.sign({ sub: user.username, uid: user.id }, JWT_SECRET, { expiresIn: '2h' });
     res.cookie('token', token, { httpOnly: true, sameSite: 'strict', secure: false, maxAge: 2*60*60*1000 });
+
     await insertAudit({ username: user.username, success: true, ip, userAgent: ua });
-    res.json({ ok:true });
+    res.json({ ok:true, message:`✅ Bienvenido ${user.username}` });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ ok:false, error:'Error interno' });
+    res.status(500).json({ ok:false, error:'⚠️ Error interno del servidor. Intentá más tarde.' });
   }
 });
 
+
 // ------------ REGISTER ------------
+
 app.post('/api/register', async (req, res) => {
   try {
     const { dni, password, email, captchaId, captchaAnswer } = req.body || {};
     const ip  = req.headers['x-forwarded-for']?.toString().split(',')[0]?.trim() || req.socket.remoteAddress;
     const ua  = req.headers['user-agent'] || '';
 
+    // --- Validaciones básicas ---
     if (!dni || !password || !email) {
       return res.status(400).json({ ok:false, error:'Faltan DNI, contraseña o correo.' });
     }
-    if (!/^\d{7,9}$/.test(String(dni))) {
-      return res.status(400).json({ ok:false, error:'DNI inválido (7 a 9 dígitos).' });
+
+    // 🔒 Validación avanzada de DNI
+    const dniStr = String(dni).trim();
+
+    const repetitivo = /^(\d)\1+$/.test(dniStr);   // 00000000, 999999999, etc.
+    const secuencial = dniStr === '12345678' || dniStr === '87654321'; // pruebas típicas
+    const fueraRango = Number(dniStr) < 1000000 || Number(dniStr) > 999999999; // fuera del rango razonable
+
+    if (!/^\d{7,9}$/.test(dniStr) || repetitivo || secuencial || fueraRango) {
+      return res.status(400).json({ ok:false, error:'DNI inválido o no permitido.' });
     }
+
+    // 🔒 Validación de contraseña
     if (String(password).length < 6) {
       return res.status(400).json({ ok:false, error:'La contraseña debe tener al menos 6 caracteres.' });
     }
+
+    // 🔒 Validación de correo electrónico
     const emailNorm = String(email).trim().toLowerCase();
     const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRe.test(emailNorm)) {
       return res.status(400).json({ ok:false, error:'Correo inválido.' });
     }
 
+    // 🔐 Validación CAPTCHA
     const cap = CAPTCHAS.get(captchaId);
     CAPTCHAS.delete(captchaId);
     if (!cap || cap.expires < Date.now() || String(captchaAnswer).trim() !== cap.answer) {
       return res.status(400).json({ ok:false, error:'CAPTCHA inválido o vencido.' });
     }
 
-    const [existsUser] = await pool.execute('SELECT id FROM users WHERE username = :u LIMIT 1', { u: String(dni) });
+    // 🚫 Evitar duplicados
+    const [existsUser] = await pool.execute('SELECT id FROM users WHERE username = :u LIMIT 1', { u: dniStr });
     if (existsUser.length) return res.status(409).json({ ok:false, error:'Ese DNI ya está registrado.' });
 
     const [existsEmail] = await pool.execute('SELECT id FROM users WHERE email = :e LIMIT 1', { e: emailNorm });
     if (existsEmail.length) return res.status(409).json({ ok:false, error:'Ese correo ya está registrado.' });
 
+    // 🔑 Crear usuario
     const hash = bcrypt.hashSync(String(password), 12);
-    await pool.execute('INSERT INTO users (username, email, password_hash) VALUES (:u, :e, :h)',
-      { u: String(dni), e: emailNorm, h: hash });
+    await pool.execute(
+      'INSERT INTO users (username, email, password_hash) VALUES (:u, :e, :h)',
+      { u: dniStr, e: emailNorm, h: hash }
+    );
 
-    await insertAudit({ username: String(dni), success: true, ip, userAgent: ua });
-    return res.json({ ok:true, message:'Registro creado. Iniciá sesión.' });
+    await insertAudit({ username: dniStr, success: true, ip, userAgent: ua });
+
+    res.json({ ok:true, message:'Registro creado. Iniciá sesión.' });
   } catch (err) {
     console.error(err);
-    return res.status(500).json({ ok:false, error:'Error registrando usuario' });
+    res.status(500).json({ ok:false, error:'Error registrando usuario' });
   }
 });
+
+
 
 // ------------ LOGOUT ------------
 app.post('/api/logout', (req, res) => {

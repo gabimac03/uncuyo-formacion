@@ -1,5 +1,56 @@
 const $ = s => document.querySelector(s);
 
+// ===== ALERTA VISUAL GLOBAL =====
+function showAlert(text, type = "warning") {
+  // eliminar si ya hay uno
+  const old = document.getElementById("alert-toast");
+  if (old) old.remove();
+
+  // crear contenedor
+  const div = document.createElement("div");
+  div.id = "alert-toast";
+  div.textContent = text;
+
+  // estilos básicos (UNCuyo friendly)
+  Object.assign(div.style, {
+    position: "fixed",
+    top: "20px",
+    right: "20px",
+    zIndex: "9999",
+    padding: "14px 22px",
+    borderRadius: "8px",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+    fontFamily: "Inter, system-ui, sans-serif",
+    fontSize: "15px",
+    fontWeight: "500",
+    color: "#fff",
+    opacity: "0",
+    transform: "translateY(-10px)",
+    transition: "all 0.3s ease",
+  });
+
+  // colores según tipo
+  if (type === "success") div.style.background = "#28a745";
+  else if (type === "error") div.style.background = "#dc3545";
+  else div.style.background = "#ffc107"; // warning
+
+  document.body.appendChild(div);
+
+  // animar entrada
+  requestAnimationFrame(() => {
+    div.style.opacity = "1";
+    div.style.transform = "translateY(0)";
+  });
+
+  // desaparecer a los 3.5s
+  setTimeout(() => {
+    div.style.opacity = "0";
+    div.style.transform = "translateY(-10px)";
+    setTimeout(() => div.remove(), 400);
+  }, 3500);
+}
+
+
 async function cargarCaptcha() {
   $('#msg').textContent = '';
   try {
@@ -33,11 +84,16 @@ $('#loginForm')?.addEventListener('submit', async (e) => {
     });
     const data = await r.json().catch(() => ({}));
     if (!r.ok || !data.ok) {
-      $('#msg').textContent = data.error || 'Error de autenticación';
-      await cargarCaptcha();            // nuevo captcha al fallar
+      showAlert(data.error || '⚠️ Error de autenticación', 'error');
+      $('#msg').textContent = '';
+      await cargarCaptcha();
       $('#captchaAnswer').value = '';
       return;
     }
+
+    // ✅ Login correcto
+    showAlert('✅ Inicio de sesión exitoso', 'success');
+    setTimeout(() => location.href = '/', 800);
     // OK → ir al home (tu index.html protegido)
     location.href = '/';
   } catch {
