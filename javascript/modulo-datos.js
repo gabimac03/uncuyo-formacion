@@ -9,7 +9,7 @@ window.MODULO_DETALLE = {
   titulo: "Protección de la Información",
   resumen:
     "La información es uno de los activos más importantes dentro de la universidad. Este módulo explica cómo reconocer amenazas, clasificar y proteger datos, aplicar buenas prácticas de almacenamiento, cifrado y respaldos, y cómo cumplir con la legislación argentina sobre privacidad y seguridad de datos.",
-
+  pdf: "./recursos/modulos/Modulo 1 - Informacion - TxD.pdf", // 🔹 nuevo campo
   contenidoNarrativo: `
 
     <h2>Video: Protección de la Información</h2>
@@ -189,7 +189,7 @@ window.MODULO_DETALLE = {
   titulo: "Correo Electrónico Seguro",
   resumen:
     "El correo electrónico es una herramienta esencial para la universidad, pero también uno de los canales preferidos para fraudes y malware. Este módulo enseña cómo reconocer mensajes sospechosos, validar remitentes y dominios reales, evitar la descarga de archivos maliciosos y aplicar buenas prácticas para mantener la seguridad y la privacidad en cada envío y recepción.",
-
+  pdf: null, // 🔹 aún no disponible
   contenidoNarrativo: `
     <p>El <strong>correo electrónico</strong> es una de las herramientas más utilizadas en la universidad para la comunicación oficial y académica. Sin embargo, su diseño original no priorizó la seguridad, por lo que hoy es uno de los vectores más explotados por los atacantes para <strong>robar información</strong>, <strong>infectar dispositivos</strong> y <strong>comprometer cuentas institucionales</strong>.</p>
 
@@ -333,7 +333,7 @@ window.MODULO_DETALLE = {
   titulo: "Contraseñas Seguras",
   resumen:
     "Las contraseñas son la primera barrera de defensa frente a accesos no autorizados. Este módulo explica por qué es esencial que sean fuertes, únicas y bien gestionadas, cómo complementar su seguridad con factores adicionales y cómo actuar ante filtraciones.",
-
+  pdf: null, // 🔹 aún no disponible
   contenidoNarrativo: `
     <p>Las contraseñas son como la cerradura de nuestra vida digital. Aunque parezcan un simple requisito de ingreso, de su fortaleza depende la protección de correos, sistemas académicos, plataformas de gestión y datos personales. Una contraseña débil o repetida puede abrir la puerta a intrusos que buscan robar información o sabotear servicios críticos de la universidad.</p>
 
@@ -402,7 +402,7 @@ window.MODULO_DETALLE = {
   titulo: "Puesto de Trabajo Seguro",
   resumen:
     "El lugar donde trabajamos —nuestro escritorio físico y digital— puede ser una puerta de entrada para fugas de información o malware. Este módulo explica cómo protegerlo, desde el orden físico y el bloqueo de la pantalla hasta el software actualizado, el uso responsable de Internet y la gestión segura de dispositivos externos.",
-
+  pdf: null, // 🔹 aún no disponible
   contenidoNarrativo: `
     <p>Un puesto de trabajo desordenado, con documentos a la vista y un equipo sin protección, es un blanco fácil para ataques internos y externos. En oficinas y aulas circulan muchas personas y cualquier descuido puede permitir el acceso a información sensible. Mantener el espacio físico y digital seguro no solo te protege a vos: resguarda los datos y servicios de toda la universidad.</p>
 
@@ -495,7 +495,7 @@ window.MODULO_DETALLE = {
   titulo: "Dispositivos Móviles Seguros",
   resumen:
     "Los dispositivos móviles permiten estudiar y trabajar desde cualquier lugar, pero también son blancos fáciles para robo, malware y espionaje. Este módulo enseña cómo protegerlos con bloqueo y cifrado, apps seguras y actualizadas, gestión correcta de contraseñas y redes, y qué hacer ante pérdida o robo.",
-
+  pdf: null, // 🔹 aún no disponible
   contenidoNarrativo: `
     <p>Celulares, tablets y portátiles son herramientas clave para acceder a correo, sistemas académicos y documentos en todo momento. Su movilidad es una ventaja enorme, pero también abre la puerta a riesgos importantes: basta un descuido para que un atacante robe información o controle el dispositivo.</p>
 
@@ -601,7 +601,7 @@ window.MODULO_DETALLE = {
   titulo: "Redes Sociales Seguras",
   resumen:
     "Las redes sociales son una herramienta poderosa para comunicar y fortalecer la imagen institucional, pero un mal uso o un ataque puede dañar la reputación y comprometer datos. Este módulo explica cómo gestionarlas con seguridad y responsabilidad.",
-
+  pdf: null, // 🔹 aún no disponible
   contenidoNarrativo: `
     <p>Facebook, Instagram, X y LinkedIn son canales vitales para la universidad: informan, atraen estudiantes y construyen reputación. Sin embargo, también son un objetivo frecuente para atacantes y pueden volverse un problema si se administran sin políticas claras. Un comentario impulsivo, un enlace malicioso o una filtración puede viralizarse en minutos y dañar la imagen institucional.</p>
 
@@ -727,9 +727,9 @@ window.MODULO_DETALLE = {
 
 7: {
   titulo: "Uso Responsable de la Inteligencia Artificial",
-      resumen:
+  resumen:
     "La Inteligencia Artificial automatiza tareas, optimiza decisiones y mejora la productividad. Puede beneficiar la experiencia educativa y el bienestar laboral, pero también implica riesgos: dependencia, sesgos, errores, filtración de datos y problemas de privacidad y seguridad. Su uso debe ser ético, con límites claros, capacitación y controles adecuados.",
-
+  pdf: null, // 🔹 aún no disponible
   puntos: [
     { titulo: "Definición", texto: "Rama de la informática que simula la inteligencia humana." },
     { titulo: "Utilización", texto: "Automatiza, optimiza procesos y complementa tareas." },

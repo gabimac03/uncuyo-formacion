@@ -22,6 +22,9 @@
   // 4) Datos del detalle desde module-data.js
   const detalle = (window.MODULO_DETALLE && window.MODULO_DETALLE[idParam]) || {};
 
+  // ✅ NUEVO: exponemos el módulo actual globalmente
+  window.moduloSeleccionado = detalle;
+
   // 5) Cabecera
   const h1 = $('#titulo');
   const pResumen = $('#resumen');
@@ -171,3 +174,81 @@ function inicializarQuiz(root) {
     btnReset.addEventListener('click', resetear);
   });
 }
+
+
+// === DESCARGAR PDF ===
+document.addEventListener("DOMContentLoaded", () => {
+  const btnPdf = document.getElementById("btn-pdf");
+  const moduloActual = window.moduloSeleccionado || {};
+
+  if (!btnPdf) return;
+
+  // 🔹 Función para mostrar cartel visual
+  function mostrarCartel(tipo, titulo, texto) {
+    // Elimina carteles previos
+    document.querySelectorAll('.cartel-global').forEach(c => c.remove());
+
+    const div = document.createElement('div');
+    div.className = `cartel cartel--${tipo} cartel-global`;
+    div.setAttribute('role', 'alert');
+    div.innerHTML = `
+      <div class="cartel__icon">${tipo === 'ok' ? '✅' : '⚠️'}</div>
+      <div class="cartel__body">
+        <div class="cartel__title">${titulo}</div>
+        <div class="cartel__text">${texto || ''}</div>
+      </div>
+      <button class="cartel__close" aria-label="Cerrar">✕</button>
+    `;
+    document.body.appendChild(div);
+
+    // Centrar en pantalla
+    Object.assign(div.style, {
+      position: 'fixed',
+      top: '20px',
+      right: '20px',
+      zIndex: '9999',
+      maxWidth: '340px',
+      animation: 'fadeIn 0.3s ease'
+    });
+
+    div.querySelector('.cartel__close').addEventListener('click', () => div.remove());
+    setTimeout(() => div.remove(), 6000);
+  }
+
+  // 🔹 Animación simple (opcional)
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  `;
+  document.head.appendChild(style);
+
+  // 🔹 Evento de descarga
+  btnPdf.addEventListener("click", async () => {
+    const pdfPath = moduloActual?.pdf;
+
+    if (!pdfPath) {
+      mostrarCartel('danger', 'PDF no disponible', '📚 Este módulo aún no tiene un PDF disponible.');
+      return;
+    }
+
+    try {
+      const res = await fetch(pdfPath, { method: "HEAD" });
+      if (!res.ok) throw new Error("No encontrado");
+
+      const link = document.createElement("a");
+      link.href = pdfPath;
+      link.download = pdfPath.split("/").pop();
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      mostrarCartel('ok', 'Descarga iniciada', 'Tu archivo PDF se está descargando correctamente.');
+    } catch (err) {
+      mostrarCartel('danger', 'Error de descarga', '⚠️ El archivo aún no está disponible o hay un problema de conexión.');
+    }
+  });
+});
+

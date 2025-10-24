@@ -365,26 +365,6 @@ hamburger?.addEventListener('click', () => {
 });
 
 
-// DESCARGAR PDF
-
-document.addEventListener("DOMContentLoaded", () => {
-  const btn = document.getElementById("btn-pdf");
-
-  if (!btn) return;
-
-  btn.addEventListener("click", () => {
-    // Ruta al PDF existente
-    const pdfPath = "./recursos/modulos/Modulo 1 - Ciberseguridad - TxD.pdf";
-
-    // Crear un enlace invisible para descargarlo
-    const link = document.createElement("a");
-    link.href = pdfPath;
-    link.download = "Modulo 1 - Ciberseguridad - TxD.pdf"; // 🔹 nombre de descarga
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  });
-});
 
 
 
